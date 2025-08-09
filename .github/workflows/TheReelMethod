@@ -1,0 +1,4 @@
+VITE_AUTH0_DOMAIN=auth.teamwellnesspartners.com
+VITE_AUTH0_CLIENT_ID=<your client ID>
+VITE_AUTH0_AUDIENCE=<optional, your API Identifier>
+VITE_APP_CALLBACK_PATH=/oauth/callback
