@@ -1,12 +1,22 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import "./NavBar.css";
 
 function NavBar() {
   return (
-    <nav style={{ display: "flex", gap: "15px", padding: "10px 20px", background: "#f0f0f0" }}>
-      <Link to="/">Home</Link>
-      <Link to="/instructions">Instructions</Link>
-      <Link to="/settings">Settings</Link>
+    <nav className="navbar">
+      <div className="navbar-brand">DoseCalc</div>
+      <div className="navbar-links">
+        <NavLink to="/" end className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
+          Calculator
+        </NavLink>
+        <NavLink to="/instructions" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
+          Instructions
+        </NavLink>
+        <NavLink to="/settings" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
+          Settings
+        </NavLink>
+      </div>
     </nav>
   );
 }
