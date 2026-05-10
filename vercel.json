@@ -1,5 +1,0 @@
-{
-  "buildCommand": "cd dose-calculator && npm install && npm run build",
-  "outputDirectory": "dose-calculator/build",
-  "framework": null
-}

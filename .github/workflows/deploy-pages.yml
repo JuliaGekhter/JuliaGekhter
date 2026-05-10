@@ -1,0 +1,101 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Build bridge-child
+        working-directory: bridge-child
+        env:
+          PUBLIC_URL: /JuliaGekhter/bridge-child
+          CI: false
+        run: |
+          npm install
+          npm run build
+
+      - name: Build dose-calculator
+        working-directory: dose-calculator
+        env:
+          PUBLIC_URL: /JuliaGekhter/dose-calculator
+          CI: false
+        run: |
+          npm install
+          npm run build
+
+      - name: Assemble dist
+        run: |
+          mkdir -p dist/bridge-child dist/dose-calculator
+          cp -r bridge-child/build/* dist/bridge-child/
+          cp -r dose-calculator/build/* dist/dose-calculator/
+          cat > dist/index.html <<'HTML'
+          <!doctype html>
+          <html lang="en">
+          <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width,initial-scale=1">
+            <title>Julia Gekhter — Apps</title>
+            <style>
+              body { font-family: Georgia, serif; background: #08121e; color: #f0ece3;
+                     margin: 0; min-height: 100vh; display: flex; align-items: center;
+                     justify-content: center; padding: 24px; }
+              .wrap { max-width: 480px; width: 100%; }
+              h1 { color: #e8c55a; font-size: 28px; margin: 0 0 8px; font-weight: 700; }
+              p { color: #a09890; margin: 0 0 28px; font-style: italic; }
+              a { display: block; padding: 18px 20px; margin-bottom: 12px;
+                  background: #132333; border: 1px solid #c4a24a26; border-radius: 12px;
+                  color: #e8c55a; text-decoration: none; transition: transform .12s; }
+              a:hover { transform: translateY(-2px); border-color: #e8c55a; }
+              a strong { display: block; font-size: 17px; margin-bottom: 4px; }
+              a span { font-size: 13px; color: #a09890; font-style: italic; }
+            </style>
+          </head>
+          <body>
+            <div class="wrap">
+              <h1>Julia Gekhter</h1>
+              <p>Projects &amp; companion apps</p>
+              <a href="./bridge-child/">
+                <strong>The Bridge Child</strong>
+                <span>A memoir companion app</span>
+              </a>
+              <a href="./dose-calculator/">
+                <strong>Financial Dashboard</strong>
+                <span>Product &amp; revenue analysis</span>
+              </a>
+            </div>
+          </body>
+          </html>
+          HTML
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
