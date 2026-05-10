@@ -102,7 +102,7 @@ function BridgeSVG() {
   const upY = t => 142 + 75*Math.sin(Math.PI*t+Math.PI);
   const upPts = Array.from({length:61},(_,i)=>{const t=i/60;return `${78+t*264},${upY(t)}`;}).join(" ");
   return (
-    <svg width="100%" height="210" viewBox="0 0 420 210" preserveAspectRatio="xMidYMid meet" style={{display:"block",flexShrink:0}}>
+    <svg width="100%" height="210" viewBox="0 0 420 210" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Illustration of a golden bridge at sunset over dark water" style={{display:"block",flexShrink:0}}>
       <defs>
         <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="#020810"/><stop offset="32%" stopColor="#0e0826"/>
@@ -171,13 +171,13 @@ function Header({label,title,subtitle,onBack,light}) {
       padding:"13px 18px 17px",flexShrink:0,
       borderBottom:`1px solid ${light?T.creamDk:T.goldl+"18"}`}}>
       {onBack && (
-        <button className="press" onClick={onBack}
+        <button className="press" onClick={onBack} aria-label="Go back"
           style={{background:"none",border:"none",
             color:light?T.gold:T.goldl,fontSize:14,
             fontFamily:"'EB Garamond',Georgia,serif",
             cursor:"pointer",padding:"0 0 9px",
             display:"flex",alignItems:"center",gap:5}}>
-          <span style={{fontSize:17}}>←</span> Back
+          <span aria-hidden="true" style={{fontSize:17}}>←</span> Back
         </button>
       )}
       {label && <Label light={light}>{label}</Label>}
@@ -392,7 +392,7 @@ function Workbook() {
                 <div style={{fontSize:13.5,fontWeight:600,color:T.ink,
                   fontFamily:"'Playfair Display',Georgia,serif",
                   marginBottom:5,lineHeight:1.35}}>{p}</div>
-                <textarea value={data[`${k}_${i}`]||""}
+                <textarea value={data[`${k}_${i}`]||""} aria-label={p}
                   onChange={ev=>save(`${k}_${i}`,ev.target.value)}
                   placeholder="Write here…" rows={3}
                   style={{width:"100%",fontSize:15,color:T.ink,lineHeight:1.75,
@@ -413,7 +413,7 @@ function Workbook() {
               fontFamily:"'EB Garamond',Georgia,serif",marginBottom:7,lineHeight:1.6}}>
               What surprised you in completing this exercise?
             </div>
-            <textarea value={data[`${k}_r`]||""}
+            <textarea value={data[`${k}_r`]||""} aria-label="Reflection"
               onChange={ev=>save(`${k}_r`,ev.target.value)}
               placeholder="Write your reflection…" rows={3}
               style={{width:"100%",fontSize:15,color:T.ink,lineHeight:1.75,
@@ -718,12 +718,12 @@ export default function App() {
             fontFamily:"system-ui,sans-serif",letterSpacing:1.5}}>{"●●●●"}</span>
         </div>
 
-        <div style={{flex:1,overflow:"hidden",
+        <main role="tabpanel" style={{flex:1,overflow:"hidden",
           display:"flex",flexDirection:"column"}}>
           {screens[tab]}
-        </div>
+        </main>
 
-        <div style={{background:T.navy,
+        <nav role="tablist" aria-label="Main navigation" style={{background:T.navy,
           borderTop:`1px solid ${T.goldl}1e`,
           display:"flex",
           paddingBottom:"env(safe-area-inset-bottom,5px)",
@@ -731,7 +731,8 @@ export default function App() {
           {NAV.map(({id,label,d})=>{
             const on=tab===id;
             return (
-              <button key={id} className="press" onClick={()=>setTab(id)}
+              <button key={id} role="tab" aria-selected={on} aria-label={label}
+                className="press" onClick={()=>setTab(id)}
                 style={{flex:1,background:"none",border:"none",
                   padding:"9px 2px 7px",cursor:"pointer",
                   display:"flex",flexDirection:"column",
@@ -753,7 +754,7 @@ export default function App() {
               </button>
             );
           })}
-        </div>
+        </nav>
       </div>
     </>
   );
