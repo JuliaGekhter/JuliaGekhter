@@ -1,0 +1,9 @@
+[build]
+  base = "bridge-child"
+  command = "npm install && npm run build"
+  publish = "build"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
