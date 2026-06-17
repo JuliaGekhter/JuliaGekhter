@@ -12,7 +12,84 @@ const DEFAULT_INPUTS = {
   maxCac: 80,
 };
 
-const DEFAULT_PRODUCTS = [
+const DEFAULT_SERVICES = [
+  { name: 'Office Visit', category: 'Primary Care', cost: 25, price: 75 },
+  { name: 'Telehealth Visit', category: 'Primary Care', cost: 10, price: 50 },
+  { name: 'Vitamin B-12 Injection', category: 'IV & Vitamins', cost: 8, price: 30 },
+  { name: 'IV Vitamin Therapy', category: 'IV & Vitamins', cost: 40, price: 150 },
+  { name: 'Botox (per area)', category: 'Aesthetics', cost: 80, price: 250 },
+  { name: 'Dermal Fillers', category: 'Aesthetics', cost: 120, price: 400 },
+  { name: 'RF Microneedling (Morpheus8)', category: 'Aesthetics', cost: 150, price: 500 },
+  { name: 'IPL / Lumecca', category: 'Aesthetics', cost: 90, price: 300 },
+  { name: 'Laser Hair Removal', category: 'Aesthetics', cost: 60, price: 200 },
+  { name: 'Chemical Peel', category: 'Aesthetics', cost: 35, price: 120 },
+  { name: 'Facial', category: 'Aesthetics', cost: 30, price: 100 },
+  { name: 'Body Contouring', category: 'Aesthetics', cost: 100, price: 350 },
+  { name: 'HRT Consultation', category: 'Hormones', cost: 30, price: 100 },
+  { name: 'Testosterone Replacement', category: 'Hormones', cost: 45, price: 150 },
+  { name: 'BHRT / Menopause Treatment', category: 'Hormones', cost: 50, price: 175 },
+  { name: 'GLP-1 Medication', category: 'Weight Loss', cost: 80, price: 250 },
+  { name: 'Nutritionist Consultation', category: 'Weight Loss', cost: 25, price: 85 },
+  { name: 'Personal Training Session', category: 'Weight Loss', cost: 20, price: 65 },
+  { name: 'Body Composition Analysis', category: 'Weight Loss', cost: 15, price: 50 },
+  { name: 'Sexual Health / ED Treatment', category: 'Hormones', cost: 35, price: 125 },
+];
+
+const DEFAULT_PACKAGES = [
+  {
+    name: 'Weight Loss Kickstart',
+    cost: 280,
+    price: 699,
+    services: [
+      'GLP-1 Medication (1 month)',
+      '4x Accountability consultations',
+      '2x Nutritionist meal planning sessions',
+      '4x Personal training sessions',
+      'Body composition analysis',
+      'Weight loss supplement bundle',
+    ],
+  },
+  {
+    name: 'Weight Loss Accelerator',
+    cost: 520,
+    price: 1299,
+    services: [
+      'GLP-1 Medication (3 months)',
+      '12x Weekly accountability consultations',
+      '6x Bi-weekly check-in meetings',
+      '6x Nutritionist sessions',
+      '12x Personal training sessions',
+      '3x Progress labs & body comp',
+      'Weight loss supplement bundle',
+    ],
+  },
+  {
+    name: 'Glow Up',
+    cost: 350,
+    price: 899,
+    services: [
+      '2x Botox sessions',
+      '1x Dermal filler session',
+      '2x Chemical peels',
+      '2x Facials',
+    ],
+  },
+  {
+    name: 'Total Body Reset',
+    cost: 680,
+    price: 1699,
+    services: [
+      'GLP-1 Medication (3 months)',
+      '12x Accountability consultations',
+      '6x Personal training sessions',
+      '3x Body contouring sessions',
+      '3x Progress labs & body comp',
+      'Nutritionist meal plan',
+    ],
+  },
+];
+
+const DEFAULT_MEMBERSHIPS = [
   {
     name: 'Wellness',
     tier: 'Starter',
@@ -20,93 +97,95 @@ const DEFAULT_PRODUCTS = [
     totalCost: 45,
     maxCost: 55,
     price: 149,
-    includes: [
+    credits: 2,
+    services: [
       'Appointments within 3 days',
       'Telehealth via Zoom',
       '24/7 communication access',
       'Patient portal access',
+    ],
+    products: [
       'Monthly Vitamin B-12 injection',
       '15% off IV Therapy & supplements',
-    ],
-    alaCarte: [
-      'HRT & hormones',
-      'IV Vitamin Therapy',
-      'Aesthetics (Botox, fillers, etc.)',
-      'Body contouring',
-      'Laser treatments',
-    ],
-  },
-  {
-    name: 'Transform',
-    tier: 'Transform',
-    starterFee: 149,
-    totalCost: 110,
-    maxCost: 130,
-    price: 299,
-    includes: [
-      'Everything in Wellness',
-      'GLP-1 medications (Semaglutide/Tirzepatide)',
-      'Weekly accountability consultations',
-      'Bi-weekly check-in meetings',
-      'Nutritionist meal planning',
-      'Personal exercise training',
-      'Weight loss supplement bundle',
-      'Monthly progress labs & body comp',
-    ],
-    alaCarte: [
-      'HRT & hormones',
-      'IV Vitamin Therapy',
-      'Aesthetics (Botox, fillers, etc.)',
-      'Body contouring',
-      'Laser treatments',
     ],
   },
   {
     name: 'Vitality',
     tier: 'Growth',
-    starterFee: 199,
-    totalCost: 155,
-    maxCost: 180,
-    price: 399,
-    includes: [
-      'Everything in Transform',
+    starterFee: 149,
+    totalCost: 95,
+    maxCost: 115,
+    price: 249,
+    credits: 4,
+    services: [
+      'Everything in Wellness',
       'HRT & hormone management',
-      'IV Vitamin Therapy sessions',
       'Rx refills & referral support',
       'Sexual health treatments',
     ],
-    alaCarte: [
-      'Aesthetics (Botox, fillers, etc.)',
-      'Body contouring',
-      'Laser treatments',
+    products: [
+      'Monthly Vitamin B-12 injection',
+      'Monthly IV Vitamin Therapy session',
+      '20% off all aesthetics',
+    ],
+  },
+  {
+    name: 'Elite',
+    tier: 'Scale',
+    starterFee: 199,
+    totalCost: 160,
+    maxCost: 190,
+    price: 399,
+    credits: 8,
+    services: [
+      'Everything in Vitality',
+      'Monthly facial or chemical peel',
+      'Quarterly Botox or filler session',
+      'Direct physician line',
+    ],
+    products: [
+      'Monthly Vitamin B-12 injection',
+      'Monthly IV Vitamin Therapy session',
+      'Monthly supplement bundle',
+      '30% off all aesthetics & lasers',
     ],
   },
   {
     name: 'Concierge',
-    tier: 'Scale',
+    tier: 'VIP',
     starterFee: 249,
     totalCost: 240,
     maxCost: 280,
     price: 599,
-    includes: [
-      'Everything in Vitality',
-      'Monthly facial or chemical peel',
-      'Quarterly Botox or filler session',
+    credits: 'Unlimited',
+    services: [
+      'Everything in Elite',
       'RF Microneedling (Morpheus8)',
       'Laser treatments (IPL / Diolaze)',
       'Body contouring sessions',
-      'Direct physician line',
     ],
-    alaCarte: [],
+    products: [
+      'All products included',
+      'Priority scheduling',
+      'Complimentary guest passes (2/mo)',
+    ],
   },
 ];
 
-const DEFAULT_SALES = [
-  { product: 'Wellness', unitsSold: 180, price: 149 },
-  { product: 'Transform', unitsSold: 150, price: 299 },
-  { product: 'Vitality', unitsSold: 90, price: 399 },
-  { product: 'Concierge', unitsSold: 35, price: 599 },
-];
+const DEFAULT_SALES = {
+  memberships: [
+    { name: 'Wellness', unitsSold: 180, price: 149 },
+    { name: 'Vitality', unitsSold: 90, price: 249 },
+    { name: 'Elite', unitsSold: 50, price: 399 },
+    { name: 'Concierge', unitsSold: 25, price: 599 },
+  ],
+  packages: [
+    { name: 'Weight Loss Kickstart', unitsSold: 40, price: 699 },
+    { name: 'Weight Loss Accelerator', unitsSold: 25, price: 1299 },
+    { name: 'Glow Up', unitsSold: 30, price: 899 },
+    { name: 'Total Body Reset', unitsSold: 15, price: 1699 },
+  ],
+};
 
 function InputsPanel({ inputs, setInputs }) {
   const update = (key, raw) => {
@@ -161,71 +240,171 @@ function InputsPanel({ inputs, setInputs }) {
   );
 }
 
-function ProductsTable({ products, setProducts, targetMargin }) {
-  const updateProduct = (idx, key, raw) => {
-    setProducts(prev => prev.map((p, i) =>
+function ServicesTable({ services, setServices, targetMargin }) {
+  const updateService = (idx, key, raw) => {
+    setServices(prev => prev.map((s, i) =>
+      i === idx ? { ...s, [key]: Number(raw) } : s
+    ));
+  };
+
+  const categories = [...new Set(services.map(s => s.category))];
+
+  return (
+    <section className="panel">
+      <h2>Services</h2>
+      <p className="section-desc">Individual a la carte services</p>
+      <div className="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Service</th>
+              <th>Category</th>
+              <th>Cost</th>
+              <th>Price</th>
+              <th>Margin</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {services.map((s, i) => {
+              const margin = s.price > 0 ? (s.price - s.cost) / s.price : 0;
+              const ok = margin >= targetMargin;
+              return (
+                <tr key={s.name}>
+                  <td className="cell-name">{s.name}</td>
+                  <td><span className={`category-tag cat-${s.category.toLowerCase().replace(/[^a-z]/g, '')}`}>{s.category}</span></td>
+                  <td>
+                    <input type="number" value={s.cost}
+                      onChange={e => updateService(i, 'cost', e.target.value)} />
+                  </td>
+                  <td>
+                    <input type="number" value={s.price}
+                      onChange={e => updateService(i, 'price', e.target.value)} />
+                  </td>
+                  <td className={ok ? 'cell-good' : 'cell-warn'}>{(margin * 100).toFixed(1)}%</td>
+                  <td className="cell-status">{ok ? '✅' : '⚠️'}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  );
+}
+
+function PackagesSection({ packages, setPackages, targetMargin }) {
+  const updatePackage = (idx, key, raw) => {
+    setPackages(prev => prev.map((p, i) =>
       i === idx ? { ...p, [key]: Number(raw) } : p
     ));
   };
 
   return (
     <section className="panel">
-      <h2>Memberships</h2>
-      <div className="membership-cards">
-        {products.map((p, i) => {
-          const margin = (p.price - p.totalCost) / p.price;
+      <h2>Packages</h2>
+      <p className="section-desc">Bundles of services — sold separately, not tied to memberships</p>
+      <div className="package-cards">
+        {packages.map((p, i) => {
+          const margin = p.price > 0 ? (p.price - p.cost) / p.price : 0;
           const ok = margin >= targetMargin;
           return (
-            <div key={p.name} className={`membership-card tier-${p.tier.toLowerCase()}`}>
-              <div className="membership-header">
-                <span className={`tier-tag tier-tag-${p.tier.toLowerCase()}`}>{p.tier}</span>
+            <div key={p.name} className="package-card">
+              <div className="package-header">
+                <h3>{p.name}</h3>
                 <span className="cell-status">{ok ? '✅' : '⚠️'}</span>
               </div>
-              <h3 className="membership-name">{p.name}</h3>
-              <div className="membership-pricing">
-                <div className="membership-price">
-                  <span className="price-amount">${p.price}</span>
-                  <span className="price-period">/mo</span>
-                </div>
-                <div className="starter-fee">
-                  + ${p.starterFee} starter fee
-                </div>
-              </div>
-              <ul className="membership-includes">
-                {p.includes.map(item => (
-                  <li key={item}>{item}</li>
+              <div className="package-price">${p.price.toLocaleString()}</div>
+              <ul className="package-services">
+                {p.services.map(s => (
+                  <li key={s}>{s}</li>
                 ))}
               </ul>
-              {p.alaCarte && p.alaCarte.length > 0 && (
-                <div className="ala-carte">
-                  <span className="ala-carte-label">A la carte add-ons:</span>
-                  <ul className="ala-carte-list">
-                    {p.alaCarte.map(item => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
+              <div className="membership-financials">
+                <div className="financial-row">
+                  <span>Cost</span>
+                  <input type="number" value={p.cost}
+                    onChange={e => updatePackage(i, 'cost', e.target.value)} />
                 </div>
-              )}
+                <div className="financial-row">
+                  <span>Price</span>
+                  <input type="number" value={p.price}
+                    onChange={e => updatePackage(i, 'price', e.target.value)} />
+                </div>
+                <div className="financial-row">
+                  <span>Margin</span>
+                  <span className={ok ? 'cell-good' : 'cell-warn'}>{(margin * 100).toFixed(1)}%</span>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+function MembershipsSection({ memberships, setMemberships, targetMargin }) {
+  const updateMembership = (idx, key, raw) => {
+    setMemberships(prev => prev.map((m, i) =>
+      i === idx ? { ...m, [key]: Number(raw) } : m
+    ));
+  };
+
+  return (
+    <section className="panel">
+      <h2>Memberships</h2>
+      <p className="section-desc">Monthly recurring — includes credits, services, and products</p>
+      <div className="membership-cards">
+        {memberships.map((m, i) => {
+          const margin = (m.price - m.totalCost) / m.price;
+          const ok = margin >= targetMargin;
+          return (
+            <div key={m.name} className={`membership-card tier-${m.tier.toLowerCase()}`}>
+              <div className="membership-header">
+                <span className={`tier-tag tier-tag-${m.tier.toLowerCase()}`}>{m.tier}</span>
+                <span className="cell-status">{ok ? '✅' : '⚠️'}</span>
+              </div>
+              <h3 className="membership-name">{m.name}</h3>
+              <div className="membership-pricing">
+                <div className="membership-price">
+                  <span className="price-amount">${m.price}</span>
+                  <span className="price-period">/mo</span>
+                </div>
+                <div className="starter-fee">+ ${m.starterFee} starter fee</div>
+              </div>
+              <div className="credits-badge">{m.credits} credits/mo</div>
+              <div className="membership-section">
+                <span className="membership-section-label">Services</span>
+                <ul className="membership-includes">
+                  {m.services.map(item => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className="membership-section">
+                <span className="membership-section-label">Products</span>
+                <ul className="membership-products">
+                  {m.products.map(item => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
               <div className="membership-financials">
                 <div className="financial-row">
                   <span>Starter Fee</span>
-                  <input type="number" value={p.starterFee}
-                    onChange={e => updateProduct(i, 'starterFee', e.target.value)} />
+                  <input type="number" value={m.starterFee}
+                    onChange={e => updateMembership(i, 'starterFee', e.target.value)} />
                 </div>
                 <div className="financial-row">
                   <span>Monthly Cost</span>
-                  <input type="number" value={p.totalCost}
-                    onChange={e => updateProduct(i, 'totalCost', e.target.value)} />
-                </div>
-                <div className="financial-row">
-                  <span>Max Cost</span>
-                  <input type="number" value={p.maxCost}
-                    onChange={e => updateProduct(i, 'maxCost', e.target.value)} />
+                  <input type="number" value={m.totalCost}
+                    onChange={e => updateMembership(i, 'totalCost', e.target.value)} />
                 </div>
                 <div className="financial-row">
                   <span>Monthly Price</span>
-                  <input type="number" value={p.price}
-                    onChange={e => updateProduct(i, 'price', e.target.value)} />
+                  <input type="number" value={m.price}
+                    onChange={e => updateMembership(i, 'price', e.target.value)} />
                 </div>
                 <div className="financial-row">
                   <span>Margin</span>
@@ -241,38 +420,41 @@ function ProductsTable({ products, setProducts, targetMargin }) {
 }
 
 function SalesTable({ sales, setSales }) {
-  const updateSale = (idx, key, raw) => {
-    setSales(prev => prev.map((s, i) =>
-      i === idx ? { ...s, [key]: Number(raw) } : s
-    ));
+  const updateSale = (section, idx, key, raw) => {
+    setSales(prev => ({
+      ...prev,
+      [section]: prev[section].map((s, i) =>
+        i === idx ? { ...s, [key]: Number(raw) } : s
+      ),
+    }));
   };
 
-  return (
-    <section className="panel">
-      <h2>Sales</h2>
+  const renderTable = (title, data, section) => (
+    <div className="sales-group">
+      <h3 className="sales-group-title">{title}</h3>
       <div className="table-wrapper">
         <table>
           <thead>
             <tr>
-              <th>Product</th>
+              <th>Name</th>
               <th>Units Sold</th>
               <th>Price</th>
               <th>Revenue</th>
             </tr>
           </thead>
           <tbody>
-            {sales.map((s, i) => {
+            {data.map((s, i) => {
               const revenue = s.unitsSold * s.price;
               return (
-                <tr key={s.product}>
-                  <td className="cell-name">{s.product}</td>
+                <tr key={s.name}>
+                  <td className="cell-name">{s.name}</td>
                   <td>
                     <input type="number" value={s.unitsSold}
-                      onChange={e => updateSale(i, 'unitsSold', e.target.value)} />
+                      onChange={e => updateSale(section, i, 'unitsSold', e.target.value)} />
                   </td>
                   <td>
                     <input type="number" value={s.price}
-                      onChange={e => updateSale(i, 'price', e.target.value)} />
+                      onChange={e => updateSale(section, i, 'price', e.target.value)} />
                   </td>
                   <td className="cell-revenue">${revenue.toLocaleString()}</td>
                 </tr>
@@ -281,13 +463,22 @@ function SalesTable({ sales, setSales }) {
           </tbody>
         </table>
       </div>
+    </div>
+  );
+
+  return (
+    <section className="panel">
+      <h2>Sales</h2>
+      {renderTable('Membership Sales', sales.memberships, 'memberships')}
+      {renderTable('Package Sales', sales.packages, 'packages')}
     </section>
   );
 }
 
 function SummaryPanel({ summary }) {
   const metrics = [
-    { label: 'Monthly Revenue', value: `$${summary.monthlyRevenue.toLocaleString()}`, color: 'var(--color-blue)' },
+    { label: 'Membership MRR', value: `$${summary.membershipRevenue.toLocaleString()}`, color: 'var(--color-blue)' },
+    { label: 'Package Revenue', value: `$${summary.packageRevenue.toLocaleString()}`, color: 'var(--color-purple)' },
     { label: 'Starter Fee Revenue', value: `$${summary.starterFeeRevenue.toLocaleString()}`, color: 'var(--color-purple)' },
     { label: 'Total Revenue', value: `$${summary.totalRevenue.toLocaleString()}`, color: 'var(--color-blue)' },
     { label: 'Total Costs', value: `$${summary.totalCosts.toLocaleString()}`, color: 'var(--color-orange)' },
@@ -295,7 +486,6 @@ function SummaryPanel({ summary }) {
     { label: 'Margin', value: `${(summary.margin * 100).toFixed(1)}%`, color: summary.margin >= 0.6 ? 'var(--color-green)' : 'var(--color-orange)' },
     { label: 'LTV', value: `$${summary.ltv.toFixed(2)}`, color: 'var(--color-blue)' },
     { label: 'LTV:CAC', value: summary.ltvCac.toFixed(2), color: summary.ltvCac >= 3 ? 'var(--color-green)' : 'var(--color-red)' },
-    { label: 'Burn Rate', value: `$${summary.burnRate.toLocaleString()}`, color: summary.burnRate <= 0 ? 'var(--color-green)' : 'var(--color-red)' },
     { label: 'Runway', value: summary.burnRate >= 0 ? 'Profitable' : `${summary.runway.toFixed(1)} months`, color: summary.burnRate >= 0 ? 'var(--color-green)' : 'var(--color-orange)' },
   ];
 
@@ -315,19 +505,22 @@ function SummaryPanel({ summary }) {
 }
 
 function RevenueChart({ sales }) {
-  const revenues = sales.map(s => ({ product: s.product, revenue: s.unitsSold * s.price }));
-  const maxRev = Math.max(...revenues.map(r => r.revenue));
+  const all = [
+    ...sales.memberships.map(s => ({ name: s.name, revenue: s.unitsSold * s.price, type: 'membership' })),
+    ...sales.packages.map(s => ({ name: s.name, revenue: s.unitsSold * s.price, type: 'package' })),
+  ];
+  const maxRev = Math.max(...all.map(r => r.revenue));
 
   return (
     <section className="panel">
-      <h2>Revenue by Membership</h2>
+      <h2>Revenue Breakdown</h2>
       <div className="chart">
-        {revenues.map(r => (
-          <div key={r.product} className="chart-row">
-            <span className="chart-label">{r.product}</span>
+        {all.map(r => (
+          <div key={r.name} className="chart-row">
+            <span className="chart-label">{r.name}</span>
             <div className="chart-bar-wrapper">
               <div
-                className="chart-bar"
+                className={`chart-bar ${r.type === 'package' ? 'chart-bar-package' : ''}`}
                 style={{ width: `${(r.revenue / maxRev) * 100}%` }}
               />
             </div>
@@ -341,17 +534,21 @@ function RevenueChart({ sales }) {
 
 function App() {
   const [inputs, setInputs] = useState(DEFAULT_INPUTS);
-  const [products, setProducts] = useState(DEFAULT_PRODUCTS);
+  const [services, setServices] = useState(DEFAULT_SERVICES);
+  const [packages, setPackages] = useState(DEFAULT_PACKAGES);
+  const [memberships, setMemberships] = useState(DEFAULT_MEMBERSHIPS);
   const [sales, setSales] = useState(DEFAULT_SALES);
 
   const summary = useMemo(() => {
-    const monthlyRevenue = sales.reduce((sum, s) => sum + s.unitsSold * s.price, 0);
-    const starterFeeRevenue = sales.reduce((sum, s) => {
-      const product = products.find(p => p.name === s.product);
-      return sum + (product ? s.unitsSold * product.starterFee : 0);
+    const membershipRevenue = sales.memberships.reduce((sum, s) => sum + s.unitsSold * s.price, 0);
+    const packageRevenue = sales.packages.reduce((sum, s) => sum + s.unitsSold * s.price, 0);
+    const starterFeeRevenue = sales.memberships.reduce((sum, s) => {
+      const m = memberships.find(mem => mem.name === s.name);
+      return sum + (m ? s.unitsSold * m.starterFee : 0);
     }, 0);
-    const totalRevenue = monthlyRevenue + starterFeeRevenue;
-    const totalCosts = products.reduce((sum, p) => sum + p.totalCost, 0);
+    const totalRevenue = membershipRevenue + packageRevenue + starterFeeRevenue;
+    const totalCosts = memberships.reduce((sum, m) => sum + m.totalCost, 0)
+      + packages.reduce((sum, p) => sum + p.cost, 0);
     const profit = totalRevenue - totalCosts;
     const margin = totalRevenue > 0 ? profit / totalRevenue : 0;
     const ltv = inputs.churnRate > 0 ? inputs.arpu / inputs.churnRate : 0;
@@ -359,19 +556,21 @@ function App() {
     const burnRate = totalCosts - totalRevenue;
     const runway = burnRate > 0 ? inputs.startingCash / burnRate : Infinity;
 
-    return { monthlyRevenue, starterFeeRevenue, totalRevenue, totalCosts, profit, margin, ltv, ltvCac, burnRate, runway };
-  }, [inputs, products, sales]);
+    return { membershipRevenue, packageRevenue, starterFeeRevenue, totalRevenue, totalCosts, profit, margin, ltv, ltvCac, burnRate, runway };
+  }, [inputs, memberships, packages, sales]);
 
   return (
     <div className="dashboard">
       <header className="dashboard-header">
         <h1>Shape the Wave</h1>
-        <span className="subtitle">Membership & Revenue Analysis</span>
+        <span className="subtitle">Services, Packages & Memberships</span>
       </header>
       <div className="dashboard-grid">
         <InputsPanel inputs={inputs} setInputs={setInputs} />
         <SummaryPanel summary={summary} />
-        <ProductsTable products={products} setProducts={setProducts} targetMargin={inputs.targetMargin} />
+        <MembershipsSection memberships={memberships} setMemberships={setMemberships} targetMargin={inputs.targetMargin} />
+        <PackagesSection packages={packages} setPackages={setPackages} targetMargin={inputs.targetMargin} />
+        <ServicesTable services={services} setServices={setServices} targetMargin={inputs.targetMargin} />
         <SalesTable sales={sales} setSales={setSales} />
         <RevenueChart sales={sales} />
       </div>

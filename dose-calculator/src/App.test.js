@@ -6,24 +6,40 @@ test('renders Shape the Wave dashboard header', () => {
   expect(screen.getByText('Shape the Wave')).toBeInTheDocument();
 });
 
-test('renders all section headings', () => {
+test('renders all three main sections', () => {
   render(<App />);
-  expect(screen.getByText('Inputs')).toBeInTheDocument();
-  expect(screen.getByText('Memberships')).toBeInTheDocument();
-  expect(screen.getByText('Sales')).toBeInTheDocument();
-  expect(screen.getByText('Summary')).toBeInTheDocument();
-  expect(screen.getByText('Revenue by Membership')).toBeInTheDocument();
+  expect(screen.getAllByText('Services').length).toBeGreaterThanOrEqual(1);
+  expect(screen.getAllByText('Packages').length).toBeGreaterThanOrEqual(1);
+  expect(screen.getAllByText('Memberships').length).toBeGreaterThanOrEqual(1);
 });
 
-test('renders all 4 membership tier names', () => {
+test('services are individual a la carte items', () => {
   render(<App />);
-  expect(screen.getAllByText('Wellness').length).toBeGreaterThanOrEqual(1);
-  expect(screen.getAllByText('Transform').length).toBeGreaterThanOrEqual(1);
-  expect(screen.getAllByText('Vitality').length).toBeGreaterThanOrEqual(1);
-  expect(screen.getAllByText('Concierge').length).toBeGreaterThanOrEqual(1);
+  expect(screen.getByText('Individual a la carte services')).toBeInTheDocument();
+  expect(screen.getByText('Botox (per area)')).toBeInTheDocument();
+  expect(screen.getByText('GLP-1 Medication')).toBeInTheDocument();
+  expect(screen.getByText('Office Visit')).toBeInTheDocument();
 });
 
-test('renders starter fees on each membership', () => {
+test('packages are bundles not tied to memberships', () => {
+  render(<App />);
+  expect(screen.getByText(/sold separately, not tied to memberships/)).toBeInTheDocument();
+  expect(screen.getAllByText('Weight Loss Kickstart').length).toBeGreaterThanOrEqual(1);
+  expect(screen.getAllByText('Weight Loss Accelerator').length).toBeGreaterThanOrEqual(1);
+  expect(screen.getAllByText('Glow Up').length).toBeGreaterThanOrEqual(1);
+  expect(screen.getAllByText('Total Body Reset').length).toBeGreaterThanOrEqual(1);
+});
+
+test('memberships include credits, services and products', () => {
+  render(<App />);
+  expect(screen.getByText(/includes credits, services, and products/)).toBeInTheDocument();
+  expect(screen.getByText('2 credits/mo')).toBeInTheDocument();
+  expect(screen.getByText('4 credits/mo')).toBeInTheDocument();
+  expect(screen.getByText('8 credits/mo')).toBeInTheDocument();
+  expect(screen.getByText('Unlimited credits/mo')).toBeInTheDocument();
+});
+
+test('memberships have starter fees', () => {
   render(<App />);
   expect(screen.getByText('+ $99 starter fee')).toBeInTheDocument();
   expect(screen.getByText('+ $149 starter fee')).toBeInTheDocument();
@@ -31,29 +47,15 @@ test('renders starter fees on each membership', () => {
   expect(screen.getByText('+ $249 starter fee')).toBeInTheDocument();
 });
 
-test('renders starter fee revenue in summary', () => {
+test('membership cards show services and products sections separately', () => {
   render(<App />);
-  expect(screen.getByText('Starter Fee Revenue')).toBeInTheDocument();
-  expect(screen.getByText('Monthly Revenue')).toBeInTheDocument();
+  const productLabels = screen.getAllByText('Products');
+  expect(productLabels.length).toBeGreaterThanOrEqual(4);
 });
 
-test('renders weight loss accountability services in Transform tier', () => {
+test('renders revenue breakdown with both memberships and packages', () => {
   render(<App />);
-  expect(screen.getByText('Weekly accountability consultations')).toBeInTheDocument();
-  expect(screen.getByText('Bi-weekly check-in meetings')).toBeInTheDocument();
-  expect(screen.getByText('GLP-1 medications (Semaglutide/Tirzepatide)')).toBeInTheDocument();
-});
-
-test('renders a la carte add-ons for lower tiers', () => {
-  render(<App />);
-  const addOnLabels = screen.getAllByText('A la carte add-ons:');
-  expect(addOnLabels.length).toBe(3);
-});
-
-test('renders summary metrics', () => {
-  render(<App />);
-  expect(screen.getByText('Total Revenue')).toBeInTheDocument();
-  expect(screen.getByText('Profit')).toBeInTheDocument();
-  expect(screen.getAllByText('Margin').length).toBeGreaterThanOrEqual(1);
-  expect(screen.getByText('LTV:CAC')).toBeInTheDocument();
+  expect(screen.getByText('Membership MRR')).toBeInTheDocument();
+  expect(screen.getByText('Package Revenue')).toBeInTheDocument();
+  expect(screen.getByText('Revenue Breakdown')).toBeInTheDocument();
 });
