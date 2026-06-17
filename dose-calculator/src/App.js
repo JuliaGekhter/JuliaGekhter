@@ -6,22 +6,65 @@ const DEFAULT_INPUTS = {
   minLtvCac: 3.00,
   growthMode: 'SCALE',
   monthlyGrowthRate: 0.10,
-  arpu: 30,
-  churnRate: 0.08,
+  arpu: 150,
+  churnRate: 0.05,
   startingCash: 50000,
-  maxCac: 30,
+  maxCac: 80,
 };
 
 const DEFAULT_PRODUCTS = [
-  { name: 'Basic', tier: 'Starter', totalCost: 8, maxCost: 10, price: 19, includes: ['Content Library'] },
-  { name: 'Pro', tier: 'Growth', totalCost: 28, maxCost: 35, price: 49, includes: ['Content Library', 'All Courses', 'T-Shirt'] },
-  { name: 'Premium', tier: 'Scale', totalCost: 52, maxCost: 60, price: 99, includes: ['Content Library', 'All Courses', 'Hoodie', 'T-Shirt', '1-on-1 Coaching'] },
+  {
+    name: 'Wellness',
+    tier: 'Starter',
+    totalCost: 45,
+    maxCost: 55,
+    price: 149,
+    includes: [
+      'Appointments within 3 days',
+      'Telehealth via Zoom',
+      '24/7 communication access',
+      'Patient portal access',
+      'Monthly Vitamin B-12 injection',
+      '15% off IV Therapy & supplements',
+    ],
+  },
+  {
+    name: 'Vitality',
+    tier: 'Growth',
+    totalCost: 110,
+    maxCost: 130,
+    price: 299,
+    includes: [
+      'Everything in Wellness',
+      'HRT & hormone management',
+      'GLP-1 weight loss program',
+      'Personal exercise training',
+      'Rx refills & referral support',
+      '20% off all aesthetics',
+    ],
+  },
+  {
+    name: 'Concierge',
+    tier: 'Scale',
+    totalCost: 200,
+    maxCost: 240,
+    price: 499,
+    includes: [
+      'Everything in Vitality',
+      'Monthly facial or chemical peel',
+      'Quarterly Botox or filler session',
+      'RF Microneedling (Morpheus8)',
+      'Laser treatments (IPL / Diolaze)',
+      'Body contouring sessions',
+      'Direct physician line',
+    ],
+  },
 ];
 
 const DEFAULT_SALES = [
-  { product: 'Basic', unitsSold: 500, price: 19 },
-  { product: 'Pro', unitsSold: 300, price: 49 },
-  { product: 'Premium', unitsSold: 100, price: 99 },
+  { product: 'Wellness', unitsSold: 200, price: 149 },
+  { product: 'Vitality', unitsSold: 120, price: 299 },
+  { product: 'Concierge', unitsSold: 40, price: 499 },
 ];
 
 function InputsPanel({ inputs, setInputs }) {
@@ -254,7 +297,7 @@ function App() {
   return (
     <div className="dashboard">
       <header className="dashboard-header">
-        <h1>Financial Dashboard</h1>
+        <h1>Shape the Wave</h1>
         <span className="subtitle">Membership & Revenue Analysis</span>
       </header>
       <div className="dashboard-grid">

@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders financial dashboard header', () => {
+test('renders Shape the Wave dashboard header', () => {
   render(<App />);
-  expect(screen.getByText('Financial Dashboard')).toBeInTheDocument();
+  expect(screen.getByText('Shape the Wave')).toBeInTheDocument();
 });
 
 test('renders all section headings', () => {
@@ -17,9 +17,9 @@ test('renders all section headings', () => {
 
 test('renders membership tier names', () => {
   render(<App />);
-  expect(screen.getAllByText('Basic').length).toBeGreaterThanOrEqual(1);
-  expect(screen.getAllByText('Pro').length).toBeGreaterThanOrEqual(1);
-  expect(screen.getAllByText('Premium').length).toBeGreaterThanOrEqual(1);
+  expect(screen.getAllByText('Wellness').length).toBeGreaterThanOrEqual(1);
+  expect(screen.getAllByText('Vitality').length).toBeGreaterThanOrEqual(1);
+  expect(screen.getAllByText('Concierge').length).toBeGreaterThanOrEqual(1);
 });
 
 test('renders tier badges', () => {
@@ -29,10 +29,11 @@ test('renders tier badges', () => {
   expect(screen.getByText('Scale')).toBeInTheDocument();
 });
 
-test('renders included features', () => {
+test('renders Shape the Wave services', () => {
   render(<App />);
-  expect(screen.getAllByText('Content Library').length).toBe(3);
-  expect(screen.getByText('1-on-1 Coaching')).toBeInTheDocument();
+  expect(screen.getByText('Monthly Vitamin B-12 injection')).toBeInTheDocument();
+  expect(screen.getByText('HRT & hormone management')).toBeInTheDocument();
+  expect(screen.getByText('RF Microneedling (Morpheus8)')).toBeInTheDocument();
 });
 
 test('renders summary metrics', () => {
