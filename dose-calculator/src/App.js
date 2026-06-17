@@ -13,17 +13,15 @@ const DEFAULT_INPUTS = {
 };
 
 const DEFAULT_PRODUCTS = [
-  { name: 'T-Shirt', program: 'Merch', totalCost: 17, maxCost: 15, price: 35 },
-  { name: 'Hoodie', program: 'Merch', totalCost: 27, maxCost: 28, price: 65 },
-  { name: 'Membership', program: 'Content', totalCost: 8, maxCost: 10, price: 25 },
-  { name: 'Course', program: 'Content', totalCost: 35, maxCost: 40, price: 99 },
+  { name: 'Basic', tier: 'Starter', totalCost: 8, maxCost: 10, price: 19, includes: ['Content Library'] },
+  { name: 'Pro', tier: 'Growth', totalCost: 28, maxCost: 35, price: 49, includes: ['Content Library', 'All Courses', 'T-Shirt'] },
+  { name: 'Premium', tier: 'Scale', totalCost: 52, maxCost: 60, price: 99, includes: ['Content Library', 'All Courses', 'Hoodie', 'T-Shirt', '1-on-1 Coaching'] },
 ];
 
 const DEFAULT_SALES = [
-  { product: 'T-Shirt', unitsSold: 500, price: 35 },
-  { product: 'Hoodie', unitsSold: 200, price: 65 },
-  { product: 'Membership', unitsSold: 300, price: 25 },
-  { product: 'Course', unitsSold: 100, price: 99 },
+  { product: 'Basic', unitsSold: 500, price: 19 },
+  { product: 'Pro', unitsSold: 300, price: 49 },
+  { product: 'Premium', unitsSold: 100, price: 99 },
 ];
 
 function InputsPanel({ inputs, setInputs }) {
@@ -88,47 +86,51 @@ function ProductsTable({ products, setProducts, targetMargin }) {
 
   return (
     <section className="panel">
-      <h2>Products</h2>
-      <div className="table-wrapper">
-        <table>
-          <thead>
-            <tr>
-              <th>Product</th>
-              <th>Program</th>
-              <th>Total Cost</th>
-              <th>Max Cost</th>
-              <th>Price</th>
-              <th>Margin</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((p, i) => {
-              const margin = (p.price - p.totalCost) / p.price;
-              const ok = margin >= targetMargin;
-              return (
-                <tr key={p.name}>
-                  <td className="cell-name">{p.name}</td>
-                  <td><span className={`program-tag ${p.program.toLowerCase()}`}>{p.program}</span></td>
-                  <td>
-                    <input type="number" value={p.totalCost}
-                      onChange={e => updateProduct(i, 'totalCost', e.target.value)} />
-                  </td>
-                  <td>
-                    <input type="number" value={p.maxCost}
-                      onChange={e => updateProduct(i, 'maxCost', e.target.value)} />
-                  </td>
-                  <td>
-                    <input type="number" value={p.price}
-                      onChange={e => updateProduct(i, 'price', e.target.value)} />
-                  </td>
-                  <td className={ok ? 'cell-good' : 'cell-warn'}>{(margin * 100).toFixed(1)}%</td>
-                  <td className="cell-status">{ok ? '✅' : '⚠️'}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+      <h2>Memberships</h2>
+      <div className="membership-cards">
+        {products.map((p, i) => {
+          const margin = (p.price - p.totalCost) / p.price;
+          const ok = margin >= targetMargin;
+          return (
+            <div key={p.name} className={`membership-card tier-${p.tier.toLowerCase()}`}>
+              <div className="membership-header">
+                <span className={`tier-tag tier-tag-${p.tier.toLowerCase()}`}>{p.tier}</span>
+                <span className="cell-status">{ok ? '✅' : '⚠️'}</span>
+              </div>
+              <h3 className="membership-name">{p.name}</h3>
+              <div className="membership-price">
+                <span className="price-amount">${p.price}</span>
+                <span className="price-period">/mo</span>
+              </div>
+              <ul className="membership-includes">
+                {p.includes.map(item => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+              <div className="membership-financials">
+                <div className="financial-row">
+                  <span>Cost</span>
+                  <input type="number" value={p.totalCost}
+                    onChange={e => updateProduct(i, 'totalCost', e.target.value)} />
+                </div>
+                <div className="financial-row">
+                  <span>Max Cost</span>
+                  <input type="number" value={p.maxCost}
+                    onChange={e => updateProduct(i, 'maxCost', e.target.value)} />
+                </div>
+                <div className="financial-row">
+                  <span>Price</span>
+                  <input type="number" value={p.price}
+                    onChange={e => updateProduct(i, 'price', e.target.value)} />
+                </div>
+                <div className="financial-row">
+                  <span>Margin</span>
+                  <span className={ok ? 'cell-good' : 'cell-warn'}>{(margin * 100).toFixed(1)}%</span>
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </section>
   );
@@ -212,7 +214,7 @@ function RevenueChart({ sales }) {
 
   return (
     <section className="panel">
-      <h2>Revenue by Product</h2>
+      <h2>Revenue by Membership</h2>
       <div className="chart">
         {revenues.map(r => (
           <div key={r.product} className="chart-row">
@@ -253,7 +255,7 @@ function App() {
     <div className="dashboard">
       <header className="dashboard-header">
         <h1>Financial Dashboard</h1>
-        <span className="subtitle">Product & Revenue Analysis</span>
+        <span className="subtitle">Membership & Revenue Analysis</span>
       </header>
       <div className="dashboard-grid">
         <InputsPanel inputs={inputs} setInputs={setInputs} />

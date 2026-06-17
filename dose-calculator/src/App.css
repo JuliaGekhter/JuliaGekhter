@@ -173,22 +173,127 @@ td input:focus {
   font-weight: 600;
 }
 
-.program-tag {
-  padding: 2px 8px;
+/* Membership Cards */
+.membership-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.membership-card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: border-color 0.2s;
+}
+
+.membership-card:hover {
+  border-color: var(--color-text-dim);
+}
+
+.tier-starter .membership-card,
+.membership-card.tier-starter { border-top: 3px solid var(--color-blue); }
+.tier-growth .membership-card,
+.membership-card.tier-growth { border-top: 3px solid var(--color-purple); }
+.tier-scale .membership-card,
+.membership-card.tier-scale { border-top: 3px solid var(--color-orange); }
+
+.membership-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tier-tag {
+  padding: 2px 10px;
   border-radius: 4px;
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.program-tag.merch {
-  background: rgba(191, 90, 242, 0.15);
-  color: var(--color-purple);
+.tier-tag-starter { background: rgba(76, 141, 255, 0.15); color: var(--color-blue); }
+.tier-tag-growth { background: rgba(191, 90, 242, 0.15); color: var(--color-purple); }
+.tier-tag-scale { background: rgba(255, 159, 10, 0.15); color: var(--color-orange); }
+
+.membership-name {
+  font-size: 22px;
+  font-weight: 700;
 }
 
-.program-tag.content {
-  background: rgba(76, 141, 255, 0.15);
-  color: var(--color-blue);
+.membership-price {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+
+.price-amount {
+  font-size: 32px;
+  font-weight: 800;
+}
+
+.price-period {
+  font-size: 14px;
+  color: var(--color-text-dim);
+}
+
+.membership-includes {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.membership-includes li::before {
+  content: "✓ ";
+  color: var(--color-green);
+  font-weight: 700;
+}
+
+.membership-includes li {
+  font-size: 13px;
+  color: var(--color-text-dim);
+}
+
+.membership-financials {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 4px;
+}
+
+.financial-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: var(--color-text-dim);
+}
+
+.financial-row input {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  color: var(--color-text);
+  padding: 4px 8px;
+  font-size: 13px;
+  width: 70px;
+  text-align: right;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.financial-row input:focus {
+  border-color: var(--color-blue);
 }
 
 .cell-good { color: var(--color-green); font-weight: 600; }
