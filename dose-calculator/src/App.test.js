@@ -15,25 +15,26 @@ test('renders all section headings', () => {
   expect(screen.getByText('Revenue by Membership')).toBeInTheDocument();
 });
 
-test('renders membership tier names', () => {
+test('renders all 4 membership tier names', () => {
   render(<App />);
   expect(screen.getAllByText('Wellness').length).toBeGreaterThanOrEqual(1);
+  expect(screen.getAllByText('Transform').length).toBeGreaterThanOrEqual(1);
   expect(screen.getAllByText('Vitality').length).toBeGreaterThanOrEqual(1);
   expect(screen.getAllByText('Concierge').length).toBeGreaterThanOrEqual(1);
 });
 
-test('renders tier badges', () => {
+test('renders weight loss accountability services in Transform tier', () => {
   render(<App />);
-  expect(screen.getByText('Starter')).toBeInTheDocument();
-  expect(screen.getByText('Growth')).toBeInTheDocument();
-  expect(screen.getByText('Scale')).toBeInTheDocument();
+  expect(screen.getByText('Weekly accountability consultations')).toBeInTheDocument();
+  expect(screen.getByText('Bi-weekly check-in meetings')).toBeInTheDocument();
+  expect(screen.getByText('Weight loss supplement bundle')).toBeInTheDocument();
+  expect(screen.getByText('GLP-1 medications (Semaglutide/Tirzepatide)')).toBeInTheDocument();
 });
 
-test('renders Shape the Wave services', () => {
+test('renders a la carte add-ons for lower tiers', () => {
   render(<App />);
-  expect(screen.getByText('Monthly Vitamin B-12 injection')).toBeInTheDocument();
-  expect(screen.getByText('HRT & hormone management')).toBeInTheDocument();
-  expect(screen.getByText('RF Microneedling (Morpheus8)')).toBeInTheDocument();
+  const addOnLabels = screen.getAllByText('A la carte add-ons:');
+  expect(addOnLabels.length).toBe(3);
 });
 
 test('renders summary metrics', () => {

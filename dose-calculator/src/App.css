@@ -197,6 +197,7 @@ td input:focus {
 
 .tier-starter .membership-card,
 .membership-card.tier-starter { border-top: 3px solid var(--color-blue); }
+.membership-card.tier-transform { border-top: 3px solid var(--color-green); }
 .tier-growth .membership-card,
 .membership-card.tier-growth { border-top: 3px solid var(--color-purple); }
 .tier-scale .membership-card,
@@ -218,6 +219,7 @@ td input:focus {
 }
 
 .tier-tag-starter { background: rgba(76, 141, 255, 0.15); color: var(--color-blue); }
+.tier-tag-transform { background: rgba(52, 199, 89, 0.15); color: var(--color-green); }
 .tier-tag-growth { background: rgba(191, 90, 242, 0.15); color: var(--color-purple); }
 .tier-tag-scale { background: rgba(255, 159, 10, 0.15); color: var(--color-orange); }
 
@@ -261,6 +263,39 @@ td input:focus {
 .membership-includes li {
   font-size: 13px;
   color: var(--color-text-dim);
+}
+
+.ala-carte {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.ala-carte-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-text-dim);
+}
+
+.ala-carte-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 6px;
+}
+
+.ala-carte-list li {
+  font-size: 12px;
+  color: var(--color-text-dim);
+  opacity: 0.7;
+}
+
+.ala-carte-list li::before {
+  content: "+ ";
+  color: var(--color-orange);
+  font-weight: 700;
 }
 
 .membership-financials {

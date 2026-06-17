@@ -27,28 +27,63 @@ const DEFAULT_PRODUCTS = [
       'Monthly Vitamin B-12 injection',
       '15% off IV Therapy & supplements',
     ],
+    alaCarte: [
+      'HRT & hormones',
+      'IV Vitamin Therapy',
+      'Aesthetics (Botox, fillers, etc.)',
+      'Body contouring',
+      'Laser treatments',
+    ],
   },
   {
-    name: 'Vitality',
-    tier: 'Growth',
+    name: 'Transform',
+    tier: 'Transform',
     totalCost: 110,
     maxCost: 130,
     price: 299,
     includes: [
       'Everything in Wellness',
-      'HRT & hormone management',
-      'GLP-1 weight loss program',
+      'GLP-1 medications (Semaglutide/Tirzepatide)',
+      'Weekly accountability consultations',
+      'Bi-weekly check-in meetings',
+      'Nutritionist meal planning',
       'Personal exercise training',
+      'Weight loss supplement bundle',
+      'Monthly progress labs & body comp',
+    ],
+    alaCarte: [
+      'HRT & hormones',
+      'IV Vitamin Therapy',
+      'Aesthetics (Botox, fillers, etc.)',
+      'Body contouring',
+      'Laser treatments',
+    ],
+  },
+  {
+    name: 'Vitality',
+    tier: 'Growth',
+    totalCost: 155,
+    maxCost: 180,
+    price: 399,
+    includes: [
+      'Everything in Transform',
+      'HRT & hormone management',
+      'IV Vitamin Therapy sessions',
       'Rx refills & referral support',
-      '20% off all aesthetics',
+      'Sexual health treatments',
+    ],
+    alaCarte: [
+      'Aesthetics (Botox, fillers, etc.)',
+      'Body contouring',
+      'Laser treatments',
     ],
   },
   {
     name: 'Concierge',
     tier: 'Scale',
-    totalCost: 200,
-    maxCost: 240,
-    price: 499,
+    totalCost: 240,
+    maxCost: 280,
+    price: 599,
     includes: [
       'Everything in Vitality',
       'Monthly facial or chemical peel',
@@ -58,13 +93,15 @@ const DEFAULT_PRODUCTS = [
       'Body contouring sessions',
       'Direct physician line',
     ],
+    alaCarte: [],
   },
 ];
 
 const DEFAULT_SALES = [
-  { product: 'Wellness', unitsSold: 200, price: 149 },
-  { product: 'Vitality', unitsSold: 120, price: 299 },
-  { product: 'Concierge', unitsSold: 40, price: 499 },
+  { product: 'Wellness', unitsSold: 180, price: 149 },
+  { product: 'Transform', unitsSold: 150, price: 299 },
+  { product: 'Vitality', unitsSold: 90, price: 399 },
+  { product: 'Concierge', unitsSold: 35, price: 599 },
 ];
 
 function InputsPanel({ inputs, setInputs }) {
@@ -150,6 +187,16 @@ function ProductsTable({ products, setProducts, targetMargin }) {
                   <li key={item}>{item}</li>
                 ))}
               </ul>
+              {p.alaCarte && p.alaCarte.length > 0 && (
+                <div className="ala-carte">
+                  <span className="ala-carte-label">A la carte add-ons:</span>
+                  <ul className="ala-carte-list">
+                    {p.alaCarte.map(item => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
               <div className="membership-financials">
                 <div className="financial-row">
                   <span>Cost</span>
