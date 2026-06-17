@@ -1,59 +1,44 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders Shape the Wave dashboard header', () => {
+test('renders Shape the Wave dashboard', () => {
   render(<App />);
   expect(screen.getByText('Shape the Wave')).toBeInTheDocument();
 });
 
-test('renders all three main sections', () => {
+test('renders three distinct sections', () => {
   render(<App />);
   expect(screen.getAllByText('Services').length).toBeGreaterThanOrEqual(1);
   expect(screen.getAllByText('Packages').length).toBeGreaterThanOrEqual(1);
   expect(screen.getAllByText('Memberships').length).toBeGreaterThanOrEqual(1);
 });
 
-test('services are individual a la carte items', () => {
+test('services reflect 2025 pricing', () => {
   render(<App />);
-  expect(screen.getByText('Individual a la carte services')).toBeInTheDocument();
-  expect(screen.getByText('Botox (per area)')).toBeInTheDocument();
-  expect(screen.getByText('GLP-1 Medication')).toBeInTheDocument();
-  expect(screen.getByText('Office Visit')).toBeInTheDocument();
+  expect(screen.getAllByText('New Patient Consultation').length).toBeGreaterThanOrEqual(1);
+  expect(screen.getAllByText('Semaglutide - First 3 Months').length).toBeGreaterThanOrEqual(1);
+  expect(screen.getAllByText('TRT - Every 2 Weeks').length).toBeGreaterThanOrEqual(1);
+  expect(screen.getAllByText('Full Blood Panel').length).toBeGreaterThanOrEqual(1);
+  expect(screen.getByText('Sildenafil 100mg (30ct)')).toBeInTheDocument();
 });
 
-test('packages are bundles not tied to memberships', () => {
+test('packages use actual multi-month pricing', () => {
   render(<App />);
-  expect(screen.getByText(/sold separately, not tied to memberships/)).toBeInTheDocument();
-  expect(screen.getAllByText('Weight Loss Kickstart').length).toBeGreaterThanOrEqual(1);
-  expect(screen.getAllByText('Weight Loss Accelerator').length).toBeGreaterThanOrEqual(1);
-  expect(screen.getAllByText('Glow Up').length).toBeGreaterThanOrEqual(1);
-  expect(screen.getAllByText('Total Body Reset').length).toBeGreaterThanOrEqual(1);
+  expect(screen.getAllByText('Semaglutide 3-Month Kickstart').length).toBeGreaterThanOrEqual(1);
+  expect(screen.getAllByText('Tirzepatide 3-Month Bundle').length).toBeGreaterThanOrEqual(1);
+  expect(screen.getAllByText('TRT Quarterly').length).toBeGreaterThanOrEqual(1);
+  expect(screen.getAllByText('Sermorelin 3-Month').length).toBeGreaterThanOrEqual(1);
 });
 
-test('memberships include credits, services and products', () => {
+test('memberships match actual pricing tiers', () => {
   render(<App />);
-  expect(screen.getByText(/includes credits, services, and products/)).toBeInTheDocument();
+  expect(screen.getAllByText(/starter fee/).length).toBe(4);
+  expect(screen.getByText('1 credits/mo')).toBeInTheDocument();
   expect(screen.getByText('2 credits/mo')).toBeInTheDocument();
-  expect(screen.getByText('4 credits/mo')).toBeInTheDocument();
-  expect(screen.getByText('8 credits/mo')).toBeInTheDocument();
   expect(screen.getByText('Unlimited credits/mo')).toBeInTheDocument();
 });
 
-test('memberships have starter fees', () => {
-  render(<App />);
-  expect(screen.getByText('+ $99 starter fee')).toBeInTheDocument();
-  expect(screen.getByText('+ $149 starter fee')).toBeInTheDocument();
-  expect(screen.getByText('+ $199 starter fee')).toBeInTheDocument();
-  expect(screen.getByText('+ $249 starter fee')).toBeInTheDocument();
-});
-
-test('membership cards show services and products sections separately', () => {
-  render(<App />);
-  const productLabels = screen.getAllByText('Products');
-  expect(productLabels.length).toBeGreaterThanOrEqual(4);
-});
-
-test('renders revenue breakdown with both memberships and packages', () => {
+test('renders revenue breakdown', () => {
   render(<App />);
   expect(screen.getByText('Membership MRR')).toBeInTheDocument();
   expect(screen.getByText('Package Revenue')).toBeInTheDocument();
