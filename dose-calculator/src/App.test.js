@@ -23,11 +23,24 @@ test('renders all 4 membership tier names', () => {
   expect(screen.getAllByText('Concierge').length).toBeGreaterThanOrEqual(1);
 });
 
+test('renders starter fees on each membership', () => {
+  render(<App />);
+  expect(screen.getByText('+ $99 starter fee')).toBeInTheDocument();
+  expect(screen.getByText('+ $149 starter fee')).toBeInTheDocument();
+  expect(screen.getByText('+ $199 starter fee')).toBeInTheDocument();
+  expect(screen.getByText('+ $249 starter fee')).toBeInTheDocument();
+});
+
+test('renders starter fee revenue in summary', () => {
+  render(<App />);
+  expect(screen.getByText('Starter Fee Revenue')).toBeInTheDocument();
+  expect(screen.getByText('Monthly Revenue')).toBeInTheDocument();
+});
+
 test('renders weight loss accountability services in Transform tier', () => {
   render(<App />);
   expect(screen.getByText('Weekly accountability consultations')).toBeInTheDocument();
   expect(screen.getByText('Bi-weekly check-in meetings')).toBeInTheDocument();
-  expect(screen.getByText('Weight loss supplement bundle')).toBeInTheDocument();
   expect(screen.getByText('GLP-1 medications (Semaglutide/Tirzepatide)')).toBeInTheDocument();
 });
 

@@ -16,6 +16,7 @@ const DEFAULT_PRODUCTS = [
   {
     name: 'Wellness',
     tier: 'Starter',
+    starterFee: 99,
     totalCost: 45,
     maxCost: 55,
     price: 149,
@@ -38,6 +39,7 @@ const DEFAULT_PRODUCTS = [
   {
     name: 'Transform',
     tier: 'Transform',
+    starterFee: 149,
     totalCost: 110,
     maxCost: 130,
     price: 299,
@@ -62,6 +64,7 @@ const DEFAULT_PRODUCTS = [
   {
     name: 'Vitality',
     tier: 'Growth',
+    starterFee: 199,
     totalCost: 155,
     maxCost: 180,
     price: 399,
@@ -81,6 +84,7 @@ const DEFAULT_PRODUCTS = [
   {
     name: 'Concierge',
     tier: 'Scale',
+    starterFee: 249,
     totalCost: 240,
     maxCost: 280,
     price: 599,
@@ -178,9 +182,14 @@ function ProductsTable({ products, setProducts, targetMargin }) {
                 <span className="cell-status">{ok ? '✅' : '⚠️'}</span>
               </div>
               <h3 className="membership-name">{p.name}</h3>
-              <div className="membership-price">
-                <span className="price-amount">${p.price}</span>
-                <span className="price-period">/mo</span>
+              <div className="membership-pricing">
+                <div className="membership-price">
+                  <span className="price-amount">${p.price}</span>
+                  <span className="price-period">/mo</span>
+                </div>
+                <div className="starter-fee">
+                  + ${p.starterFee} starter fee
+                </div>
               </div>
               <ul className="membership-includes">
                 {p.includes.map(item => (
@@ -199,7 +208,12 @@ function ProductsTable({ products, setProducts, targetMargin }) {
               )}
               <div className="membership-financials">
                 <div className="financial-row">
-                  <span>Cost</span>
+                  <span>Starter Fee</span>
+                  <input type="number" value={p.starterFee}
+                    onChange={e => updateProduct(i, 'starterFee', e.target.value)} />
+                </div>
+                <div className="financial-row">
+                  <span>Monthly Cost</span>
                   <input type="number" value={p.totalCost}
                     onChange={e => updateProduct(i, 'totalCost', e.target.value)} />
                 </div>
@@ -209,7 +223,7 @@ function ProductsTable({ products, setProducts, targetMargin }) {
                     onChange={e => updateProduct(i, 'maxCost', e.target.value)} />
                 </div>
                 <div className="financial-row">
-                  <span>Price</span>
+                  <span>Monthly Price</span>
                   <input type="number" value={p.price}
                     onChange={e => updateProduct(i, 'price', e.target.value)} />
                 </div>
@@ -273,6 +287,8 @@ function SalesTable({ sales, setSales }) {
 
 function SummaryPanel({ summary }) {
   const metrics = [
+    { label: 'Monthly Revenue', value: `$${summary.monthlyRevenue.toLocaleString()}`, color: 'var(--color-blue)' },
+    { label: 'Starter Fee Revenue', value: `$${summary.starterFeeRevenue.toLocaleString()}`, color: 'var(--color-purple)' },
     { label: 'Total Revenue', value: `$${summary.totalRevenue.toLocaleString()}`, color: 'var(--color-blue)' },
     { label: 'Total Costs', value: `$${summary.totalCosts.toLocaleString()}`, color: 'var(--color-orange)' },
     { label: 'Profit', value: `$${summary.profit.toLocaleString()}`, color: summary.profit >= 0 ? 'var(--color-green)' : 'var(--color-red)' },
@@ -329,7 +345,12 @@ function App() {
   const [sales, setSales] = useState(DEFAULT_SALES);
 
   const summary = useMemo(() => {
-    const totalRevenue = sales.reduce((sum, s) => sum + s.unitsSold * s.price, 0);
+    const monthlyRevenue = sales.reduce((sum, s) => sum + s.unitsSold * s.price, 0);
+    const starterFeeRevenue = sales.reduce((sum, s) => {
+      const product = products.find(p => p.name === s.product);
+      return sum + (product ? s.unitsSold * product.starterFee : 0);
+    }, 0);
+    const totalRevenue = monthlyRevenue + starterFeeRevenue;
     const totalCosts = products.reduce((sum, p) => sum + p.totalCost, 0);
     const profit = totalRevenue - totalCosts;
     const margin = totalRevenue > 0 ? profit / totalRevenue : 0;
@@ -338,7 +359,7 @@ function App() {
     const burnRate = totalCosts - totalRevenue;
     const runway = burnRate > 0 ? inputs.startingCash / burnRate : Infinity;
 
-    return { totalRevenue, totalCosts, profit, margin, ltv, ltvCac, burnRate, runway };
+    return { monthlyRevenue, starterFeeRevenue, totalRevenue, totalCosts, profit, margin, ltv, ltvCac, burnRate, runway };
   }, [inputs, products, sales]);
 
   return (
