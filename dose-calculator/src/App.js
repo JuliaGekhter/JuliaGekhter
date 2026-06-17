@@ -303,8 +303,6 @@ function ServicesTable({ services, setServices, targetMargin }) {
     ));
   };
 
-  const categories = [...new Set(services.map(s => s.category))];
-
   return (
     <section className="panel">
       <h2>Services</h2>
