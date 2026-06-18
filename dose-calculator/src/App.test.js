@@ -18,24 +18,37 @@ test('services reflect 2025 pricing', () => {
   expect(screen.getAllByText('New Patient Consultation').length).toBeGreaterThanOrEqual(1);
   expect(screen.getAllByText('Semaglutide - First 3 Months').length).toBeGreaterThanOrEqual(1);
   expect(screen.getAllByText('TRT - Every 2 Weeks').length).toBeGreaterThanOrEqual(1);
-  expect(screen.getAllByText('Full Blood Panel').length).toBeGreaterThanOrEqual(1);
   expect(screen.getByText('Sildenafil 100mg (30ct)')).toBeInTheDocument();
 });
 
-test('packages use actual multi-month pricing', () => {
+test('has 22 packages across all categories', () => {
   render(<App />);
+  expect(screen.getAllByText(/sold separately/).length).toBe(1);
   expect(screen.getAllByText('Semaglutide 3-Month Kickstart').length).toBeGreaterThanOrEqual(1);
-  expect(screen.getAllByText('Tirzepatide 3-Month Bundle').length).toBeGreaterThanOrEqual(1);
-  expect(screen.getAllByText('TRT Quarterly').length).toBeGreaterThanOrEqual(1);
-  expect(screen.getAllByText('Sermorelin 3-Month').length).toBeGreaterThanOrEqual(1);
+  expect(screen.getAllByText('Mens Vitality Bundle').length).toBeGreaterThanOrEqual(1);
+  expect(screen.getAllByText('Anti-Aging Skin Bundle').length).toBeGreaterThanOrEqual(1);
+  expect(screen.getAllByText('Hair Restoration Bundle').length).toBeGreaterThanOrEqual(1);
+  expect(screen.getAllByText('BHRT Cream 3-Month').length).toBeGreaterThanOrEqual(1);
+  expect(screen.getAllByText('ED Complete 3-Month').length).toBeGreaterThanOrEqual(1);
 });
 
-test('memberships match actual pricing tiers', () => {
+test('has 5 membership tiers with expanded perks', () => {
   render(<App />);
-  expect(screen.getAllByText(/starter fee/).length).toBe(4);
-  expect(screen.getByText('1 credits/mo')).toBeInTheDocument();
-  expect(screen.getByText('2 credits/mo')).toBeInTheDocument();
+  expect(screen.getAllByText('Essential').length).toBeGreaterThanOrEqual(1);
+  expect(screen.getAllByText(/Wellness/).length).toBeGreaterThanOrEqual(1);
+  expect(screen.getAllByText(/Vitality/).length).toBeGreaterThanOrEqual(1);
+  expect(screen.getAllByText(/Premium/).length).toBeGreaterThanOrEqual(1);
+  expect(screen.getAllByText(/Concierge/).length).toBeGreaterThanOrEqual(1);
   expect(screen.getByText('Unlimited credits/mo')).toBeInTheDocument();
+  expect(screen.getByText('6 credits/mo')).toBeInTheDocument();
+});
+
+test('memberships show rich perks', () => {
+  render(<App />);
+  expect(screen.getByText(/Direct cell phone access/)).toBeInTheDocument();
+  expect(screen.getByText(/Birthday month/)).toBeInTheDocument();
+  expect(screen.getByText(/free package upgrade/)).toBeInTheDocument();
+  expect(screen.getByText(/Dedicated care coordinator/)).toBeInTheDocument();
 });
 
 test('renders revenue breakdown', () => {

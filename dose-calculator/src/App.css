@@ -285,7 +285,8 @@ td input:focus {
 .membership-card.tier-starter { border-top: 3px solid var(--color-blue); }
 .membership-card.tier-growth { border-top: 3px solid var(--color-purple); }
 .membership-card.tier-scale { border-top: 3px solid var(--color-orange); }
-.membership-card.tier-vip { border-top: 3px solid var(--color-red); }
+.membership-card.tier-elite { border-top: 3px solid var(--color-red); }
+.membership-card.tier-vip { border-top: 3px solid #ffd700; }
 
 .membership-header {
   display: flex;
@@ -305,7 +306,8 @@ td input:focus {
 .tier-tag-starter { background: rgba(76, 141, 255, 0.15); color: var(--color-blue); }
 .tier-tag-growth { background: rgba(191, 90, 242, 0.15); color: var(--color-purple); }
 .tier-tag-scale { background: rgba(255, 159, 10, 0.15); color: var(--color-orange); }
-.tier-tag-vip { background: rgba(255, 69, 58, 0.15); color: var(--color-red); }
+.tier-tag-elite { background: rgba(255, 69, 58, 0.15); color: var(--color-red); }
+.tier-tag-vip { background: rgba(255, 215, 0, 0.15); color: #ffd700; }
 
 .membership-name {
   font-size: 22px;

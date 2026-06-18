@@ -77,6 +77,7 @@ const DEFAULT_SERVICES = [
 ];
 
 const DEFAULT_PACKAGES = [
+  // Weight Loss - GLP-1
   {
     name: 'Semaglutide 3-Month Kickstart',
     cost: 300,
@@ -86,6 +87,18 @@ const DEFAULT_PACKAGES = [
       'New Patient Consultation',
       'Full Blood Panel',
       '3x Monthly check-in visits',
+    ],
+  },
+  {
+    name: 'Semaglutide 6-Month Commitment',
+    cost: 700,
+    price: 3500,
+    services: [
+      'Semaglutide - 6 months ($686/mo after month 3)',
+      'New Patient Consultation',
+      '2x Full Blood Panels',
+      '6x Monthly check-in visits',
+      'Dose management throughout',
     ],
   },
   {
@@ -101,6 +114,19 @@ const DEFAULT_PACKAGES = [
     ],
   },
   {
+    name: 'Tirzepatide 3-Month High Dose',
+    cost: 640,
+    price: 2103,
+    services: [
+      'Tirzepatide 7.5mg - 3 months supply',
+      'New Patient Consultation',
+      'Full Blood Panel',
+      '3x Monthly check-in visits',
+      'Dose escalation management',
+    ],
+  },
+  // Weight Loss - Shake Programs
+  {
     name: 'Weight Loss Level 3 - 3 Month',
     cost: 142,
     price: 1750,
@@ -111,18 +137,30 @@ const DEFAULT_PACKAGES = [
     ],
   },
   {
+    name: 'Weight Loss Level 4 - 6 Month',
+    cost: 552,
+    price: 4100,
+    services: [
+      '6 months WL Level 4 (16 boxes + phent)',
+      '6x Monthly visits',
+      '2x Full Blood Panels',
+      '6x Accountability check-ins',
+    ],
+  },
+  {
     name: 'Weight Loss Level 5 - 6 Month',
     cost: 878,
     price: 4775,
     services: [
       '6 months WL Level 5 (24 boxes + 2 inj + phent)',
       '6x Monthly visits',
-      'Full Blood Panel at start & end',
+      '2x Full Blood Panels',
       '6x Accountability check-ins',
     ],
   },
+  // TRT
   {
-    name: 'TRT Quarterly',
+    name: 'TRT Quarterly (Every 2 Weeks)',
     cost: 42,
     price: 1275,
     services: [
@@ -132,7 +170,38 @@ const DEFAULT_PACKAGES = [
     ],
   },
   {
-    name: 'Sermorelin 3-Month',
+    name: 'TRT 6-Month (Every 2 Weeks)',
+    cost: 84,
+    price: 2550,
+    services: [
+      'TRT Every 2 Weeks - 6 months (12 shots)',
+      '2x Full Blood Panels',
+      '2x Follow-up consultations',
+    ],
+  },
+  {
+    name: 'TRT Weekly 3-Month',
+    cost: 56,
+    price: 1750,
+    services: [
+      'TRT Weekly In Office - 3 months (12 shots)',
+      'Full Blood Panel',
+      'Follow-up consultation',
+    ],
+  },
+  {
+    name: 'TRT Take Home Quarterly',
+    cost: 56,
+    price: 1497,
+    services: [
+      'Weekly Take Home TRT - 3 months',
+      'Monthly office visit for monitoring',
+      'Full Blood Panel',
+    ],
+  },
+  // Hormones & Peptides
+  {
+    name: 'Sermorelin 3-Month (15mg)',
     cost: 344,
     price: 1275,
     services: [
@@ -141,11 +210,121 @@ const DEFAULT_PACKAGES = [
       'Follow-up visit',
     ],
   },
+  {
+    name: 'Sermorelin 6-Month (15mg)',
+    cost: 688,
+    price: 2500,
+    services: [
+      'Sermorelin up to 15mg - 6 months',
+      'Initial consultation',
+      '2x Follow-up visits',
+      'Blood panel at start',
+    ],
+  },
+  {
+    name: 'Sermorelin 3-Month (30mg)',
+    cost: 688,
+    price: 2228,
+    services: [
+      'Sermorelin 30mg vial - 3 months',
+      'Initial consultation',
+      'Follow-up visit',
+    ],
+  },
+  {
+    name: 'BHRT Cream 3-Month',
+    cost: 234,
+    price: 795,
+    services: [
+      'Estradiol/Progesterone OR DHEA/Pregnenolone Cream - 3 months',
+      'Initial hormone consultation',
+      'Follow-up visit',
+    ],
+  },
+  {
+    name: 'BHRT Cream 6-Month',
+    cost: 468,
+    price: 1575,
+    services: [
+      'Estradiol/Progesterone OR DHEA/Pregnenolone Cream - 6 months',
+      'Initial hormone consultation',
+      '2x Follow-up visits',
+      'Blood panel at start',
+    ],
+  },
+  // Sexual Health
+  {
+    name: 'Mens Vitality Bundle',
+    cost: 100,
+    price: 599,
+    services: [
+      'Sildenafil OR Tadalafil (30ct)',
+      'Arousal Cream (30ml)',
+      'Consultation',
+      'Follow-up visit',
+    ],
+  },
+  {
+    name: 'ED Complete 3-Month',
+    cost: 120,
+    price: 799,
+    services: [
+      'Tadalafil 6-19mg - 3 months (90ct total)',
+      'Initial consultation',
+      'Follow-up visit',
+      'Arousal Cream (30ml)',
+    ],
+  },
+  // Anti-Aging & Hair
+  {
+    name: 'Anti-Aging Skin Bundle',
+    cost: 145,
+    price: 499,
+    services: [
+      'Anti-Aging Gel Pump',
+      'Ultra Anti-Aging Gel Cream',
+      'Tretinoin Acne Cream',
+      'Consultation',
+    ],
+  },
+  {
+    name: 'Hair Restoration Bundle',
+    cost: 112,
+    price: 449,
+    services: [
+      'Finasteride 1.25mg (90ct / 3 months)',
+      'Hair Restore Cream',
+      'Consultation',
+      'Follow-up at 3 months',
+    ],
+  },
+  // Wellness
+  {
+    name: 'Comprehensive Wellness Panel',
+    cost: 200,
+    price: 749,
+    services: [
+      'Full Blood Panel',
+      'New Patient Consultation',
+      'Follow-up visit to review results',
+      'Personalized treatment plan',
+    ],
+  },
+  {
+    name: 'Naltrexone 3-Month',
+    cost: 75,
+    price: 460,
+    services: [
+      'Naltrexone (all doses) - 3 months',
+      'Initial consultation',
+      'Follow-up check-in',
+    ],
+  },
 ];
 
 const DEFAULT_MEMBERSHIPS = [
   {
-    name: 'Monthly',
+    name: 'Essential',
     tier: 'Starter',
     starterFee: 100,
     totalCost: 20,
@@ -153,93 +332,134 @@ const DEFAULT_MEMBERSHIPS = [
     price: 51,
     credits: 1,
     services: [
-      'Discounted visit pricing',
-      'Telehealth access ($99)',
+      'Telehealth access ($99 visits)',
       'Patient portal access',
-      '24/7 communication',
+      '24/7 messaging with care team',
+      'Discounted visit pricing ($124 add-on visits)',
     ],
     products: [
       '10% off all medications',
       '10% off bloodwork',
+      '10% off all packages',
     ],
   },
   {
-    name: 'Yearly',
+    name: 'Wellness',
     tier: 'Growth',
     starterFee: 100,
-    totalCost: 200,
-    maxCost: 250,
-    price: 501,
+    totalCost: 55,
+    maxCost: 70,
+    price: 99,
     credits: 2,
     services: [
-      'Everything in Monthly',
-      'Annual wellness visit included',
+      'Everything in Essential',
+      '1 office visit per month included ($186 value)',
+      'Annual wellness visit included ($311 value)',
       'Priority scheduling',
-      'Full blood panel at signup',
     ],
     products: [
       '15% off all medications',
-      '15% off bloodwork',
-      'Free shipping on products',
+      '15% off bloodwork & labs',
+      '15% off all packages',
+      'Free shipping on all products',
     ],
   },
   {
-    name: 'Premium',
+    name: 'Vitality',
     tier: 'Scale',
     starterFee: 150,
-    totalCost: 60,
-    maxCost: 80,
-    price: 149,
+    totalCost: 100,
+    maxCost: 130,
+    price: 199,
     credits: 4,
     services: [
-      'Everything in Yearly',
-      '1 visit per month included ($186 value)',
-      'Quarterly blood panel included',
+      'Everything in Wellness',
+      '2 visits per month included',
+      'Quarterly full blood panel ($374 value)',
+      'Monthly B-12 injection included ($30 value)',
       'Direct physician line',
+      'Dedicated care coordinator',
     ],
     products: [
       '20% off all medications & products',
       '20% off all packages',
-      'Monthly B-12 injection included',
+      '1 free telehealth visit per month',
+      'Free Anastrozole if on TRT ($44 value)',
+    ],
+  },
+  {
+    name: 'Premium',
+    tier: 'Elite',
+    starterFee: 200,
+    totalCost: 160,
+    maxCost: 200,
+    price: 299,
+    credits: 6,
+    services: [
+      'Everything in Vitality',
+      'Unlimited office visits',
+      'Monthly full blood panel included',
+      'Monthly IV Vitamin Therapy ($150 value)',
+      'Same-day appointment guarantee',
+      'After-hours phone access',
+    ],
+    products: [
+      '25% off all medications & products',
+      '25% off all packages',
+      'Free shipping + priority fulfillment',
+      'Annual Anti-Aging Gel Pump included ($174 value)',
+      'Birthday month: free product of choice (up to $211)',
     ],
   },
   {
     name: 'Concierge',
     tier: 'VIP',
-    starterFee: 250,
-    totalCost: 120,
-    maxCost: 150,
-    price: 299,
+    starterFee: 299,
+    totalCost: 220,
+    maxCost: 270,
+    price: 499,
     credits: 'Unlimited',
     services: [
       'Everything in Premium',
-      'Unlimited visits',
-      'Same-day appointments',
-      'After-hours access',
+      'Unlimited visits + telehealth',
+      'Quarterly in-depth wellness review',
+      'Annual comprehensive panel + specialty labs',
+      'Direct cell phone access to Dr. Tack',
+      'Expedited Rx refills (same day)',
+      'Priority referral coordination',
     ],
     products: [
-      '25% off all medications & products',
-      '25% off all packages',
-      'Monthly B-12 injection included',
-      'Quarterly IV Vitamin Therapy included',
+      '30% off all medications & products',
+      '30% off all packages',
+      'Monthly B-12 + quarterly IV Therapy included',
+      'Annual skincare bundle included ($499 value)',
+      'Complimentary guest passes (2/month)',
+      '1 free package upgrade per year (up to $500 value)',
     ],
   },
 ];
 
 const DEFAULT_SALES = {
   memberships: [
-    { name: 'Monthly', unitsSold: 200, price: 51 },
-    { name: 'Yearly', unitsSold: 80, price: 501 },
-    { name: 'Premium', unitsSold: 40, price: 149 },
-    { name: 'Concierge', unitsSold: 15, price: 299 },
+    { name: 'Essential', unitsSold: 150, price: 51 },
+    { name: 'Wellness', unitsSold: 100, price: 99 },
+    { name: 'Vitality', unitsSold: 60, price: 199 },
+    { name: 'Premium', unitsSold: 30, price: 299 },
+    { name: 'Concierge', unitsSold: 10, price: 499 },
   ],
   packages: [
     { name: 'Semaglutide 3-Month Kickstart', unitsSold: 35, price: 899 },
+    { name: 'Semaglutide 6-Month Commitment', unitsSold: 15, price: 3500 },
     { name: 'Tirzepatide 3-Month Bundle', unitsSold: 20, price: 1499 },
     { name: 'Weight Loss Level 3 - 3 Month', unitsSold: 25, price: 1750 },
     { name: 'Weight Loss Level 5 - 6 Month', unitsSold: 10, price: 4775 },
-    { name: 'TRT Quarterly', unitsSold: 30, price: 1275 },
-    { name: 'Sermorelin 3-Month', unitsSold: 15, price: 1275 },
+    { name: 'TRT Quarterly (Every 2 Weeks)', unitsSold: 30, price: 1275 },
+    { name: 'TRT Take Home Quarterly', unitsSold: 20, price: 1497 },
+    { name: 'Sermorelin 3-Month (15mg)', unitsSold: 15, price: 1275 },
+    { name: 'BHRT Cream 3-Month', unitsSold: 25, price: 795 },
+    { name: 'Mens Vitality Bundle', unitsSold: 20, price: 599 },
+    { name: 'Anti-Aging Skin Bundle', unitsSold: 15, price: 499 },
+    { name: 'Comprehensive Wellness Panel', unitsSold: 30, price: 749 },
   ],
 };
 
