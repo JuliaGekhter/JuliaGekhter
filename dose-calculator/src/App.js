@@ -76,12 +76,133 @@ const DEFAULT_SERVICES = [
   { name: 'Tretinoin Acne Cream', category: 'Products', cost: 30, price: 138 },
 ];
 
+const DEFAULT_BUNDLES = [
+  // Weight Loss Product Bundles
+  {
+    name: 'WL Level 1 - Maintenance',
+    category: 'Weight Loss',
+    cost: 25,
+    price: 186,
+    items: ['4 boxes shakes'],
+  },
+  {
+    name: 'WL Level 2 - Phentermine',
+    category: 'Weight Loss',
+    cost: 15,
+    price: 275,
+    items: ['Phentermine (food sold separately)'],
+  },
+  {
+    name: 'WL Level 3',
+    category: 'Weight Loss',
+    cost: 47,
+    price: 624,
+    items: ['8 boxes shakes', 'Phentermine'],
+  },
+  {
+    name: 'WL Level 4',
+    category: 'Weight Loss',
+    cost: 92,
+    price: 749,
+    items: ['16 boxes shakes', 'Phentermine'],
+  },
+  {
+    name: 'WL Level 5',
+    category: 'Weight Loss',
+    cost: 146,
+    price: 874,
+    items: ['24 boxes shakes', '2 injections', 'Phentermine'],
+  },
+  {
+    name: 'WL Level 6',
+    category: 'Weight Loss',
+    cost: 191,
+    price: 999,
+    items: ['32 boxes shakes', '2 injections', 'Phentermine'],
+  },
+  // Sexual Health Bundles
+  {
+    name: 'Mens Vitality Bundle',
+    category: 'Sexual Health',
+    cost: 100,
+    price: 449,
+    items: ['Sildenafil OR Tadalafil (30ct)', 'Arousal Cream M/F (30ml)'],
+  },
+  {
+    name: 'ED Essentials',
+    category: 'Sexual Health',
+    cost: 64,
+    price: 249,
+    items: ['Tadalafil 5mg (30ct)', 'Arousal Cream M/F (30ml)'],
+  },
+  {
+    name: 'ED Performance',
+    category: 'Sexual Health',
+    cost: 90,
+    price: 399,
+    items: ['Sildenafil 100mg (30ct)', 'Tadalafil 20mg Fast Acting (30ct)', 'Arousal Cream M/F (30ml)'],
+  },
+  // Anti-Aging & Skin Bundles
+  {
+    name: 'Anti-Aging Skin Bundle',
+    category: 'Skin & Hair',
+    cost: 125,
+    price: 449,
+    items: ['Anti-Aging Gel Pump', 'Ultra Anti-Aging Gel Cream', 'Tretinoin Acne Cream'],
+  },
+  {
+    name: 'Hair Restoration Bundle',
+    category: 'Skin & Hair',
+    cost: 62,
+    price: 275,
+    items: ['Finasteride 1.25mg (30ct)', 'Hair Restore Cream'],
+  },
+  // Hormone Bundles
+  {
+    name: 'BHRT Starter (Women)',
+    category: 'Hormones',
+    cost: 156,
+    price: 449,
+    items: ['Estradiol/Progesterone Cream', 'DHEA/Pregnenolone Cream'],
+  },
+  {
+    name: 'BHRT Complete (Women)',
+    category: 'Hormones',
+    cost: 211,
+    price: 599,
+    items: ['Estradiol/Progesterone Cream', 'DHEA/Pregnenolone Cream', 'Testosterone Cream'],
+  },
+  {
+    name: 'TRT + Support (Men)',
+    category: 'Hormones',
+    cost: 65,
+    price: 299,
+    items: ['Testosterone Cream', 'Anastrozole'],
+  },
+  {
+    name: 'Growth Hormone Starter',
+    category: 'Hormones',
+    cost: 115,
+    price: 449,
+    items: ['Sermorelin vial up to 15mg'],
+  },
+  {
+    name: 'Growth Hormone Max',
+    category: 'Hormones',
+    cost: 229,
+    price: 799,
+    items: ['Sermorelin vial 30mg'],
+  },
+];
+
 const DEFAULT_PACKAGES = [
-  // Weight Loss - GLP-1
+  // Weight Loss Packages (multi-month programs with visits)
   {
     name: 'Semaglutide 3-Month Kickstart',
+    category: 'Weight Loss',
     cost: 300,
     price: 899,
+    duration: '3 months',
     services: [
       'Semaglutide - 3 months supply ($374/mo value)',
       'New Patient Consultation',
@@ -91,10 +212,12 @@ const DEFAULT_PACKAGES = [
   },
   {
     name: 'Semaglutide 6-Month Commitment',
+    category: 'Weight Loss',
     cost: 700,
     price: 3500,
+    duration: '6 months',
     services: [
-      'Semaglutide - 6 months ($686/mo after month 3)',
+      'Semaglutide - 6 months',
       'New Patient Consultation',
       '2x Full Blood Panels',
       '6x Monthly check-in visits',
@@ -102,207 +225,227 @@ const DEFAULT_PACKAGES = [
     ],
   },
   {
-    name: 'Tirzepatide 3-Month Bundle',
+    name: 'Tirzepatide 3-Month (2.5-5mg)',
+    category: 'Weight Loss',
     cost: 550,
     price: 1499,
+    duration: '3 months',
     services: [
-      'Tirzepatide 2.5-5mg - 3 months supply',
+      'Tirzepatide 2.5-5mg - 3 months',
       'New Patient Consultation',
       'Full Blood Panel',
-      '3x Monthly check-in visits',
-      'Dose escalation management',
+      '3x Monthly visits + dose escalation',
     ],
   },
   {
-    name: 'Tirzepatide 3-Month High Dose',
+    name: 'Tirzepatide 3-Month (7.5mg)',
+    category: 'Weight Loss',
     cost: 640,
     price: 2103,
+    duration: '3 months',
     services: [
-      'Tirzepatide 7.5mg - 3 months supply',
+      'Tirzepatide 7.5mg - 3 months',
       'New Patient Consultation',
       'Full Blood Panel',
-      '3x Monthly check-in visits',
-      'Dose escalation management',
+      '3x Monthly visits + dose management',
     ],
   },
-  // Weight Loss - Shake Programs
   {
-    name: 'Weight Loss Level 3 - 3 Month',
+    name: 'WL Level 3 Program - 3 Month',
+    category: 'Weight Loss',
     cost: 142,
     price: 1750,
+    duration: '3 months',
     services: [
-      '3 months WL Level 3 (8 boxes shakes + phent)',
+      'WL Level 3 bundle x 3 months',
       '3x Monthly visits',
       '3x Accountability check-ins',
     ],
   },
   {
-    name: 'Weight Loss Level 4 - 6 Month',
+    name: 'WL Level 4 Program - 6 Month',
+    category: 'Weight Loss',
     cost: 552,
     price: 4100,
+    duration: '6 months',
     services: [
-      '6 months WL Level 4 (16 boxes + phent)',
+      'WL Level 4 bundle x 6 months',
       '6x Monthly visits',
       '2x Full Blood Panels',
       '6x Accountability check-ins',
     ],
   },
   {
-    name: 'Weight Loss Level 5 - 6 Month',
+    name: 'WL Level 5 Program - 6 Month',
+    category: 'Weight Loss',
     cost: 878,
     price: 4775,
+    duration: '6 months',
     services: [
-      '6 months WL Level 5 (24 boxes + 2 inj + phent)',
+      'WL Level 5 bundle x 6 months',
       '6x Monthly visits',
       '2x Full Blood Panels',
       '6x Accountability check-ins',
     ],
   },
-  // TRT
+  // TRT Packages
   {
     name: 'TRT Quarterly (Every 2 Weeks)',
+    category: 'TRT',
     cost: 42,
     price: 1275,
+    duration: '3 months',
     services: [
-      'TRT Every 2 Weeks - 3 months (6 shots)',
+      'TRT injection every 2 weeks (6 shots)',
       'Full Blood Panel',
       'Follow-up consultation',
     ],
   },
   {
     name: 'TRT 6-Month (Every 2 Weeks)',
+    category: 'TRT',
     cost: 84,
     price: 2550,
+    duration: '6 months',
     services: [
-      'TRT Every 2 Weeks - 6 months (12 shots)',
+      'TRT injection every 2 weeks (12 shots)',
       '2x Full Blood Panels',
       '2x Follow-up consultations',
     ],
   },
   {
-    name: 'TRT Weekly 3-Month',
+    name: 'TRT Weekly In Office - 3 Month',
+    category: 'TRT',
     cost: 56,
     price: 1750,
+    duration: '3 months',
     services: [
-      'TRT Weekly In Office - 3 months (12 shots)',
+      'Weekly TRT in office (12 shots)',
       'Full Blood Panel',
       'Follow-up consultation',
     ],
   },
   {
     name: 'TRT Take Home Quarterly',
+    category: 'TRT',
     cost: 56,
     price: 1497,
+    duration: '3 months',
     services: [
-      'Weekly Take Home TRT - 3 months',
+      'Weekly take home TRT - 3 months',
       'Monthly office visit for monitoring',
       'Full Blood Panel',
     ],
   },
-  // Hormones & Peptides
+  // Hormone & Peptide Packages
   {
     name: 'Sermorelin 3-Month (15mg)',
+    category: 'Hormones',
     cost: 344,
     price: 1275,
+    duration: '3 months',
     services: [
-      'Sermorelin vial up to 15mg - 3 months',
+      'Sermorelin vial up to 15mg x 3',
       'Initial consultation',
       'Follow-up visit',
     ],
   },
   {
     name: 'Sermorelin 6-Month (15mg)',
+    category: 'Hormones',
     cost: 688,
     price: 2500,
+    duration: '6 months',
     services: [
-      'Sermorelin up to 15mg - 6 months',
+      'Sermorelin up to 15mg x 6',
       'Initial consultation',
-      '2x Follow-up visits',
+      '2x Follow-ups',
       'Blood panel at start',
     ],
   },
   {
     name: 'Sermorelin 3-Month (30mg)',
+    category: 'Hormones',
     cost: 688,
     price: 2228,
+    duration: '3 months',
     services: [
-      'Sermorelin 30mg vial - 3 months',
+      'Sermorelin 30mg vial x 3',
       'Initial consultation',
       'Follow-up visit',
     ],
   },
   {
-    name: 'BHRT Cream 3-Month',
+    name: 'BHRT Program - 3 Month',
+    category: 'Hormones',
     cost: 234,
     price: 795,
+    duration: '3 months',
     services: [
-      'Estradiol/Progesterone OR DHEA/Pregnenolone Cream - 3 months',
+      'BHRT Cream (Estradiol/Prog or DHEA/Preg) x 3 months',
       'Initial hormone consultation',
       'Follow-up visit',
     ],
   },
   {
-    name: 'BHRT Cream 6-Month',
+    name: 'BHRT Program - 6 Month',
+    category: 'Hormones',
     cost: 468,
     price: 1575,
+    duration: '6 months',
     services: [
-      'Estradiol/Progesterone OR DHEA/Pregnenolone Cream - 6 months',
+      'BHRT Cream x 6 months',
       'Initial hormone consultation',
       '2x Follow-up visits',
       'Blood panel at start',
     ],
   },
-  // Sexual Health
   {
-    name: 'Mens Vitality Bundle',
-    cost: 100,
-    price: 599,
+    name: 'Clomid Program - 3 Month',
+    category: 'Hormones',
+    cost: 141,
+    price: 790,
+    duration: '3 months',
     services: [
-      'Sildenafil OR Tadalafil (30ct)',
-      'Arousal Cream (30ml)',
-      'Consultation',
-      'Follow-up visit',
-    ],
-  },
-  {
-    name: 'ED Complete 3-Month',
-    cost: 120,
-    price: 799,
-    services: [
-      'Tadalafil 6-19mg - 3 months (90ct total)',
+      'Clomid x 3 months',
       'Initial consultation',
       'Follow-up visit',
+      'Blood panel',
+    ],
+  },
+  {
+    name: 'Naltrexone 3-Month',
+    category: 'Hormones',
+    cost: 75,
+    price: 460,
+    duration: '3 months',
+    services: [
+      'Naltrexone (all doses) x 3 months',
+      'Initial consultation',
+      'Follow-up check-in',
+    ],
+  },
+  // Sexual Health Packages
+  {
+    name: 'ED Complete 3-Month',
+    category: 'Sexual Health',
+    cost: 120,
+    price: 599,
+    duration: '3 months',
+    services: [
+      'Tadalafil 6-19mg x 3 months (90ct total)',
       'Arousal Cream (30ml)',
+      'Initial consultation',
+      'Follow-up visit',
     ],
   },
-  // Anti-Aging & Hair
-  {
-    name: 'Anti-Aging Skin Bundle',
-    cost: 145,
-    price: 499,
-    services: [
-      'Anti-Aging Gel Pump',
-      'Ultra Anti-Aging Gel Cream',
-      'Tretinoin Acne Cream',
-      'Consultation',
-    ],
-  },
-  {
-    name: 'Hair Restoration Bundle',
-    cost: 112,
-    price: 449,
-    services: [
-      'Finasteride 1.25mg (90ct / 3 months)',
-      'Hair Restore Cream',
-      'Consultation',
-      'Follow-up at 3 months',
-    ],
-  },
-  // Wellness
+  // Wellness Packages
   {
     name: 'Comprehensive Wellness Panel',
+    category: 'Wellness',
     cost: 200,
     price: 749,
+    duration: 'One-time',
     services: [
       'Full Blood Panel',
       'New Patient Consultation',
@@ -311,13 +454,16 @@ const DEFAULT_PACKAGES = [
     ],
   },
   {
-    name: 'Naltrexone 3-Month',
-    cost: 75,
-    price: 460,
+    name: 'Annual Wellness Program',
+    category: 'Wellness',
+    cost: 400,
+    price: 1400,
+    duration: '12 months',
     services: [
-      'Naltrexone (all doses) - 3 months',
-      'Initial consultation',
-      'Follow-up check-in',
+      '2x Full Blood Panels (start + 6mo)',
+      'Annual Wellness Visit',
+      '2x Follow-up consultations',
+      'Personalized treatment plan',
     ],
   },
 ];
@@ -447,18 +593,23 @@ const DEFAULT_SALES = {
     { name: 'Premium', unitsSold: 30, price: 299 },
     { name: 'Concierge', unitsSold: 10, price: 499 },
   ],
+  bundles: [
+    { name: 'WL Level 3', unitsSold: 80, price: 624 },
+    { name: 'WL Level 5', unitsSold: 40, price: 874 },
+    { name: 'Mens Vitality Bundle', unitsSold: 35, price: 449 },
+    { name: 'Anti-Aging Skin Bundle', unitsSold: 25, price: 449 },
+    { name: 'BHRT Starter (Women)', unitsSold: 30, price: 449 },
+    { name: 'TRT + Support (Men)', unitsSold: 45, price: 299 },
+    { name: 'Growth Hormone Starter', unitsSold: 20, price: 449 },
+  ],
   packages: [
     { name: 'Semaglutide 3-Month Kickstart', unitsSold: 35, price: 899 },
-    { name: 'Semaglutide 6-Month Commitment', unitsSold: 15, price: 3500 },
-    { name: 'Tirzepatide 3-Month Bundle', unitsSold: 20, price: 1499 },
-    { name: 'Weight Loss Level 3 - 3 Month', unitsSold: 25, price: 1750 },
-    { name: 'Weight Loss Level 5 - 6 Month', unitsSold: 10, price: 4775 },
+    { name: 'Tirzepatide 3-Month (2.5-5mg)', unitsSold: 20, price: 1499 },
+    { name: 'WL Level 5 Program - 6 Month', unitsSold: 10, price: 4775 },
     { name: 'TRT Quarterly (Every 2 Weeks)', unitsSold: 30, price: 1275 },
-    { name: 'TRT Take Home Quarterly', unitsSold: 20, price: 1497 },
     { name: 'Sermorelin 3-Month (15mg)', unitsSold: 15, price: 1275 },
-    { name: 'BHRT Cream 3-Month', unitsSold: 25, price: 795 },
-    { name: 'Mens Vitality Bundle', unitsSold: 20, price: 599 },
-    { name: 'Anti-Aging Skin Bundle', unitsSold: 15, price: 499 },
+    { name: 'BHRT Program - 3 Month', unitsSold: 25, price: 795 },
+    { name: 'ED Complete 3-Month', unitsSold: 20, price: 599 },
     { name: 'Comprehensive Wellness Panel', unitsSold: 30, price: 749 },
   ],
 };
@@ -567,6 +718,58 @@ function ServicesTable({ services, setServices, targetMargin }) {
   );
 }
 
+function BundlesSection({ bundles, setBundles, targetMargin }) {
+  const updateBundle = (idx, key, raw) => {
+    setBundles(prev => prev.map((b, i) =>
+      i === idx ? { ...b, [key]: Number(raw) } : b
+    ));
+  };
+
+  return (
+    <section className="panel">
+      <h2>Bundles</h2>
+      <p className="section-desc">Product groupings — meds, creams & supplies sold together</p>
+      <div className="bundle-cards">
+        {bundles.map((b, i) => {
+          const margin = b.price > 0 ? (b.price - b.cost) / b.price : 0;
+          const ok = margin >= targetMargin;
+          return (
+            <div key={b.name} className={`bundle-card cat-border-${b.category.toLowerCase().replace(/[^a-z]/g, '')}`}>
+              <div className="package-header">
+                <h3>{b.name}</h3>
+                <span className="cell-status">{ok ? '✅' : '⚠️'}</span>
+              </div>
+              <span className={`category-tag cat-${b.category.toLowerCase().replace(/[^a-z]/g, '')}`}>{b.category}</span>
+              <div className="bundle-price">${b.price}</div>
+              <ul className="bundle-items">
+                {b.items.map(item => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+              <div className="membership-financials">
+                <div className="financial-row">
+                  <span>Cost</span>
+                  <input type="number" value={b.cost}
+                    onChange={e => updateBundle(i, 'cost', e.target.value)} />
+                </div>
+                <div className="financial-row">
+                  <span>Price</span>
+                  <input type="number" value={b.price}
+                    onChange={e => updateBundle(i, 'price', e.target.value)} />
+                </div>
+                <div className="financial-row">
+                  <span>Margin</span>
+                  <span className={ok ? 'cell-good' : 'cell-warn'}>{(margin * 100).toFixed(1)}%</span>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
 function PackagesSection({ packages, setPackages, targetMargin }) {
   const updatePackage = (idx, key, raw) => {
     setPackages(prev => prev.map((p, i) =>
@@ -577,7 +780,7 @@ function PackagesSection({ packages, setPackages, targetMargin }) {
   return (
     <section className="panel">
       <h2>Packages</h2>
-      <p className="section-desc">Bundles of services — sold separately, not tied to memberships</p>
+      <p className="section-desc">Multi-month service programs — visits + treatments over time</p>
       <div className="package-cards">
         {packages.map((p, i) => {
           const margin = p.price > 0 ? (p.price - p.cost) / p.price : 0;
@@ -589,6 +792,7 @@ function PackagesSection({ packages, setPackages, targetMargin }) {
                 <span className="cell-status">{ok ? '✅' : '⚠️'}</span>
               </div>
               <div className="package-price">${p.price.toLocaleString()}</div>
+              {p.duration && <span className="duration-badge">{p.duration}</span>}
               <ul className="package-services">
                 {p.services.map(s => (
                   <li key={s}>{s}</li>
@@ -744,6 +948,7 @@ function SalesTable({ sales, setSales }) {
     <section className="panel">
       <h2>Sales</h2>
       {renderTable('Membership Sales', sales.memberships, 'memberships')}
+      {renderTable('Bundle Sales', sales.bundles, 'bundles')}
       {renderTable('Package Sales', sales.packages, 'packages')}
     </section>
   );
@@ -752,6 +957,7 @@ function SalesTable({ sales, setSales }) {
 function SummaryPanel({ summary }) {
   const metrics = [
     { label: 'Membership MRR', value: `$${summary.membershipRevenue.toLocaleString()}`, color: 'var(--color-blue)' },
+    { label: 'Bundle Revenue', value: `$${summary.bundleRevenue.toLocaleString()}`, color: 'var(--color-teal)' },
     { label: 'Package Revenue', value: `$${summary.packageRevenue.toLocaleString()}`, color: 'var(--color-purple)' },
     { label: 'Starter Fee Revenue', value: `$${summary.starterFeeRevenue.toLocaleString()}`, color: 'var(--color-purple)' },
     { label: 'Total Revenue', value: `$${summary.totalRevenue.toLocaleString()}`, color: 'var(--color-blue)' },
@@ -781,6 +987,7 @@ function SummaryPanel({ summary }) {
 function RevenueChart({ sales }) {
   const all = [
     ...sales.memberships.map(s => ({ name: s.name, revenue: s.unitsSold * s.price, type: 'membership' })),
+    ...sales.bundles.map(s => ({ name: s.name, revenue: s.unitsSold * s.price, type: 'bundle' })),
     ...sales.packages.map(s => ({ name: s.name, revenue: s.unitsSold * s.price, type: 'package' })),
   ];
   const maxRev = Math.max(...all.map(r => r.revenue));
@@ -794,7 +1001,7 @@ function RevenueChart({ sales }) {
             <span className="chart-label">{r.name}</span>
             <div className="chart-bar-wrapper">
               <div
-                className={`chart-bar ${r.type === 'package' ? 'chart-bar-package' : ''}`}
+                className={`chart-bar ${r.type === 'package' ? 'chart-bar-package' : r.type === 'bundle' ? 'chart-bar-bundle' : ''}`}
                 style={{ width: `${(r.revenue / maxRev) * 100}%` }}
               />
             </div>
@@ -809,19 +1016,22 @@ function RevenueChart({ sales }) {
 function App() {
   const [inputs, setInputs] = useState(DEFAULT_INPUTS);
   const [services, setServices] = useState(DEFAULT_SERVICES);
+  const [bundles, setBundles] = useState(DEFAULT_BUNDLES);
   const [packages, setPackages] = useState(DEFAULT_PACKAGES);
   const [memberships, setMemberships] = useState(DEFAULT_MEMBERSHIPS);
   const [sales, setSales] = useState(DEFAULT_SALES);
 
   const summary = useMemo(() => {
     const membershipRevenue = sales.memberships.reduce((sum, s) => sum + s.unitsSold * s.price, 0);
+    const bundleRevenue = sales.bundles.reduce((sum, s) => sum + s.unitsSold * s.price, 0);
     const packageRevenue = sales.packages.reduce((sum, s) => sum + s.unitsSold * s.price, 0);
     const starterFeeRevenue = sales.memberships.reduce((sum, s) => {
       const m = memberships.find(mem => mem.name === s.name);
       return sum + (m ? s.unitsSold * m.starterFee : 0);
     }, 0);
-    const totalRevenue = membershipRevenue + packageRevenue + starterFeeRevenue;
+    const totalRevenue = membershipRevenue + bundleRevenue + packageRevenue + starterFeeRevenue;
     const totalCosts = memberships.reduce((sum, m) => sum + m.totalCost, 0)
+      + bundles.reduce((sum, b) => sum + b.cost, 0)
       + packages.reduce((sum, p) => sum + p.cost, 0);
     const profit = totalRevenue - totalCosts;
     const margin = totalRevenue > 0 ? profit / totalRevenue : 0;
@@ -830,19 +1040,20 @@ function App() {
     const burnRate = totalCosts - totalRevenue;
     const runway = burnRate > 0 ? inputs.startingCash / burnRate : Infinity;
 
-    return { membershipRevenue, packageRevenue, starterFeeRevenue, totalRevenue, totalCosts, profit, margin, ltv, ltvCac, burnRate, runway };
-  }, [inputs, memberships, packages, sales]);
+    return { membershipRevenue, bundleRevenue, packageRevenue, starterFeeRevenue, totalRevenue, totalCosts, profit, margin, ltv, ltvCac, burnRate, runway };
+  }, [inputs, memberships, bundles, packages, sales]);
 
   return (
     <div className="dashboard">
       <header className="dashboard-header">
         <h1>Shape the Wave</h1>
-        <span className="subtitle">Services, Packages & Memberships</span>
+        <span className="subtitle">Memberships, Bundles & Packages</span>
       </header>
       <div className="dashboard-grid">
         <InputsPanel inputs={inputs} setInputs={setInputs} />
         <SummaryPanel summary={summary} />
         <MembershipsSection memberships={memberships} setMemberships={setMemberships} targetMargin={inputs.targetMargin} />
+        <BundlesSection bundles={bundles} setBundles={setBundles} targetMargin={inputs.targetMargin} />
         <PackagesSection packages={packages} setPackages={setPackages} targetMargin={inputs.targetMargin} />
         <ServicesTable services={services} setServices={setServices} targetMargin={inputs.targetMargin} />
         <SalesTable sales={sales} setSales={setSales} />

@@ -199,6 +199,75 @@ td input:focus {
 .cat-hormones { background: rgba(255, 159, 10, 0.15); color: var(--color-orange); }
 .cat-weightloss { background: rgba(48, 213, 200, 0.15); color: var(--color-teal); }
 
+/* Bundle Cards */
+.bundle-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.bundle-card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: border-color 0.2s;
+}
+
+.bundle-card:hover {
+  border-color: var(--color-text-dim);
+}
+
+.cat-border-weightloss { border-top: 3px solid var(--color-teal); }
+.cat-border-sexualhealth { border-top: 3px solid var(--color-red); }
+.cat-border-skinhair { border-top: 3px solid var(--color-purple); }
+.cat-border-hormones { border-top: 3px solid var(--color-orange); }
+
+.bundle-price {
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.bundle-items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.bundle-items li {
+  font-size: 13px;
+  color: var(--color-text-dim);
+}
+
+.bundle-items li::before {
+  content: "■ ";
+  font-size: 8px;
+  color: var(--color-teal);
+  vertical-align: middle;
+}
+
+.duration-badge {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  background: rgba(191, 90, 242, 0.15);
+  color: var(--color-purple);
+}
+
+.chart-bar-bundle {
+  background: linear-gradient(90deg, var(--color-orange), var(--color-red));
+}
+
 /* Package Cards */
 .package-cards {
   display: grid;
