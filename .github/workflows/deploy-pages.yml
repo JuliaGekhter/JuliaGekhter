@@ -42,11 +42,21 @@ jobs:
           npm install
           npm run build
 
+      - name: Build wellness-check
+        working-directory: wellness-check
+        env:
+          PUBLIC_URL: /JuliaGekhter/wellness-check
+          CI: false
+        run: |
+          npm install
+          npm run build
+
       - name: Assemble dist
         run: |
-          mkdir -p dist/bridge-child dist/dose-calculator
+          mkdir -p dist/bridge-child dist/dose-calculator dist/wellness-check
           cp -r bridge-child/build/* dist/bridge-child/
           cp -r dose-calculator/build/* dist/dose-calculator/
+          cp -r wellness-check/build/* dist/wellness-check/
           cat > dist/index.html <<'HTML'
           <!doctype html>
           <html lang="en">
@@ -76,6 +86,10 @@ jobs:
               <a href="./bridge-child/">
                 <strong>The Bridge Child</strong>
                 <span>A memoir companion app</span>
+              </a>
+              <a href="./wellness-check/">
+                <strong>Wellness Check-In</strong>
+                <span>Daily mental health self-assessment</span>
               </a>
               <a href="./dose-calculator/">
                 <strong>Financial Dashboard</strong>
