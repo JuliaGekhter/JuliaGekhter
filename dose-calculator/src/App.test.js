@@ -49,3 +49,41 @@ test('renders revenue streams', () => {
   expect(screen.getByText('Bundle Revenue')).toBeInTheDocument();
   expect(screen.getByText('Package Revenue')).toBeInTheDocument();
 });
+
+test('renders CPT codes section', () => {
+  render(<App />);
+  expect(screen.getByText('CPT Codes')).toBeInTheDocument();
+  expect(screen.getByPlaceholderText('Search by CPT code or description...')).toBeInTheDocument();
+});
+
+test('renders projections section', () => {
+  render(<App />);
+  expect(screen.getByText('Financial Projections')).toBeInTheDocument();
+  expect(screen.getByText('Projected ARR')).toBeInTheDocument();
+  expect(screen.getByText('Month 12 Members')).toBeInTheDocument();
+});
+
+test('renders pricing mode toggle', () => {
+  render(<App />);
+  expect(screen.getByText('Pricing Mode')).toBeInTheDocument();
+  expect(screen.getByDisplayValue('Self Pay')).toBeInTheDocument();
+});
+
+test('renders referral bonuses', () => {
+  render(<App />);
+  expect(screen.getByText('$25 credit per referral')).toBeInTheDocument();
+  expect(screen.getByText('$50 credit per referral')).toBeInTheDocument();
+  expect(screen.getByText('$75 credit + free B-12 for referee')).toBeInTheDocument();
+  expect(screen.getByText('$100 credit + 1 month free for referee')).toBeInTheDocument();
+  expect(screen.getByText('$150 credit + 1 month free for referee + starter fee waiver')).toBeInTheDocument();
+});
+
+test('renders new bundle and package names', () => {
+  render(<App />);
+  expect(screen.getAllByText('Complete Male Optimization').length).toBeGreaterThanOrEqual(1);
+  expect(screen.getAllByText('Longevity Stack').length).toBeGreaterThanOrEqual(1);
+  expect(screen.getAllByText('Tirzepatide 6-Month Program').length).toBeGreaterThanOrEqual(1);
+  expect(screen.getAllByText('HCG + TRT Combo 3-Month').length).toBeGreaterThanOrEqual(1);
+  expect(screen.getAllByText('Couples TRT Bundle').length).toBeGreaterThanOrEqual(1);
+  expect(screen.getAllByText('Couples Wellness Annual').length).toBeGreaterThanOrEqual(1);
+});
