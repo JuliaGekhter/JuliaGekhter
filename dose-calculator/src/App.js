@@ -22,7 +22,7 @@ const DEFAULT_SERVICES = [
   { name: '1 Visit Every 3-11 Months', category: 'Visits', cost: 40, price: 249 },
   { name: 'Annual Wellness Visit', category: 'Visits', cost: 50, price: 311 },
   // Bloodwork
-  { name: 'Full Blood Panel', category: 'Bloodwork', cost: 148, price: 374 },
+  { name: 'Full Blood Panel', category: 'Bloodwork', cost: 130, price: 374 },
   { name: 'Single Blood Test', category: 'Bloodwork', cost: 30, price: 81 },
   { name: 'Additional Test (after single)', category: 'Bloodwork', cost: 20, price: 56 },
   // Weight Loss (2025 Self Pay)
@@ -169,7 +169,7 @@ const DEFAULT_BUNDLES = [
     name: 'BHRT Complete (Women)',
     category: 'Hormones',
     cost: 211,
-    price: 599,
+    price: 649,
     items: ['Estradiol/Progesterone Cream', 'DHEA/Pregnenolone Cream', 'Testosterone Cream'],
   },
   {
@@ -228,7 +228,7 @@ const DEFAULT_PACKAGES = [
     name: 'Tirzepatide 3-Month (2.5-5mg)',
     category: 'Weight Loss',
     cost: 550,
-    price: 1499,
+    price: 1599,
     duration: '3 months',
     services: [
       'Tirzepatide 2.5-5mg - 3 months',
@@ -475,7 +475,7 @@ const DEFAULT_MEMBERSHIPS = [
     starterFee: 100,
     totalCost: 20,
     maxCost: 30,
-    price: 51,
+    price: 59,
     credits: 1,
     services: [
       'Telehealth access ($99 visits)',
@@ -492,9 +492,9 @@ const DEFAULT_MEMBERSHIPS = [
   {
     name: 'Wellness',
     tier: 'Growth',
-    starterFee: 100,
-    totalCost: 55,
-    maxCost: 70,
+    starterFee: 149,
+    totalCost: 35,
+    maxCost: 45,
     price: 99,
     credits: 2,
     services: [
@@ -513,9 +513,9 @@ const DEFAULT_MEMBERSHIPS = [
   {
     name: 'Vitality',
     tier: 'Scale',
-    starterFee: 150,
-    totalCost: 100,
-    maxCost: 130,
+    starterFee: 199,
+    totalCost: 65,
+    maxCost: 85,
     price: 199,
     credits: 4,
     services: [
@@ -536,9 +536,9 @@ const DEFAULT_MEMBERSHIPS = [
   {
     name: 'Premium',
     tier: 'Elite',
-    starterFee: 200,
-    totalCost: 160,
-    maxCost: 200,
+    starterFee: 249,
+    totalCost: 100,
+    maxCost: 130,
     price: 299,
     credits: 6,
     services: [
@@ -560,9 +560,9 @@ const DEFAULT_MEMBERSHIPS = [
   {
     name: 'Concierge',
     tier: 'VIP',
-    starterFee: 299,
-    totalCost: 220,
-    maxCost: 270,
+    starterFee: 349,
+    totalCost: 150,
+    maxCost: 190,
     price: 499,
     credits: 'Unlimited',
     services: [
@@ -587,7 +587,7 @@ const DEFAULT_MEMBERSHIPS = [
 
 const DEFAULT_SALES = {
   memberships: [
-    { name: 'Essential', unitsSold: 150, price: 51 },
+    { name: 'Essential', unitsSold: 150, price: 59 },
     { name: 'Wellness', unitsSold: 100, price: 99 },
     { name: 'Vitality', unitsSold: 60, price: 199 },
     { name: 'Premium', unitsSold: 30, price: 299 },
@@ -604,9 +604,11 @@ const DEFAULT_SALES = {
   ],
   packages: [
     { name: 'Semaglutide 3-Month Kickstart', unitsSold: 35, price: 899 },
-    { name: 'Tirzepatide 3-Month (2.5-5mg)', unitsSold: 20, price: 1499 },
-    { name: 'WL Level 5 Program - 6 Month', unitsSold: 10, price: 4775 },
-    { name: 'TRT Quarterly (Every 2 Weeks)', unitsSold: 30, price: 1275 },
+    { name: 'Tirzepatide 3-Month (2.5-5mg)', unitsSold: 20, price: 1599 },
+    { name: 'WL Level 5 Program - 6 Month', unitsSold: 15, price: 4775 },
+    { name: 'TRT Quarterly (Every 2 Weeks)', unitsSold: 25, price: 1275 },
+    { name: 'TRT 6-Month (Every 2 Weeks)', unitsSold: 15, price: 2550 },
+    { name: 'Semaglutide 6-Month Commitment', unitsSold: 12, price: 3500 },
     { name: 'Sermorelin 3-Month (15mg)', unitsSold: 15, price: 1275 },
     { name: 'BHRT Program - 3 Month', unitsSold: 25, price: 795 },
     { name: 'ED Complete 3-Month', unitsSold: 20, price: 599 },
