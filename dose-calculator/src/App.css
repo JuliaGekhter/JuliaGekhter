@@ -766,6 +766,331 @@ td input:focus {
   letter-spacing: 0.2px;
 }
 
+/* Tab Navigation */
+.tab-nav {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 16px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 4px;
+}
+
+.tab-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--color-text-dim);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.tab-btn:hover {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.tab-btn.active {
+  background: var(--color-blue);
+  color: white;
+}
+
+/* Forms */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.form-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--color-text-dim);
+  font-weight: 500;
+}
+
+.form-grid input,
+.form-grid select {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  color: var(--color-text);
+  padding: 8px 10px;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+}
+
+.form-grid input:focus,
+.form-grid select:focus {
+  border-color: var(--color-blue);
+}
+
+.form-btn {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 6px;
+  background: var(--color-blue);
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  margin-top: 12px;
+}
+
+.form-btn:hover {
+  opacity: 0.9;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.checkbox-group label {
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.checkbox-group input[type="checkbox"] {
+  width: auto;
+}
+
+/* Funnel */
+.funnel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 20px 0;
+}
+
+.funnel-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 6px;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  transition: width 0.3s;
+}
+
+.funnel-stage-label {
+  min-width: 100px;
+}
+
+.funnel-stage-count {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.funnel-stage-rate {
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+/* Pipeline */
+.pipeline {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.pipeline-stage {
+  flex: 1;
+  min-width: 140px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+}
+
+.pipeline-stage h4 {
+  font-size: 12px;
+  color: var(--color-text-dim);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.pipeline-count {
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.pipeline-amount {
+  font-size: 13px;
+  color: var(--color-text-dim);
+}
+
+.pipeline-arrow {
+  font-size: 20px;
+  color: var(--color-text-dim);
+}
+
+/* Schedule Grid */
+.schedule-grid {
+  overflow-x: auto;
+}
+
+.schedule-grid table {
+  font-size: 12px;
+}
+
+.schedule-grid td {
+  padding: 6px 8px;
+  min-width: 100px;
+  font-size: 12px;
+}
+
+.staff-dr { color: var(--color-blue); font-weight: 600; }
+.staff-pa { color: var(--color-green); font-weight: 600; }
+.staff-np { color: var(--color-purple); font-weight: 600; }
+.staff-ma { color: var(--color-orange); font-weight: 600; }
+
+/* Inventory */
+.stock-ok { color: var(--color-green); }
+.stock-low { color: var(--color-red); font-weight: 700; }
+
+/* Email Template Cards */
+.email-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.email-card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.email-card h4 {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.email-card p {
+  font-size: 12px;
+  color: var(--color-text-dim);
+  line-height: 1.4;
+}
+
+.email-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  background: rgba(76, 141, 255, 0.15);
+  color: var(--color-blue);
+  margin-bottom: 8px;
+}
+
+/* Content Calendar */
+.content-calendar td {
+  font-size: 12px;
+}
+
+/* Strategy Cards */
+.strategy-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+}
+
+.strategy-card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 14px;
+  text-align: center;
+}
+
+.strategy-card .metric-label {
+  font-size: 11px;
+}
+
+.strategy-card .metric-value {
+  font-size: 20px;
+}
+
+/* Membership selector */
+.membership-select-card {
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.membership-select-card.selected {
+  border-color: var(--color-blue);
+  box-shadow: 0 0 0 2px rgba(76, 141, 255, 0.3);
+}
+
+/* Portal preview */
+.portal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.portal-card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 14px;
+}
+
+.portal-card h4 {
+  font-size: 13px;
+  color: var(--color-text-dim);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.portal-item {
+  padding: 6px 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 13px;
+}
+
+.portal-item:last-child {
+  border-bottom: none;
+}
+
+.portal-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.portal-badge-active {
+  background: rgba(52, 199, 89, 0.15);
+  color: var(--color-green);
+}
+
+.portal-badge-new {
+  background: rgba(76, 141, 255, 0.15);
+  color: var(--color-blue);
+}
+
 @media (max-width: 600px) {
   .input-grid { grid-template-columns: 1fr 1fr; }
   .metrics-grid { grid-template-columns: 1fr; }
@@ -773,4 +1098,7 @@ td input:focus {
   .package-cards { grid-template-columns: 1fr; }
   .dashboard { padding: 12px 8px; }
   .projections-metrics { grid-template-columns: 1fr; }
+  .tab-nav { flex-wrap: wrap; }
+  .pipeline { flex-direction: column; }
+  .pipeline-arrow { transform: rotate(90deg); }
 }

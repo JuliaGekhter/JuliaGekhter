@@ -87,3 +87,18 @@ test('renders new bundle and package names', () => {
   expect(screen.getAllByText('Couples TRT Bundle').length).toBeGreaterThanOrEqual(1);
   expect(screen.getAllByText('Couples Wellness Annual').length).toBeGreaterThanOrEqual(1);
 });
+
+test('renders all 5 tab buttons', () => {
+  render(<App />);
+  expect(screen.getByText('Dashboard')).toBeInTheDocument();
+  expect(screen.getByText('Patients')).toBeInTheDocument();
+  expect(screen.getByText('Operations')).toBeInTheDocument();
+  expect(screen.getByText('Strategy')).toBeInTheDocument();
+  expect(screen.getByText('Marketing')).toBeInTheDocument();
+});
+
+test('dashboard tab is active by default', () => {
+  render(<App />);
+  const dashboardBtn = screen.getByText('Dashboard');
+  expect(dashboardBtn.className).toContain('active');
+});
