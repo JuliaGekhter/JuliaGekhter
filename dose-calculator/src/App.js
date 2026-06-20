@@ -1046,9 +1046,65 @@ function App() {
   return (
     <div className="dashboard">
       <header className="dashboard-header">
-        <h1>Shape the Wave</h1>
-        <span className="subtitle">Memberships, Bundles & Packages</span>
+        <div className="brand-mark">
+          <h1>Shape The Wave Longevity™</h1>
+          <span className="tagline">Optimize health. Align habits. Live longer, better.</span>
+        </div>
+        <div className="brand-hierarchy">
+          <span className="brand-pill brand-reel">REEL™ Align Method™</span>
+          <span className="brand-arrow">→</span>
+          <span className="brand-pill brand-ai">ReelVerse AI™</span>
+          <span className="brand-arrow">→</span>
+          <span className="brand-pill brand-os">ReelVerse OS™</span>
+        </div>
       </header>
+      <section className="panel ecosystem-panel">
+        <h2>Ecosystem</h2>
+        <div className="ecosystem-grid">
+          <div className="eco-card">
+            <span className="eco-icon">🧭</span>
+            <strong>ReelVerse Coach™</strong>
+            <span>AI guidance</span>
+          </div>
+          <div className="eco-card">
+            <span className="eco-icon">🪞</span>
+            <strong>ReelVerse Mirror™</strong>
+            <span>Reflection & journaling</span>
+          </div>
+          <div className="eco-card">
+            <span className="eco-icon">🧭</span>
+            <strong>ReelVerse Compass™</strong>
+            <span>Goals, values & direction</span>
+          </div>
+          <div className="eco-card">
+            <span className="eco-icon">🚀</span>
+            <strong>ReelVerse Momentum™</strong>
+            <span>Habits & progress</span>
+          </div>
+          <div className="eco-card">
+            <span className="eco-icon">🎓</span>
+            <strong>ReelVerse Academy™</strong>
+            <span>Courses & certification</span>
+          </div>
+          <div className="eco-card eco-card-credential">
+            <span className="eco-icon">🏅</span>
+            <strong>Certified REEL Method Practitioner™</strong>
+            <span>Professional credential</span>
+          </div>
+        </div>
+        <div className="framework-bar">
+          <span className="framework-label">REEL™ Framework:</span>
+          <span className="framework-step">Reflect</span>
+          <span className="framework-dot">·</span>
+          <span className="framework-step">Envision</span>
+          <span className="framework-dot">·</span>
+          <span className="framework-step">Execute</span>
+          <span className="framework-dot">·</span>
+          <span className="framework-step">Learn</span>
+          <span className="framework-dot">·</span>
+          <span className="framework-step">Align</span>
+        </div>
+      </section>
       <div className="dashboard-grid">
         <InputsPanel inputs={inputs} setInputs={setInputs} />
         <SummaryPanel summary={summary} />

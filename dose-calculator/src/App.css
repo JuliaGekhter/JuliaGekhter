@@ -31,10 +31,115 @@ body {
   margin-bottom: 24px;
 }
 
-.dashboard-header h1 {
+.brand-mark h1 {
   font-size: 28px;
   font-weight: 700;
   color: var(--color-text);
+}
+
+.tagline {
+  color: var(--color-text-dim);
+  font-size: 14px;
+  display: block;
+  margin-top: 2px;
+}
+
+.brand-hierarchy {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.brand-pill {
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.brand-reel { background: rgba(76, 141, 255, 0.15); color: var(--color-blue); }
+.brand-ai { background: rgba(191, 90, 242, 0.15); color: var(--color-purple); }
+.brand-os { background: rgba(48, 213, 200, 0.15); color: var(--color-teal); }
+
+.brand-arrow {
+  color: var(--color-text-dim);
+  font-size: 14px;
+}
+
+/* Ecosystem Panel */
+.ecosystem-panel {
+  margin-bottom: 16px;
+}
+
+.ecosystem-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+}
+
+.eco-card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  transition: border-color 0.2s;
+}
+
+.eco-card:hover { border-color: var(--color-text-dim); }
+
+.eco-card strong {
+  font-size: 13px;
+  color: var(--color-text);
+}
+
+.eco-card span:last-child {
+  font-size: 11px;
+  color: var(--color-text-dim);
+}
+
+.eco-icon { font-size: 18px; }
+
+.eco-card-credential {
+  border-color: rgba(255, 215, 0, 0.3);
+}
+
+.eco-card-credential:hover {
+  border-color: #ffd700;
+}
+
+.framework-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 10px 16px;
+  background: var(--color-bg);
+  border-radius: 8px;
+  flex-wrap: wrap;
+}
+
+.framework-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.framework-step {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-blue);
+}
+
+.framework-dot {
+  color: var(--color-text-dim);
 }
 
 .subtitle {
