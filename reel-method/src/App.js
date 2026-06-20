@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
+import { SERVICES, PACKAGES, BUNDLES, MEMBERSHIPS, PILLAR_META, COUNTS } from "./businessModel";
 
 // ─── THEME ───────────────────────────────────────────────────
 const C = {
@@ -328,10 +329,10 @@ function HomeScreen({ go }) {
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
           {[
             { icon: "🎞️", label: "REEL Align", id: "method", sub: "R • E • E • L • A" },
+            { icon: "💎", label: "Services", id: "services", sub: "49 services • 5 tiers" },
             { icon: "🏛️", label: "6 Pillars", id: "pillars", sub: "Core system" },
-            { icon: "🌊", label: "Health Flow", id: "flow", sub: "Universal process" },
             { icon: "🌐", label: "ReelVerse", id: "ecosystem", sub: "Full ecosystem" },
-            { icon: "📊", label: "History", id: "history", sub: "Your data" },
+            { icon: "🌊", label: "Health Flow", id: "flow", sub: "Universal process" },
             { icon: "🏔️", label: "About", id: "about", sub: "The vision" },
           ].map(({ icon, label, id, sub }) => (
             <button key={id} onClick={() => go(id)} style={{
@@ -928,11 +929,368 @@ function AboutScreen({ onBack }) {
   );
 }
 
+// ─── SERVICES ────────────────────────────────────────────────
+function ServicesScreen({ onBack }) {
+  const [view, setView] = useState("overview");
+  const [detail, setDetail] = useState(null);
+
+  const views = {
+    overview: () => (
+      <>
+        <div className="fu" style={{
+          padding: "16px", margin: "0 0 14px", borderRadius: 14, textAlign: "center",
+          background: `linear-gradient(135deg, ${C.wave}0a, ${C.A}0a)`,
+          border: `1px solid ${C.wave}18`,
+        }}>
+          <div style={{ fontSize: 18, fontWeight: 700, color: C.text, fontFamily: "'Space Grotesk',sans-serif" }}>
+            Complete Business Model
+          </div>
+          <div style={{ fontSize: 12, color: C.muted, marginTop: 4 }}>
+            {COUNTS.memberships} Memberships &middot; {COUNTS.bundles} Bundles &middot; {COUNTS.packages} Packages &middot; {COUNTS.services} Services
+          </div>
+        </div>
+        {[
+          { label: "Memberships", count: COUNTS.memberships, id: "memberships", color: C.wave, icon: "⭐", sub: "Subscription tiers" },
+          { label: "Bundles", count: COUNTS.bundles, id: "bundles", color: C.A, icon: "📦", sub: "Multi-package savings" },
+          { label: "Packages", count: COUNTS.packages, id: "packages", color: C.E2, icon: "📋", sub: "Grouped services" },
+          { label: "Services", count: COUNTS.services, id: "services", color: C.E1, icon: "⚡", sub: "Individual offerings" },
+        ].map((item, i) => (
+          <button key={item.id} className="fu" onClick={() => setView(item.id)}
+            style={{
+              width: "100%", textAlign: "left", marginBottom: 10,
+              background: C.card, border: `1px solid ${C.border}`,
+              borderRadius: 14, padding: "16px 16px",
+              display: "flex", alignItems: "center", gap: 14,
+              boxShadow: C.shadow, animationDelay: `${(i + 1) * 0.06}s`,
+            }}>
+            <div style={{
+              width: 46, height: 46, borderRadius: 13,
+              background: item.color + "14", border: `1.5px solid ${item.color}44`,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              fontSize: 22, flexShrink: 0,
+            }}>{item.icon}</div>
+            <div style={{ flex: 1 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                <span style={{ fontSize: 15, fontWeight: 700, color: C.text,
+                  fontFamily: "'Space Grotesk',sans-serif" }}>{item.label}</span>
+                <span style={{ fontSize: 10, padding: "2px 7px", borderRadius: 5,
+                  background: item.color + "18", color: item.color, fontWeight: 700 }}>{item.count}</span>
+              </div>
+              <div style={{ fontSize: 11, color: C.muted, marginTop: 3 }}>{item.sub}</div>
+            </div>
+            <span style={{ color: item.color, fontSize: 16 }}>{">"}</span>
+          </button>
+        ))}
+      </>
+    ),
+
+    memberships: () => (
+      <>
+        <SectionLabel text={`${COUNTS.memberships} Memberships`} color={C.wave} />
+        {MEMBERSHIPS.map((m, i) => (
+          <button key={m.id} className="fu" onClick={() => setDetail({ type: "membership", item: m })}
+            style={{
+              width: "100%", textAlign: "left", marginBottom: 10,
+              background: C.card, border: `1px solid ${C.border}`,
+              borderRadius: 14, padding: "16px", boxShadow: C.shadow,
+              animationDelay: `${i * 0.05}s`,
+            }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+              <div style={{
+                width: 44, height: 44, borderRadius: 12,
+                background: m.color + "18", border: `1.5px solid ${m.color}44`,
+                display: "flex", alignItems: "center", justifyContent: "center",
+                fontSize: 22, flexShrink: 0,
+              }}>{m.icon}</div>
+              <div style={{ flex: 1 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                  <span style={{ fontSize: 15, fontWeight: 700, color: C.text,
+                    fontFamily: "'Space Grotesk',sans-serif" }}>{m.name}</span>
+                  <span style={{ fontSize: 9, padding: "2px 6px", borderRadius: 4,
+                    background: m.color + "22", color: m.color, fontWeight: 600 }}>{m.tag}</span>
+                </div>
+                <div style={{ fontSize: 11, color: C.muted, marginTop: 3 }}>{m.desc}</div>
+              </div>
+              <div style={{ textAlign: "right", flexShrink: 0 }}>
+                <div style={{ fontSize: 20, fontWeight: 700, color: m.color }}>
+                  {m.price === 0 ? "Free" : `$${m.price}`}
+                </div>
+                {m.price > 0 && <div style={{ fontSize: 9, color: C.dim }}>{m.interval}</div>}
+              </div>
+            </div>
+          </button>
+        ))}
+      </>
+    ),
+
+    bundles: () => (
+      <>
+        <SectionLabel text={`${COUNTS.bundles} Bundles`} color={C.A} />
+        {BUNDLES.map((b, i) => {
+          const pm = PILLAR_META[b.pillar] || PILLAR_META.cross;
+          return (
+            <button key={b.id} className="fu" onClick={() => setDetail({ type: "bundle", item: b })}
+              style={{
+                width: "100%", textAlign: "left", marginBottom: 8,
+                background: C.card, border: `1px solid ${C.border}`,
+                borderRadius: 12, padding: "14px", boxShadow: C.shadow,
+                animationDelay: `${i * 0.03}s`,
+              }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+                <div style={{ flex: 1 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 4 }}>
+                    <span style={{ fontSize: 14 }}>{pm.emoji}</span>
+                    <span style={{ fontSize: 13, fontWeight: 700, color: C.text,
+                      fontFamily: "'Space Grotesk',sans-serif" }}>{b.name}</span>
+                  </div>
+                  <div style={{ fontSize: 11, color: C.muted, lineHeight: 1.5 }}>{b.desc}</div>
+                  <div style={{ display: "flex", gap: 6, marginTop: 6 }}>
+                    <span style={{ fontSize: 9, padding: "2px 6px", borderRadius: 4,
+                      background: pm.color + "18", color: pm.color }}>{b.packages.length} packages</span>
+                    {b.save > 0 && <span style={{ fontSize: 9, padding: "2px 6px", borderRadius: 4,
+                      background: C.E2 + "18", color: C.E2 }}>Save ${b.save}</span>}
+                  </div>
+                </div>
+                <div style={{ fontSize: 18, fontWeight: 700, color: pm.color, flexShrink: 0, marginLeft: 12 }}>
+                  ${b.price}
+                </div>
+              </div>
+            </button>
+          );
+        })}
+      </>
+    ),
+
+    packages: () => (
+      <>
+        <SectionLabel text={`${COUNTS.packages} Packages`} color={C.E2} />
+        {PACKAGES.map((p, i) => {
+          const pm = PILLAR_META[p.pillar] || PILLAR_META.cross;
+          return (
+            <button key={p.id} className="fu" onClick={() => setDetail({ type: "package", item: p })}
+              style={{
+                width: "100%", textAlign: "left", marginBottom: 8,
+                background: C.card, border: `1px solid ${C.border}`,
+                borderRadius: 12, padding: "14px", boxShadow: C.shadow,
+                animationDelay: `${i * 0.03}s`,
+              }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+                <div style={{ flex: 1 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 4 }}>
+                    <span style={{ fontSize: 14 }}>{pm.emoji}</span>
+                    <span style={{ fontSize: 13, fontWeight: 700, color: C.text,
+                      fontFamily: "'Space Grotesk',sans-serif" }}>{p.name}</span>
+                  </div>
+                  <div style={{ fontSize: 11, color: C.muted, lineHeight: 1.5 }}>{p.desc}</div>
+                  <span style={{ display: "inline-block", marginTop: 6, fontSize: 9, padding: "2px 6px",
+                    borderRadius: 4, background: pm.color + "18", color: pm.color }}>
+                    {p.services.length} services
+                  </span>
+                </div>
+                <div style={{ fontSize: 16, fontWeight: 700, color: pm.color, flexShrink: 0, marginLeft: 12 }}>
+                  ${p.price}
+                </div>
+              </div>
+            </button>
+          );
+        })}
+      </>
+    ),
+
+    services: () => {
+      const grouped = {};
+      SERVICES.forEach((s) => {
+        if (!grouped[s.pillar]) grouped[s.pillar] = [];
+        grouped[s.pillar].push(s);
+      });
+      return (
+        <>
+          <SectionLabel text={`${COUNTS.services} Services`} color={C.E1} />
+          {Object.entries(grouped).map(([pillar, svcs]) => {
+            const pm = PILLAR_META[pillar];
+            return (
+              <div key={pillar} style={{ marginBottom: 16 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 8 }}>
+                  <span style={{ fontSize: 16 }}>{pm.emoji}</span>
+                  <span style={{ fontSize: 12, fontWeight: 700, color: pm.color,
+                    fontFamily: "'Space Grotesk',sans-serif" }}>{pm.name} Care</span>
+                  <span style={{ fontSize: 9, color: C.dim }}>({svcs.length})</span>
+                </div>
+                {svcs.map((s) => (
+                  <button key={s.id} className="fu" onClick={() => setDetail({ type: "service", item: s })}
+                    style={{
+                      width: "100%", textAlign: "left", marginBottom: 6,
+                      background: C.card, border: `1px solid ${C.border}`,
+                      borderRadius: 10, padding: "10px 12px",
+                      display: "flex", justifyContent: "space-between", alignItems: "center",
+                    }}>
+                    <div style={{ flex: 1 }}>
+                      <div style={{ fontSize: 12, fontWeight: 600, color: C.text }}>{s.name}</div>
+                      <div style={{ fontSize: 10, color: C.dim, marginTop: 2 }}>{s.unit}</div>
+                    </div>
+                    <div style={{ fontSize: 14, fontWeight: 700, color: pm.color, flexShrink: 0 }}>
+                      {s.price === 0 ? "Free" : `$${s.price}`}
+                    </div>
+                  </button>
+                ))}
+              </div>
+            );
+          })}
+        </>
+      );
+    },
+  };
+
+  if (detail) {
+    const { type, item } = detail;
+    const pm = PILLAR_META[item.pillar] || PILLAR_META.cross || { color: C.wave, emoji: "🌐", name: "Cross-Pillar" };
+    return (
+      <div style={{ height: "100%", overflowY: "auto", background: C.bg }}>
+        <Header title={item.name} subtitle={item.desc} onBack={() => setDetail(null)} accent={pm.color || item.color} />
+        <div style={{ padding: "16px 16px 30px" }}>
+          {/* Price */}
+          <div className="fu" style={{
+            textAlign: "center", padding: "20px", marginBottom: 16,
+            background: C.card, borderRadius: 14, border: `1px solid ${C.border}`,
+          }}>
+            <div style={{ fontSize: 36, fontWeight: 700, color: item.color || pm.color }}>
+              {(item.price === 0 || item.price === undefined) ? "Free" : `$${item.price}`}
+            </div>
+            {item.interval && <div style={{ fontSize: 12, color: C.dim }}>{item.interval}</div>}
+            {item.unit && <div style={{ fontSize: 12, color: C.dim }}>per {item.unit}</div>}
+            {item.save > 0 && (
+              <div style={{ marginTop: 8, display: "inline-block", padding: "3px 10px", borderRadius: 6,
+                background: C.E2 + "18", color: C.E2, fontSize: 12, fontWeight: 600 }}>
+                Save ${item.save}
+              </div>
+            )}
+          </div>
+
+          {/* Includes list */}
+          {item.includes && (
+            <div className="fu d1">
+              <div style={{ fontSize: 10, letterSpacing: 2, textTransform: "uppercase",
+                color: item.color || pm.color, fontWeight: 600, marginBottom: 8,
+                fontFamily: "'Space Grotesk',sans-serif" }}>Includes</div>
+              {item.includes.map((inc, i) => (
+                <div key={i} style={{
+                  background: C.card, borderRadius: 8, padding: "10px 12px",
+                  marginBottom: 4, border: `1px solid ${C.border}`,
+                  display: "flex", alignItems: "center", gap: 8,
+                }}>
+                  <span style={{ color: C.E2, fontSize: 12 }}>✓</span>
+                  <span style={{ fontSize: 12, color: C.text }}>{inc}</span>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Services in package */}
+          {type === "package" && item.services && (
+            <div className="fu d1">
+              <div style={{ fontSize: 10, letterSpacing: 2, textTransform: "uppercase",
+                color: pm.color, fontWeight: 600, marginBottom: 8,
+                fontFamily: "'Space Grotesk',sans-serif" }}>{item.services.length} Services Included</div>
+              {item.services.map((sid) => {
+                const svc = SERVICES.find((s) => s.id === sid);
+                if (!svc) return null;
+                return (
+                  <div key={sid} style={{
+                    background: C.card, borderRadius: 8, padding: "10px 12px",
+                    marginBottom: 4, border: `1px solid ${C.border}`,
+                    display: "flex", justifyContent: "space-between", alignItems: "center",
+                  }}>
+                    <div>
+                      <div style={{ fontSize: 12, fontWeight: 600, color: C.text }}>{svc.name}</div>
+                      <div style={{ fontSize: 10, color: C.dim }}>{svc.unit}</div>
+                    </div>
+                    <div style={{ fontSize: 12, fontWeight: 600, color: pm.color }}>
+                      {svc.price === 0 ? "Free" : `$${svc.price}`}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+          {/* Packages in bundle */}
+          {type === "bundle" && item.packages && (
+            <div className="fu d1">
+              <div style={{ fontSize: 10, letterSpacing: 2, textTransform: "uppercase",
+                color: pm.color, fontWeight: 600, marginBottom: 8,
+                fontFamily: "'Space Grotesk',sans-serif" }}>{item.packages.length} Packages Included</div>
+              {item.packages.map((pid) => {
+                const pkg = PACKAGES.find((p) => p.id === pid);
+                if (!pkg) return null;
+                const pkgPm = PILLAR_META[pkg.pillar] || PILLAR_META.cross;
+                return (
+                  <button key={pid} onClick={() => setDetail({ type: "package", item: pkg })}
+                    style={{
+                      width: "100%", textAlign: "left", background: C.card, borderRadius: 8,
+                      padding: "10px 12px", marginBottom: 4, border: `1px solid ${C.border}`,
+                      display: "flex", justifyContent: "space-between", alignItems: "center",
+                    }}>
+                    <div>
+                      <div style={{ fontSize: 12, fontWeight: 600, color: C.text }}>{pkg.name}</div>
+                      <div style={{ fontSize: 10, color: C.dim }}>{pkg.services.length} services</div>
+                    </div>
+                    <div style={{ fontSize: 12, fontWeight: 600, color: pkgPm.color }}>${pkg.price}</div>
+                  </button>
+                );
+              })}
+            </div>
+          )}
+
+          {/* Service detail */}
+          {type === "service" && (
+            <div className="fu d1" style={{
+              background: C.card, borderRadius: 12, padding: "14px 16px",
+              border: `1px solid ${C.border}`,
+            }}>
+              <div style={{ fontSize: 10, letterSpacing: 2, textTransform: "uppercase",
+                color: pm.color, fontWeight: 600, marginBottom: 6,
+                fontFamily: "'Space Grotesk',sans-serif" }}>Service Details</div>
+              <div style={{ fontSize: 13, color: C.muted, lineHeight: 1.7, marginBottom: 8 }}>{item.desc}</div>
+              <div style={{ display: "flex", gap: 8 }}>
+                <span style={{ fontSize: 10, padding: "2px 7px", borderRadius: 4,
+                  background: pm.color + "18", color: pm.color }}>{pm.name} Care</span>
+                <span style={{ fontSize: 10, padding: "2px 7px", borderRadius: 4,
+                  background: C.dim + "22", color: C.dim }}>{item.id}</span>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div style={{ height: "100%", overflowY: "auto", background: C.bg }}>
+      <Header title={view === "overview" ? "Services & Pricing" : view.charAt(0).toUpperCase() + view.slice(1)}
+        subtitle={view === "overview" ? `${COUNTS.services} services across 6 pillars` : undefined}
+        onBack={view === "overview" ? onBack : () => setView("overview")} />
+      <div style={{ padding: "16px 16px 30px" }}>
+        {views[view]()}
+      </div>
+    </div>
+  );
+}
+
+function SectionLabel({ text, color }) {
+  return (
+    <div style={{
+      fontSize: 10, letterSpacing: 2, textTransform: "uppercase",
+      color, fontWeight: 600, marginBottom: 10,
+      fontFamily: "'Space Grotesk',sans-serif",
+    }}>{text}</div>
+  );
+}
+
 // ─── NAV ─────────────────────────────────────────────────────
 const NAV_ITEMS = [
   { id: "home", label: "Home", icon: "🌊" },
   { id: "checkin", label: "REEL", icon: "🎞️" },
-  { id: "pillars", label: "Pillars", icon: "🏛️" },
+  { id: "services", label: "Services", icon: "💎" },
   { id: "history", label: "History", icon: "📊" },
 ];
 
@@ -950,6 +1308,7 @@ export default function App() {
     checkin: <CheckInScreen onBack={() => setTab("home")} onComplete={() => { forceUpdate((n) => n + 1); setTab("home"); }} />,
     history: <HistoryScreen onBack={() => setTab("home")} />,
     about: <AboutScreen onBack={() => setTab("home")} />,
+    services: <ServicesScreen onBack={() => setTab("home")} />,
   };
 
   return (
