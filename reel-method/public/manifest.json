@@ -1,9 +1,9 @@
 {
-  "short_name": "REEL Method",
-  "name": "The Reel Method",
+  "short_name": "REEL Align",
+  "name": "Shape The Wave Longevity — REEL Align Method",
   "icons": [],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#0a0a1a",
-  "background_color": "#0a0a1a"
+  "theme_color": "#06080e",
+  "background_color": "#06080e"
 }
