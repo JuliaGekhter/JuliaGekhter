@@ -14,66 +14,146 @@ const DEFAULT_INPUTS = {
 
 const DEFAULT_SERVICES = [
   // Visits (2025 Rounded Self Pay prices)
-  { name: 'New Patient Consultation', category: 'Visits', cost: 50, price: 311 },
-  { name: '1 Visit Per Month', category: 'Visits', cost: 40, price: 186 },
-  { name: 'Telehealth Visit', category: 'Visits', cost: 15, price: 99 },
-  { name: 'Additional Visit (same month)', category: 'Visits', cost: 30, price: 124 },
-  { name: '1 Visit Every 2 Months', category: 'Visits', cost: 40, price: 186 },
-  { name: '1 Visit Every 3-11 Months', category: 'Visits', cost: 40, price: 249 },
-  { name: 'Annual Wellness Visit', category: 'Visits', cost: 50, price: 311 },
+  { name: 'New Patient Consultation', category: 'Visits', cost: 50, price: 311, priceInsurance: null, priceBcbs: null },
+  { name: '1 Visit Per Month', category: 'Visits', cost: 40, price: 186, priceInsurance: null, priceBcbs: null },
+  { name: 'Telehealth Visit', category: 'Visits', cost: 15, price: 99, priceInsurance: null, priceBcbs: null },
+  { name: 'Additional Visit (same month)', category: 'Visits', cost: 30, price: 124, priceInsurance: null, priceBcbs: null },
+  { name: '1 Visit Every 2 Months', category: 'Visits', cost: 40, price: 186, priceInsurance: null, priceBcbs: null },
+  { name: '1 Visit Every 3-11 Months', category: 'Visits', cost: 40, price: 249, priceInsurance: null, priceBcbs: null },
+  { name: 'Annual Wellness Visit', category: 'Visits', cost: 50, price: 311, priceInsurance: null, priceBcbs: null },
   // Bloodwork
-  { name: 'Full Blood Panel', category: 'Bloodwork', cost: 130, price: 374 },
-  { name: 'Single Blood Test', category: 'Bloodwork', cost: 30, price: 81 },
-  { name: 'Additional Test (after single)', category: 'Bloodwork', cost: 20, price: 56 },
+  { name: 'Full Blood Panel', category: 'Bloodwork', cost: 130, price: 374, priceInsurance: null, priceBcbs: null },
+  { name: 'Single Blood Test', category: 'Bloodwork', cost: 30, price: 81, priceInsurance: null, priceBcbs: null },
+  { name: 'Additional Test (after single)', category: 'Bloodwork', cost: 20, price: 56, priceInsurance: null, priceBcbs: null },
   // Weight Loss (2025 Self Pay)
-  { name: 'WL Level 1 - Maintenance (4 boxes)', category: 'Weight Loss', cost: 25, price: 186 },
-  { name: 'WL Level 2 - Phentermine Only', category: 'Weight Loss', cost: 15, price: 275 },
-  { name: 'WL Level 3 - 8 boxes + phent', category: 'Weight Loss', cost: 47, price: 624 },
-  { name: 'WL Level 4 - 16 boxes + phent', category: 'Weight Loss', cost: 92, price: 749 },
-  { name: 'WL Level 5 - 24 boxes + 2 inj + phent', category: 'Weight Loss', cost: 146, price: 874 },
-  { name: 'WL Level 6 - 32 boxes + 2 inj + phent', category: 'Weight Loss', cost: 191, price: 999 },
+  { name: 'WL Level 1 - Maintenance (4 boxes)', category: 'Weight Loss', cost: 25, price: 186, priceInsurance: 129, priceBcbs: 99 },
+  { name: 'WL Level 2 - Phentermine Only', category: 'Weight Loss', cost: 15, price: 275, priceInsurance: null, priceBcbs: null },
+  { name: 'WL Level 3 - 8 boxes + phent', category: 'Weight Loss', cost: 47, price: 624, priceInsurance: 349, priceBcbs: 299 },
+  { name: 'WL Level 4 - 16 boxes + phent', category: 'Weight Loss', cost: 92, price: 749, priceInsurance: 449, priceBcbs: 399 },
+  { name: 'WL Level 5 - 24 boxes + 2 inj + phent', category: 'Weight Loss', cost: 146, price: 874, priceInsurance: 549, priceBcbs: 499 },
+  { name: 'WL Level 6 - 32 boxes + 2 inj + phent', category: 'Weight Loss', cost: 191, price: 999, priceInsurance: 649, priceBcbs: 599 },
   // Semaglutide
-  { name: 'Semaglutide - First 3 Months', category: 'Weight Loss', cost: 100, price: 374 },
-  { name: 'Semaglutide - 3 Mo Upfront', category: 'Weight Loss', cost: 100, price: 299 },
-  { name: 'Semaglutide - After 3 Months', category: 'Weight Loss', cost: 200, price: 686 },
+  { name: 'Semaglutide - First 3 Months', category: 'Weight Loss', cost: 100, price: 374, priceInsurance: 299, priceBcbs: 299 },
+  { name: 'Semaglutide - 3 Mo Upfront', category: 'Weight Loss', cost: 100, price: 299, priceInsurance: 299, priceBcbs: 299 },
+  { name: 'Semaglutide - After 3 Months', category: 'Weight Loss', cost: 200, price: 686, priceInsurance: 299, priceBcbs: 299 },
   // Tirzepatide
-  { name: 'Tirzepatide 2.5 mg', category: 'Weight Loss', cost: 150, price: 499 },
-  { name: 'Tirzepatide 5 mg', category: 'Weight Loss', cost: 150, price: 499 },
-  { name: 'Tirzepatide 7.5 mg', category: 'Weight Loss', cost: 180, price: 625 },
-  { name: 'Tirzepatide 10-15 mg', category: 'Weight Loss', cost: 200, price: 960 },
+  { name: 'Tirzepatide 2.5 mg', category: 'Weight Loss', cost: 150, price: 499, priceInsurance: 399, priceBcbs: 399 },
+  { name: 'Tirzepatide 5 mg', category: 'Weight Loss', cost: 150, price: 499, priceInsurance: 399, priceBcbs: 399 },
+  { name: 'Tirzepatide 7.5 mg', category: 'Weight Loss', cost: 180, price: 625, priceInsurance: 499, priceBcbs: 499 },
+  { name: 'Tirzepatide 10-15 mg', category: 'Weight Loss', cost: 200, price: 960, priceInsurance: null, priceBcbs: 549 },
   // TRT
-  { name: 'TRT - Every 2 Weeks', category: 'Hormones', cost: 11, price: 374 },
-  { name: 'TRT - Every 10 Days', category: 'Hormones', cost: 11, price: 499 },
-  { name: 'TRT - Weekly In Office', category: 'Hormones', cost: 14, price: 624 },
-  { name: 'TRT - Weekly Take Home', category: 'Hormones', cost: 14, price: 499 },
-  { name: 'HCG Vial - At Home Injections', category: 'Hormones', cost: 100, price: 825 },
-  { name: 'Clomid - Oral Medication', category: 'Hormones', cost: 47, price: 249 },
+  { name: 'TRT - Every 2 Weeks', category: 'Hormones', cost: 11, price: 374, priceInsurance: 249, priceBcbs: 199 },
+  { name: 'TRT - Every 10 Days', category: 'Hormones', cost: 11, price: 499, priceInsurance: 349, priceBcbs: 299 },
+  { name: 'TRT - Weekly In Office', category: 'Hormones', cost: 14, price: 624, priceInsurance: 425, priceBcbs: 399 },
+  { name: 'TRT - Weekly Take Home', category: 'Hormones', cost: 14, price: 499, priceInsurance: 399, priceBcbs: 399 },
+  { name: 'HCG Vial - At Home Injections', category: 'Hormones', cost: 100, price: 825, priceInsurance: null, priceBcbs: null },
+  { name: 'Clomid - Oral Medication', category: 'Hormones', cost: 47, price: 249, priceInsurance: 199, priceBcbs: 199 },
   // Sermorelin
-  { name: 'Sermorelin - Up to 15mg', category: 'Hormones', cost: 115, price: 436 },
-  { name: 'Sermorelin - 21mg', category: 'Hormones', cost: 170, price: 685 },
-  { name: 'Sermorelin - 30mg', category: 'Hormones', cost: 229, price: 781 },
+  { name: 'Sermorelin - Up to 15mg', category: 'Hormones', cost: 115, price: 436, priceInsurance: null, priceBcbs: null },
+  { name: 'Sermorelin - 21mg', category: 'Hormones', cost: 170, price: 685, priceInsurance: null, priceBcbs: null },
+  { name: 'Sermorelin - 30mg', category: 'Hormones', cost: 229, price: 781, priceInsurance: null, priceBcbs: null },
   // Other Medications
-  { name: 'Anastrozole', category: 'Hormones', cost: 10, price: 44 },
-  { name: 'Naltrexone (all doses)', category: 'Medications', cost: 25, price: 181 },
+  { name: 'Anastrozole', category: 'Hormones', cost: 10, price: 44, priceInsurance: null, priceBcbs: null },
+  { name: 'Naltrexone (all doses)', category: 'Medications', cost: 25, price: 181, priceInsurance: null, priceBcbs: null },
   // BHRT Creams
-  { name: 'Estradiol / Progesterone Cream', category: 'Hormones', cost: 78, price: 249 },
-  { name: 'DHEA / Pregnenolone Cream', category: 'Hormones', cost: 78, price: 249 },
-  { name: 'Testosterone Cream', category: 'Hormones', cost: 55, price: 249 },
+  { name: 'Estradiol / Progesterone Cream', category: 'Hormones', cost: 78, price: 249, priceInsurance: 199, priceBcbs: 199 },
+  { name: 'DHEA / Pregnenolone Cream', category: 'Hormones', cost: 78, price: 249, priceInsurance: 199, priceBcbs: 199 },
+  { name: 'Testosterone Cream', category: 'Hormones', cost: 55, price: 249, priceInsurance: 199, priceBcbs: 199 },
   // Sexual Health
-  { name: 'Sildenafil 20mg (90ct)', category: 'Sexual Health', cost: 20, price: 86 },
-  { name: 'Sildenafil 50mg (30ct)', category: 'Sexual Health', cost: 20, price: 86 },
-  { name: 'Sildenafil 100mg (30ct)', category: 'Sexual Health', cost: 33, price: 144 },
-  { name: 'Tadalafil 5mg (30ct)', category: 'Sexual Health', cost: 9, price: 86 },
-  { name: 'Tadalafil 6-19mg (30ct)', category: 'Sexual Health', cost: 35, price: 124 },
-  { name: 'Tadalafil 20mg Fast Acting (30ct)', category: 'Sexual Health', cost: 21, price: 161 },
-  { name: 'Tadalafil 25mg Time Released (30ct)', category: 'Sexual Health', cost: 50, price: 406 },
-  { name: 'Arousal Cream M/F (30ml)', category: 'Sexual Health', cost: 55, price: 161 },
+  { name: 'Sildenafil 20mg (90ct)', category: 'Sexual Health', cost: 20, price: 86, priceInsurance: 76, priceBcbs: 66 },
+  { name: 'Sildenafil 50mg (30ct)', category: 'Sexual Health', cost: 20, price: 86, priceInsurance: 76, priceBcbs: 66 },
+  { name: 'Sildenafil 100mg (30ct)', category: 'Sexual Health', cost: 33, price: 144, priceInsurance: 134, priceBcbs: 124 },
+  { name: 'Tadalafil 5mg (30ct)', category: 'Sexual Health', cost: 9, price: 86, priceInsurance: 76, priceBcbs: 66 },
+  { name: 'Tadalafil 6-19mg (30ct)', category: 'Sexual Health', cost: 35, price: 124, priceInsurance: 114, priceBcbs: 104 },
+  { name: 'Tadalafil 20mg Fast Acting (30ct)', category: 'Sexual Health', cost: 21, price: 161, priceInsurance: 151, priceBcbs: 141 },
+  { name: 'Tadalafil 25mg Time Released (30ct)', category: 'Sexual Health', cost: 50, price: 406, priceInsurance: 396, priceBcbs: 386 },
+  { name: 'Arousal Cream M/F (30ml)', category: 'Sexual Health', cost: 55, price: 161, priceInsurance: null, priceBcbs: null },
   // Other Products
-  { name: 'Finasteride 1.25mg (30ct)', category: 'Products', cost: 12, price: 74 },
-  { name: 'Hair Restore Cream', category: 'Products', cost: 50, price: 211 },
-  { name: 'Anti-Aging Gel Pump', category: 'Products', cost: 39, price: 174 },
-  { name: 'Ultra Anti-Aging Gel Cream', category: 'Products', cost: 56, price: 211 },
-  { name: 'Tretinoin Acne Cream', category: 'Products', cost: 30, price: 138 },
+  { name: 'Finasteride 1.25mg (30ct)', category: 'Products', cost: 12, price: 74, priceInsurance: null, priceBcbs: null },
+  { name: 'Hair Restore Cream', category: 'Products', cost: 50, price: 211, priceInsurance: null, priceBcbs: null },
+  { name: 'Anti-Aging Gel Pump', category: 'Products', cost: 39, price: 174, priceInsurance: null, priceBcbs: null },
+  { name: 'Ultra Anti-Aging Gel Cream', category: 'Products', cost: 56, price: 211, priceInsurance: null, priceBcbs: null },
+  { name: 'Tretinoin Acne Cream', category: 'Products', cost: 30, price: 138, priceInsurance: null, priceBcbs: null },
+];
+
+const DEFAULT_CPT_CODES = [
+  { cpt: '0358T', description: 'Weight Scale and Readings', fee: 30, newFee: 38 },
+  { cpt: '11200', description: 'Skin Tag Removal', fee: 188, newFee: 235 },
+  { cpt: '20610', description: 'Drain/Inject Joint/Bursa', fee: 154, newFee: 193 },
+  { cpt: '36415', description: 'Routine Venipuncture', fee: 15, newFee: 19 },
+  { cpt: '69210', description: 'Ear Irrigation', fee: 112, newFee: 140 },
+  { cpt: '76536', description: 'Ultrasound of Thyroid', fee: 40, newFee: 50 },
+  { cpt: '76700', description: 'Abdominal Ultrasound', fee: 304, newFee: 380 },
+  { cpt: '80048', description: 'Basic Metabolic Panel', fee: 20, newFee: 25 },
+  { cpt: '80050', description: 'Complete Metabolic Panel', fee: 71, newFee: 89 },
+  { cpt: '80061', description: 'Lipid Panel', fee: 50, newFee: 63 },
+  { cpt: '81001', description: 'Urinalysis', fee: 20, newFee: 25 },
+  { cpt: '81002', description: 'Urinalysis Dip w/o Micro', fee: 15, newFee: 19 },
+  { cpt: '81025', description: 'Urine Pregnancy Test', fee: 25, newFee: 31 },
+  { cpt: '82306', description: 'Vitamin D', fee: 80, newFee: 100 },
+  { cpt: '82533', description: 'Cortisol', fee: 50, newFee: 63 },
+  { cpt: '82607', description: 'Vitamin B12', fee: 50, newFee: 63 },
+  { cpt: '82627', description: 'DHEA Sulfate', fee: 55, newFee: 69 },
+  { cpt: '82670', description: 'Estradiol', fee: 77, newFee: 96 },
+  { cpt: '82677', description: 'Estriol Serum', fee: 65, newFee: 81 },
+  { cpt: '82679', description: 'Estrone', fee: 65, newFee: 81 },
+  { cpt: '82746', description: 'Folate', fee: 20, newFee: 25 },
+  { cpt: '83001', description: 'FSH', fee: 52, newFee: 65 },
+  { cpt: '83002', description: 'LH', fee: 55, newFee: 69 },
+  { cpt: '83036', description: 'Hemoglobin A1C Testing', fee: 40, newFee: 50 },
+  { cpt: '83037', description: 'Hemoglobin A1C', fee: 15, newFee: 19 },
+  { cpt: '83735', description: 'Magnesium', fee: 25, newFee: 31 },
+  { cpt: '84140', description: 'Pregnenolone', fee: 50, newFee: 63 },
+  { cpt: '84144', description: 'Progesterone', fee: 60, newFee: 75 },
+  { cpt: '84146', description: 'Prolactin', fee: 56, newFee: 70 },
+  { cpt: '84153', description: 'PSA', fee: 52, newFee: 65 },
+  { cpt: '84270', description: 'Sex Hormone Binding Globulin', fee: 55, newFee: 69 },
+  { cpt: '84305', description: 'Somatomedin', fee: 56, newFee: 70 },
+  { cpt: '84402', description: 'Testosterone Free', fee: 75, newFee: 94 },
+  { cpt: '84403', description: 'Testosterone Total', fee: 75, newFee: 94 },
+  { cpt: '84410', description: 'Bioavailable Testosterone', fee: 75, newFee: 94 },
+  { cpt: '84436', description: 'T4', fee: 20, newFee: 25 },
+  { cpt: '84439', description: 'T4 Free', fee: 36, newFee: 45 },
+  { cpt: '84443', description: 'TSH', fee: 50, newFee: 63 },
+  { cpt: '84481', description: 'T3 Free', fee: 25, newFee: 31 },
+  { cpt: '84550', description: 'Uric Acid', fee: 20, newFee: 25 },
+  { cpt: '85025', description: 'CBC w/ Diff', fee: 41, newFee: 51 },
+  { cpt: '85652', description: 'Sed. Rate', fee: 25, newFee: 31 },
+  { cpt: '90471', description: 'Administration Vaccine', fee: 40, newFee: 50 },
+  { cpt: '90472', description: 'Administration 2+ Vaccines', fee: 40, newFee: 50 },
+  { cpt: '93000', description: 'Electrocardiogram Complete', fee: 50, newFee: 63 },
+  { cpt: '93306', description: 'Echocardiography Transthoracic', fee: 450, newFee: 563 },
+  { cpt: '93880', description: 'Duplex Scan Extracranial', fee: 533, newFee: 666 },
+  { cpt: '93970', description: 'Extremity Study', fee: 350, newFee: 438 },
+  { cpt: '94010', description: 'Spirometry', fee: 80, newFee: 100 },
+  { cpt: '94760', description: 'Pulse Oximetry', fee: 25, newFee: 31 },
+  { cpt: '96372', description: 'Therapeutic Injection', fee: 51, newFee: 64 },
+  { cpt: '97110', description: 'Therapeutic Exercises', fee: 40, newFee: 50 },
+  { cpt: '99202', description: 'Office Visit New (Level 2)', fee: 156, newFee: 195 },
+  { cpt: '99203', description: 'Office Visit New (Level 3)', fee: 229, newFee: 286 },
+  { cpt: '99204', description: 'Office Visit New (Level 4)', fee: 350, newFee: 438 },
+  { cpt: '99205', description: 'Office Visit New (Level 5)', fee: 434, newFee: 543 },
+  { cpt: '99211', description: 'Office Visit Est. (Level 1)', fee: 42, newFee: 53 },
+  { cpt: '99212', description: 'Office Visit Est. (Level 2)', fee: 92, newFee: 115 },
+  { cpt: '99213', description: 'Office Visit Est. (Level 3)', fee: 152, newFee: 190 },
+  { cpt: '99214', description: 'Office Visit Est. (Level 4)', fee: 224, newFee: 280 },
+  { cpt: '99215', description: 'Office Visit Est. (Level 5)', fee: 301, newFee: 376 },
+  { cpt: '99385', description: 'Preventive Visit New 18-39', fee: 250, newFee: 313 },
+  { cpt: '99386', description: 'Preventive Visit New 40-64', fee: 250, newFee: 313 },
+  { cpt: '99395', description: 'Preventive Visit Est. 18-39', fee: 225, newFee: 281 },
+  { cpt: '99396', description: 'Preventive Visit Est. 40-64', fee: 225, newFee: 281 },
+  { cpt: '99401', description: 'Preventive Counseling 15 min', fee: 100, newFee: 125 },
+  { cpt: '99402', description: 'Preventive Counseling 30 min', fee: 200, newFee: 250 },
+  { cpt: '99441', description: 'Telephone E/M 5-10 min', fee: 30, newFee: 38 },
+  { cpt: '99442', description: 'Telephone E/M 10-20 min', fee: 60, newFee: 75 },
+  { cpt: '99443', description: 'Telephone E/M 21-30 min', fee: 83, newFee: 104 },
+  { cpt: '99490', description: 'Chronic Care Mgmt 20 min', fee: 100, newFee: 125 },
+  { cpt: 'G0439', description: 'Annual Wellness Visit', fee: 225, newFee: 281 },
+  { cpt: 'G0447', description: 'Behavioral Counseling Obesity 15 min', fee: 40, newFee: 50 },
+  { cpt: 'J1071', description: 'Injection Testosterone Cypionate 1mg', fee: 40, newFee: 50 },
+  { cpt: 'J1885', description: 'Injection Ketorolac 15mg', fee: 40, newFee: 50 },
+  { cpt: 'J3301', description: 'Injection Triamcinolone 10mg', fee: 40, newFee: 50 },
+  { cpt: 'J3420', description: 'Injection Vitamin B12 1000mcg', fee: 40, newFee: 50 },
 ];
 
 const DEFAULT_BUNDLES = [
@@ -193,6 +273,12 @@ const DEFAULT_BUNDLES = [
     price: 799,
     items: ['Sermorelin vial 30mg'],
   },
+  { name: 'Couples TRT Bundle', category: 'Hormones', cost: 130, price: 549, items: ['2x Testosterone Cream', '2x Anastrozole'] },
+  { name: 'Complete Male Optimization', category: 'Hormones', cost: 163, price: 899, items: ['Testosterone Cream', 'Anastrozole', 'Sildenafil 100mg (30ct)', 'Arousal Cream'] },
+  { name: 'Female Wellness Essentials', category: 'Hormones', cost: 195, price: 399, items: ['BHRT Starter (Estradiol/Prog + DHEA/Preg)', 'Anti-Aging Gel Pump'] },
+  { name: 'Weight Loss Starter Kit', category: 'Weight Loss', cost: 50, price: 349, items: ['WL Level 1 (4 boxes)', 'Naltrexone'] },
+  { name: 'Post-TRT Support', category: 'Hormones', cost: 57, price: 199, items: ['Anastrozole', 'Clomid'] },
+  { name: 'Longevity Stack', category: 'Hormones', cost: 240, price: 699, items: ['Sermorelin 15mg', 'Anti-Aging Skin Bundle'] },
 ];
 
 const DEFAULT_PACKAGES = [
@@ -466,6 +552,38 @@ const DEFAULT_PACKAGES = [
       'Personalized treatment plan',
     ],
   },
+  {
+    name: 'HCG + TRT Combo 3-Month',
+    category: 'TRT',
+    cost: 228,
+    price: 2499,
+    duration: '3 months',
+    services: ['HCG vial', 'Weekly TRT in office x 12', 'Full Blood Panel', '3x Consultations'],
+  },
+  {
+    name: 'Full Hormone Reset (Women) 6-Month',
+    category: 'Hormones',
+    cost: 680,
+    price: 3499,
+    duration: '6 months',
+    services: ['BHRT Complete x 6 months', '2x Full Blood Panels', '6x Consultations', 'Dedicated care coordinator'],
+  },
+  {
+    name: 'Tirzepatide 6-Month Program',
+    category: 'Weight Loss',
+    cost: 1080,
+    price: 4200,
+    duration: '6 months',
+    services: ['Tirzepatide full dose escalation 6mo', '2x Full Blood Panels', '6x Monthly visits', 'Dose management'],
+  },
+  {
+    name: 'Couples Wellness Annual',
+    category: 'Wellness',
+    cost: 400,
+    price: 2499,
+    duration: '12 months',
+    services: ['2x Annual wellness visits', '2x Full Blood Panels', '4x Consultations', '2x Personalized treatment plans'],
+  },
 ];
 
 const DEFAULT_MEMBERSHIPS = [
@@ -477,6 +595,7 @@ const DEFAULT_MEMBERSHIPS = [
     maxCost: 30,
     price: 59,
     credits: 1,
+    referralBonus: '$25 credit per referral',
     services: [
       'Telehealth access ($99 visits)',
       'Patient portal access',
@@ -497,6 +616,7 @@ const DEFAULT_MEMBERSHIPS = [
     maxCost: 45,
     price: 99,
     credits: 2,
+    referralBonus: '$50 credit per referral',
     services: [
       'Everything in Essential',
       '1 office visit per month included ($186 value)',
@@ -518,6 +638,7 @@ const DEFAULT_MEMBERSHIPS = [
     maxCost: 85,
     price: 199,
     credits: 4,
+    referralBonus: '$75 credit + free B-12 for referee',
     services: [
       'Everything in Wellness',
       '2 visits per month included',
@@ -541,6 +662,7 @@ const DEFAULT_MEMBERSHIPS = [
     maxCost: 130,
     price: 299,
     credits: 6,
+    referralBonus: '$100 credit + 1 month free for referee',
     services: [
       'Everything in Vitality',
       'Unlimited office visits',
@@ -565,6 +687,7 @@ const DEFAULT_MEMBERSHIPS = [
     maxCost: 190,
     price: 499,
     credits: 'Unlimited',
+    referralBonus: '$150 credit + 1 month free for referee + starter fee waiver',
     services: [
       'Everything in Premium',
       'Unlimited visits + telehealth',
@@ -601,6 +724,8 @@ const DEFAULT_SALES = {
     { name: 'BHRT Starter (Women)', unitsSold: 30, price: 449 },
     { name: 'TRT + Support (Men)', unitsSold: 45, price: 299 },
     { name: 'Growth Hormone Starter', unitsSold: 20, price: 449 },
+    { name: 'Complete Male Optimization', unitsSold: 15, price: 899 },
+    { name: 'Longevity Stack', unitsSold: 10, price: 699 },
   ],
   packages: [
     { name: 'Semaglutide 3-Month Kickstart', unitsSold: 35, price: 899 },
@@ -613,10 +738,12 @@ const DEFAULT_SALES = {
     { name: 'BHRT Program - 3 Month', unitsSold: 25, price: 795 },
     { name: 'ED Complete 3-Month', unitsSold: 20, price: 599 },
     { name: 'Comprehensive Wellness Panel', unitsSold: 30, price: 749 },
+    { name: 'Tirzepatide 6-Month Program', unitsSold: 8, price: 4200 },
+    { name: 'HCG + TRT Combo 3-Month', unitsSold: 12, price: 2499 },
   ],
 };
 
-function InputsPanel({ inputs, setInputs }) {
+function InputsPanel({ inputs, setInputs, pricingMode, setPricingMode }) {
   const update = (key, raw) => {
     const val = key === 'growthMode' ? raw : Number(raw);
     setInputs(prev => ({ ...prev, [key]: val }));
@@ -639,6 +766,13 @@ function InputsPanel({ inputs, setInputs }) {
             <option value="SCALE">SCALE</option>
             <option value="HOLD">HOLD</option>
             <option value="CUT">CUT</option>
+          </select>
+        </label>
+        <label>Pricing Mode
+          <select value={pricingMode} onChange={e => setPricingMode(e.target.value)}>
+            <option value="selfPay">Self Pay</option>
+            <option value="insurance">Insurance</option>
+            <option value="bcbs">BCBS</option>
           </select>
         </label>
         <label>Monthly Growth Rate
@@ -669,11 +803,17 @@ function InputsPanel({ inputs, setInputs }) {
   );
 }
 
-function ServicesTable({ services, setServices, targetMargin }) {
+function ServicesTable({ services, setServices, targetMargin, pricingMode }) {
   const updateService = (idx, key, raw) => {
     setServices(prev => prev.map((s, i) =>
       i === idx ? { ...s, [key]: Number(raw) } : s
     ));
+  };
+
+  const getActivePrice = (s) => {
+    if (pricingMode === 'insurance' && s.priceInsurance != null) return s.priceInsurance;
+    if (pricingMode === 'bcbs' && s.priceBcbs != null) return s.priceBcbs;
+    return s.price;
   };
 
   return (
@@ -694,7 +834,8 @@ function ServicesTable({ services, setServices, targetMargin }) {
           </thead>
           <tbody>
             {services.map((s, i) => {
-              const margin = s.price > 0 ? (s.price - s.cost) / s.price : 0;
+              const activePrice = getActivePrice(s);
+              const margin = activePrice > 0 ? (activePrice - s.cost) / activePrice : 0;
               const ok = margin >= targetMargin;
               return (
                 <tr key={s.name}>
@@ -705,7 +846,7 @@ function ServicesTable({ services, setServices, targetMargin }) {
                       onChange={e => updateService(i, 'cost', e.target.value)} />
                   </td>
                   <td>
-                    <input type="number" value={s.price}
+                    <input type="number" value={activePrice}
                       onChange={e => updateService(i, 'price', e.target.value)} />
                   </td>
                   <td className={ok ? 'cell-good' : 'cell-warn'}>{(margin * 100).toFixed(1)}%</td>
@@ -870,6 +1011,12 @@ function MembershipsSection({ memberships, setMemberships, targetMargin }) {
                   ))}
                 </ul>
               </div>
+              {m.referralBonus && (
+                <div className="membership-section">
+                  <span className="membership-section-label">Referral Program</span>
+                  <span className="referral-bonus">{m.referralBonus}</span>
+                </div>
+              )}
               <div className="membership-financials">
                 <div className="financial-row">
                   <span>Starter Fee</span>
