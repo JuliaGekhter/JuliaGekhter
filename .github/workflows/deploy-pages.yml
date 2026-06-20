@@ -51,12 +51,22 @@ jobs:
           npm install
           npm run build
 
+      - name: Build reel-method
+        working-directory: reel-method
+        env:
+          PUBLIC_URL: /JuliaGekhter/reel-method
+          CI: false
+        run: |
+          npm install
+          npm run build
+
       - name: Assemble dist
         run: |
-          mkdir -p dist/bridge-child dist/dose-calculator dist/wellness-check
+          mkdir -p dist/bridge-child dist/dose-calculator dist/wellness-check dist/reel-method
           cp -r bridge-child/build/* dist/bridge-child/
           cp -r dose-calculator/build/* dist/dose-calculator/
           cp -r wellness-check/build/* dist/wellness-check/
+          cp -r reel-method/build/* dist/reel-method/
           cat > dist/index.html <<'HTML'
           <!doctype html>
           <html lang="en">
@@ -83,6 +93,10 @@ jobs:
             <div class="wrap">
               <h1>Julia Gekhter</h1>
               <p>Projects &amp; companion apps</p>
+              <a href="./reel-method/">
+                <strong>The Reel Method</strong>
+                <span>Mind-body universal health care system</span>
+              </a>
               <a href="./bridge-child/">
                 <strong>The Bridge Child</strong>
                 <span>A memoir companion app</span>
