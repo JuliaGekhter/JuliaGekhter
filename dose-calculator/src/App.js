@@ -24,6 +24,7 @@ import PatientsTab from './components/PatientsTab';
 import OperationsTab from './components/OperationsTab';
 import StrategyTab from './components/StrategyTab';
 import MarketingTab from './components/MarketingTab';
+import PatientApp from './components/patient/PatientApp';
 
 function App() {
   const [inputs, setInputs] = useState(DEFAULT_INPUTS);
@@ -63,6 +64,7 @@ function App() {
     { key: 'operations', label: 'Operations' },
     { key: 'strategy', label: 'Strategy' },
     { key: 'marketing', label: 'Marketing' },
+    { key: 'patient-app', label: 'Patient App' },
   ];
 
   return (
@@ -159,6 +161,7 @@ function App() {
       {activeTab === 'operations' && <OperationsTab />}
       {activeTab === 'strategy' && <StrategyTab />}
       {activeTab === 'marketing' && <MarketingTab />}
+      {activeTab === 'patient-app' && <PatientApp />}
     </div>
   );
 }

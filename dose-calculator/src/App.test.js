@@ -102,3 +102,8 @@ test('dashboard tab is active by default', () => {
   const dashboardBtn = screen.getByText('Dashboard');
   expect(dashboardBtn.className).toContain('active');
 });
+
+test('renders Patient App tab', () => {
+  render(<App />);
+  expect(screen.getByText('Patient App')).toBeInTheDocument();
+});
