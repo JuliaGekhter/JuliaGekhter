@@ -60,6 +60,15 @@ jobs:
           npm install
           npm run build
 
+      - name: Build reelverse-momentum
+        working-directory: reelverse-momentum
+        env:
+          PUBLIC_URL: /JuliaGekhter/reelverse-momentum
+          CI: false
+        run: |
+          npm install
+          npm run build
+
       - name: Build stw-landing
         working-directory: stw-landing
         env:
@@ -71,12 +80,13 @@ jobs:
 
       - name: Assemble dist
         run: |
-          mkdir -p dist/bridge-child dist/dose-calculator dist/wellness-check dist/reel-method
+          mkdir -p dist/bridge-child dist/dose-calculator dist/wellness-check dist/reel-method dist/reelverse-momentum
           cp -r stw-landing/build/* dist/
           cp -r bridge-child/build/* dist/bridge-child/
           cp -r dose-calculator/build/* dist/dose-calculator/
           cp -r wellness-check/build/* dist/wellness-check/
           cp -r reel-method/build/* dist/reel-method/
+          cp -r reelverse-momentum/build/* dist/reelverse-momentum/
 
       - uses: actions/upload-pages-artifact@v3
         with:
