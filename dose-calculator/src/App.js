@@ -25,6 +25,10 @@ import OperationsTab from './components/OperationsTab';
 import StrategyTab from './components/StrategyTab';
 import MarketingTab from './components/MarketingTab';
 import PatientApp from './components/patient/PatientApp';
+import ReelVerseTab from './components/ReelVerseTab';
+import IntegrationsTab from './components/IntegrationsTab';
+import ComplianceTab from './components/ComplianceTab';
+import TrainingTab from './components/TrainingTab';
 
 function App() {
   const [inputs, setInputs] = useState(DEFAULT_INPUTS);
@@ -65,6 +69,10 @@ function App() {
     { key: 'strategy', label: 'Strategy' },
     { key: 'marketing', label: 'Marketing' },
     { key: 'patient-app', label: 'Patient App' },
+    { key: 'reelverse', label: 'ReelVerse' },
+    { key: 'integrations', label: 'Integrations' },
+    { key: 'compliance', label: 'Compliance' },
+    { key: 'training', label: 'Training' },
   ];
 
   return (
@@ -162,6 +170,10 @@ function App() {
       {activeTab === 'strategy' && <StrategyTab />}
       {activeTab === 'marketing' && <MarketingTab />}
       {activeTab === 'patient-app' && <PatientApp />}
+      {activeTab === 'reelverse' && <ReelVerseTab />}
+      {activeTab === 'integrations' && <IntegrationsTab />}
+      {activeTab === 'compliance' && <ComplianceTab />}
+      {activeTab === 'training' && <TrainingTab />}
     </div>
   );
 }

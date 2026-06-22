@@ -1103,6 +1103,158 @@ td input:focus {
   .pipeline-arrow { transform: rotate(90deg); }
 }
 
+/* ===== New Tab Styles ===== */
+
+/* Assessment Questions */
+.assessment-questions {
+  display: flex;
+  flex-direction: column;
+}
+
+.assessment-questions h3 {
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* REEL Score Cards */
+.reel-scores {
+  margin-bottom: 16px;
+}
+
+/* Habit Tracker Grid */
+.habit-grid table {
+  font-size: 13px;
+}
+
+.habit-grid td,
+.habit-grid th {
+  padding: 8px 10px;
+  text-align: center;
+}
+
+.habit-grid td:first-child,
+.habit-grid th:first-child {
+  text-align: left;
+}
+
+.habit-grid input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: var(--color-green);
+}
+
+/* Journal Entries */
+.journal-entries {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Integration Cards */
+.integration-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+}
+
+.integration-card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s;
+}
+
+.integration-card:hover {
+  border-color: var(--color-text-dim);
+}
+
+/* Status Badges */
+.status-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.status-connected,
+.status-compliant {
+  background: rgba(52, 199, 89, 0.15);
+  color: var(--color-green);
+}
+
+.status-in-progress {
+  background: rgba(255, 159, 10, 0.15);
+  color: var(--color-orange);
+}
+
+.status-action-needed {
+  background: rgba(255, 69, 58, 0.15);
+  color: var(--color-red);
+}
+
+/* Compliance Checklist */
+.compliance-checklist table {
+  font-size: 13px;
+}
+
+/* Consent Cards */
+.consent-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.consent-card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 16px;
+  transition: border-color 0.2s;
+}
+
+.consent-card:hover {
+  border-color: var(--color-text-dim);
+}
+
+/* SOP Sections */
+.sop-section {
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+/* Training Module Cards */
+.training-module {
+  transition: border-color 0.2s;
+}
+
+.training-module:hover {
+  border-color: var(--color-text-dim);
+}
+
+/* Competency Table */
+.competency-table {
+  font-size: 13px;
+}
+
+.competency-table td,
+.competency-table th {
+  padding: 8px 12px;
+}
+
+@media (max-width: 600px) {
+  .integration-cards { grid-template-columns: 1fr; }
+  .consent-cards { grid-template-columns: 1fr; }
+}
+
 /* ===== Patient App - Light Theme ===== */
 .patient-app {
   background: #f8f9fc;

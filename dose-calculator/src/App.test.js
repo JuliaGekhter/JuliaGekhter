@@ -107,3 +107,23 @@ test('renders Patient App tab', () => {
   render(<App />);
   expect(screen.getByText('Patient App')).toBeInTheDocument();
 });
+
+test('renders ReelVerse tab', () => {
+  render(<App />);
+  expect(screen.getByText('ReelVerse')).toBeInTheDocument();
+});
+
+test('renders Integrations tab', () => {
+  render(<App />);
+  expect(screen.getByText('Integrations')).toBeInTheDocument();
+});
+
+test('renders Compliance tab', () => {
+  render(<App />);
+  expect(screen.getByText('Compliance')).toBeInTheDocument();
+});
+
+test('renders Training tab', () => {
+  render(<App />);
+  expect(screen.getByText('Training')).toBeInTheDocument();
+});
