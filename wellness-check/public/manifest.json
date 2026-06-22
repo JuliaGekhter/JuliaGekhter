@@ -1,0 +1,9 @@
+{
+  "short_name": "Wellness Check",
+  "name": "Wellness Check-In",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#0f172a",
+  "background_color": "#0f172a"
+}
