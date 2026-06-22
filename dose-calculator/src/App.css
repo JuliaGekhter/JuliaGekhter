@@ -1674,3 +1674,84 @@ td input:focus {
   .membership-compare { grid-template-columns: 1fr; }
   .portal-sections { grid-template-columns: 1fr; }
 }
+
+/* ===== Automation / Analytics / AI Coach / Locations ===== */
+
+/* Workflow cards */
+.workflow-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+.workflow-card { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: 10px; padding: 20px; }
+.workflow-trigger { font-size: 12px; color: var(--color-teal); margin: 8px 0; }
+.workflow-actions { list-style: none; }
+.workflow-actions li { font-size: 12px; color: var(--color-text-dim); padding: 3px 0; }
+.workflow-actions li::before { content: "\2192 "; color: var(--color-blue); }
+.workflow-toggle { padding: 6px 16px; border: none; border-radius: 20px; font-size: 12px; font-weight: 700; cursor: pointer; font-family: inherit; }
+.workflow-toggle.on { background: rgba(52,199,89,0.2); color: var(--color-green); }
+.workflow-toggle.off { background: rgba(139,143,163,0.2); color: var(--color-text-dim); }
+
+/* Chat */
+.chat-container { max-width: 600px; }
+.chat-messages { max-height: 400px; overflow-y: auto; padding: 16px 0; }
+.chat-bubble { padding: 12px 16px; border-radius: 12px; margin-bottom: 8px; max-width: 80%; font-size: 14px; line-height: 1.5; }
+.chat-bot { background: var(--color-surface); border: 1px solid var(--color-border); color: var(--color-text); }
+.chat-user { background: var(--color-blue); color: white; margin-left: auto; }
+.chat-input-row { display: flex; gap: 8px; margin-top: 12px; }
+.chat-input { flex: 1; padding: 10px; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: 8px; color: var(--color-text); font-size: 14px; font-family: inherit; outline: none; }
+.chat-send { padding: 10px 20px; background: var(--color-blue); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; font-family: inherit; }
+
+/* Analytics bars */
+.analytics-bar { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+.analytics-bar-label { width: 120px; font-size: 13px; text-align: right; color: var(--color-text-dim); }
+.analytics-bar-fill { height: 24px; border-radius: 4px; transition: width 0.3s; }
+.analytics-bar-value { font-size: 13px; font-weight: 600; min-width: 80px; }
+
+/* Cohort table */
+.cohort-good { color: var(--color-green); }
+.cohort-ok { color: var(--color-orange); }
+.cohort-bad { color: var(--color-red); }
+
+/* KPI scorecard */
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; }
+.kpi-card { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: 8px; padding: 12px; }
+.kpi-card .kpi-name { font-size: 11px; color: var(--color-text-dim); text-transform: uppercase; }
+.kpi-card .kpi-actual { font-size: 20px; font-weight: 700; }
+.kpi-card .kpi-target { font-size: 11px; color: var(--color-text-dim); }
+.trend-up { color: var(--color-green); }
+.trend-down-good { color: var(--color-green); }
+.trend-down-bad { color: var(--color-red); }
+.trend-flat { color: var(--color-orange); }
+
+/* Location cards */
+.location-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+.location-card { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: 10px; padding: 20px; }
+.location-active { border-top: 3px solid var(--color-green); }
+.location-planned { border-top: 3px solid var(--color-orange); }
+.location-badge { display: inline-block; padding: 2px 10px; border-radius: 4px; font-size: 11px; font-weight: 700; }
+.badge-active { background: rgba(52,199,89,0.15); color: var(--color-green); }
+.badge-planned { background: rgba(255,159,10,0.15); color: var(--color-orange); }
+
+/* Timeline */
+.timeline { display: flex; gap: 8px; overflow-x: auto; padding: 16px 0; }
+.timeline-item { min-width: 200px; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: 8px; padding: 16px; text-align: center; flex-shrink: 0; }
+.timeline-date { font-size: 14px; font-weight: 700; color: var(--color-blue); }
+.timeline-title { font-size: 13px; font-weight: 600; margin: 6px 0; }
+.timeline-desc { font-size: 11px; color: var(--color-text-dim); }
+
+/* White label form */
+.white-label-form { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.white-label-form label { display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: var(--color-text-dim); }
+.white-label-form input { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: 6px; color: var(--color-text); padding: 8px 10px; font-size: 14px; font-family: inherit; outline: none; }
+.white-label-preview { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: 10px; padding: 20px; margin-top: 16px; }
+
+/* Symptom/recommendation results */
+.recommendation-card { background: var(--color-bg); border: 1px solid var(--color-border); border-left: 3px solid var(--color-blue); border-radius: 8px; padding: 16px; margin: 8px 0; }
+.urgency-routine { color: var(--color-green); }
+.urgency-soon { color: var(--color-orange); }
+.urgency-urgent { color: var(--color-red); }
+
+@media (max-width: 768px) {
+  .workflow-cards { grid-template-columns: 1fr; }
+  .kpi-grid { grid-template-columns: 1fr 1fr; }
+  .location-cards { grid-template-columns: 1fr; }
+  .timeline { flex-direction: column; }
+  .white-label-form { grid-template-columns: 1fr; }
+}

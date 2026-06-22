@@ -29,6 +29,10 @@ import ReelVerseTab from './components/ReelVerseTab';
 import IntegrationsTab from './components/IntegrationsTab';
 import ComplianceTab from './components/ComplianceTab';
 import TrainingTab from './components/TrainingTab';
+import AutomationTab from './components/AutomationTab';
+import AnalyticsTab from './components/AnalyticsTab';
+import AiCoachTab from './components/AiCoachTab';
+import MultiLocationTab from './components/MultiLocationTab';
 
 function App() {
   const [inputs, setInputs] = useState(DEFAULT_INPUTS);
@@ -73,6 +77,10 @@ function App() {
     { key: 'integrations', label: 'Integrations' },
     { key: 'compliance', label: 'Compliance' },
     { key: 'training', label: 'Training' },
+    { key: 'automation', label: 'Automation' },
+    { key: 'analytics', label: 'Analytics' },
+    { key: 'ai-coach', label: 'AI Coach' },
+    { key: 'locations', label: 'Locations' },
   ];
 
   return (
@@ -174,6 +182,10 @@ function App() {
       {activeTab === 'integrations' && <IntegrationsTab />}
       {activeTab === 'compliance' && <ComplianceTab />}
       {activeTab === 'training' && <TrainingTab />}
+      {activeTab === 'automation' && <AutomationTab />}
+      {activeTab === 'analytics' && <AnalyticsTab />}
+      {activeTab === 'ai-coach' && <AiCoachTab />}
+      {activeTab === 'locations' && <MultiLocationTab />}
     </div>
   );
 }

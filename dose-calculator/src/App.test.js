@@ -127,3 +127,23 @@ test('renders Training tab', () => {
   render(<App />);
   expect(screen.getByText('Training')).toBeInTheDocument();
 });
+
+test('renders Automation tab', () => {
+  render(<App />);
+  expect(screen.getByText('Automation')).toBeInTheDocument();
+});
+
+test('renders Analytics tab', () => {
+  render(<App />);
+  expect(screen.getByText('Analytics')).toBeInTheDocument();
+});
+
+test('renders AI Coach tab', () => {
+  render(<App />);
+  expect(screen.getByText('AI Coach')).toBeInTheDocument();
+});
+
+test('renders Locations tab', () => {
+  render(<App />);
+  expect(screen.getByText('Locations')).toBeInTheDocument();
+});
