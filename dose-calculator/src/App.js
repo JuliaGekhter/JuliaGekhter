@@ -33,6 +33,9 @@ import AutomationTab from './components/AutomationTab';
 import AnalyticsTab from './components/AnalyticsTab';
 import AiCoachTab from './components/AiCoachTab';
 import MultiLocationTab from './components/MultiLocationTab';
+import InvestorTab from './components/InvestorTab';
+import BackendTab from './components/BackendTab';
+import MobileTab from './components/MobileTab';
 
 function App() {
   const [inputs, setInputs] = useState(DEFAULT_INPUTS);
@@ -81,6 +84,9 @@ function App() {
     { key: 'analytics', label: 'Analytics' },
     { key: 'ai-coach', label: 'AI Coach' },
     { key: 'locations', label: 'Locations' },
+    { key: 'investor', label: 'Investor' },
+    { key: 'backend', label: 'Backend' },
+    { key: 'mobile', label: 'Mobile' },
   ];
 
   return (
@@ -186,6 +192,9 @@ function App() {
       {activeTab === 'analytics' && <AnalyticsTab />}
       {activeTab === 'ai-coach' && <AiCoachTab />}
       {activeTab === 'locations' && <MultiLocationTab />}
+      {activeTab === 'investor' && <InvestorTab />}
+      {activeTab === 'backend' && <BackendTab />}
+      {activeTab === 'mobile' && <MobileTab />}
     </div>
   );
 }

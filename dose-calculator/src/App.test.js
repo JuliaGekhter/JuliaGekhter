@@ -147,3 +147,18 @@ test('renders Locations tab', () => {
   render(<App />);
   expect(screen.getByText('Locations')).toBeInTheDocument();
 });
+
+test('renders Investor tab', () => {
+  render(<App />);
+  expect(screen.getByText('Investor')).toBeInTheDocument();
+});
+
+test('renders Backend tab', () => {
+  render(<App />);
+  expect(screen.getByText('Backend')).toBeInTheDocument();
+});
+
+test('renders Mobile tab', () => {
+  render(<App />);
+  expect(screen.getByText('Mobile')).toBeInTheDocument();
+});
