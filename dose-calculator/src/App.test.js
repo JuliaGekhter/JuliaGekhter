@@ -69,23 +69,22 @@ test('renders pricing mode toggle', () => {
   expect(screen.getByDisplayValue('Self Pay')).toBeInTheDocument();
 });
 
-test('renders referral bonuses', () => {
+test('renders referral bonuses for simplified 3-tier model', () => {
   render(<App />);
   expect(screen.getByText('$25 credit per referral')).toBeInTheDocument();
-  expect(screen.getByText('$50 credit per referral')).toBeInTheDocument();
   expect(screen.getByText('$75 credit + free B-12 for referee')).toBeInTheDocument();
-  expect(screen.getByText('$100 credit + 1 month free for referee')).toBeInTheDocument();
   expect(screen.getByText('$150 credit + 1 month free for referee + starter fee waiver')).toBeInTheDocument();
 });
 
-test('renders new bundle and package names', () => {
+test('renders simplified profit-core bundles and packages', () => {
   render(<App />);
-  expect(screen.getAllByText('Complete Male Optimization').length).toBeGreaterThanOrEqual(1);
-  expect(screen.getAllByText('Longevity Stack').length).toBeGreaterThanOrEqual(1);
+  expect(screen.getAllByText('WL Level 3').length).toBeGreaterThanOrEqual(1);
+  expect(screen.getAllByText('WL Level 5').length).toBeGreaterThanOrEqual(1);
+  expect(screen.getAllByText('TRT + Support (Men)').length).toBeGreaterThanOrEqual(1);
+  expect(screen.getAllByText('BHRT Starter (Women)').length).toBeGreaterThanOrEqual(1);
   expect(screen.getAllByText('Tirzepatide 6-Month Program').length).toBeGreaterThanOrEqual(1);
   expect(screen.getAllByText('HCG + TRT Combo 3-Month').length).toBeGreaterThanOrEqual(1);
-  expect(screen.getAllByText('Couples TRT Bundle').length).toBeGreaterThanOrEqual(1);
-  expect(screen.getAllByText('Couples Wellness Annual').length).toBeGreaterThanOrEqual(1);
+  expect(screen.getAllByText('Semaglutide 6-Month Commitment').length).toBeGreaterThanOrEqual(1);
 });
 
 test('renders all 5 tab buttons', () => {
