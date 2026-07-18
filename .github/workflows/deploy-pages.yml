@@ -99,6 +99,10 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      # Guard: actions/deploy-pages fails with HTTP 404 when GitHub Pages is not
+      # enabled for the repository (Settings → Pages → Source must be set to
+      # "GitHub Actions"). This step detects that state and skips the actual
+      # deployment gracefully instead of failing the whole job.
       - id: pages
         name: Check GitHub Pages is enabled
         uses: actions/github-script@v7
