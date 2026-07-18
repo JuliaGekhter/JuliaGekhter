@@ -100,7 +100,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: pages
-        name: Check GitHub Pages is enabled
+        name: Enable GitHub Pages if needed
         uses: actions/github-script@v7
         with:
           script: |
@@ -109,11 +109,23 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
               });
+              core.info('GitHub Pages is already enabled.');
               core.setOutput('enabled', 'true');
             } catch (error) {
               if (error.status === 404) {
-                core.warning('GitHub Pages is not enabled for this repository. Skipping deploy.');
-                core.setOutput('enabled', 'false');
+                core.info('GitHub Pages is not enabled. Enabling it now...');
+                try {
+                  await github.rest.repos.createPagesSite({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    build_type: 'workflow',
+                  });
+                  core.info('GitHub Pages enabled successfully.');
+                  core.setOutput('enabled', 'true');
+                } catch (createError) {
+                  core.warning('Could not enable GitHub Pages: ' + createError.message + '. Skipping deploy.');
+                  core.setOutput('enabled', 'false');
+                }
               } else {
                 throw error;
               }
