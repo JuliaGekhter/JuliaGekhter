@@ -85,14 +85,17 @@ test("vitals check-in saves and appears in history", () => {
   expect(screen.getByRole("button", { name: "Update check-in" })).toBeInTheDocument();
 });
 
-test("center screen shows practice facts, programs, and care team", () => {
+test("center screen shows practice facts, services, and care team", () => {
   render(<App />);
   goTo("Center");
   expect(screen.getAllByText(/Gurnee/).length).toBeGreaterThan(0);
   expect(screen.getByText(/www\.shapethewave\.com/)).toBeInTheDocument();
   expect(screen.getAllByText(/Dr\. Paul Tack/).length).toBeGreaterThan(0);
   expect(screen.getByText(/Julia Gekhter, LCSW/)).toBeInTheDocument();
-  expect(screen.getByText(/Surge/)).toBeInTheDocument();
-  expect(screen.getByText(/Revive/)).toBeInTheDocument();
+  expect(screen.getByText(/Medical weight loss/)).toBeInTheDocument();
+  expect(screen.getByText(/Hormone replacement therapy/)).toBeInTheDocument();
+  expect(screen.getByText(/Semaglutide/)).toBeInTheDocument();
+  expect(screen.getByText(/Tirzepatide/)).toBeInTheDocument();
+  expect(screen.getByText(/Custom membership/)).toBeInTheDocument();
   expect(screen.getByText(/CBC, CMP, and A1C/)).toBeInTheDocument();
 });

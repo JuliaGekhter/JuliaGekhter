@@ -603,24 +603,26 @@ function CenterScreen() {
           fontSize: 12, fontWeight: 600, color: C.dim, textTransform: "uppercase",
           letterSpacing: 1, marginBottom: 10,
         }}>
-          Programs
+          Services
         </div>
         <div style={{
           background: C.card, borderRadius: 16, border: `1px solid ${C.border}`,
           padding: "14px 18px",
         }}>
           <ul style={{ margin: 0, padding: "0 0 0 18px", fontSize: 14, lineHeight: 2, color: C.text }}>
-            <li>Sculpt&#8482;</li>
-            <li>Sculpt Elite&#8482;</li>
-            <li>Sculpt Lite&#8482;</li>
-            <li>Ignite&#8482;</li>
-            <li>Surge&#8482;</li>
-            <li>Revive&#8482;</li>
+            <li>Medical weight loss</li>
+            <li>Strength improvement</li>
+            <li>Longevity</li>
+            <li>Sexual performance improvement</li>
+            <li>Hormone replacement therapy for men and women</li>
+            <li>Peptide therapy</li>
+            <li>Semaglutide</li>
+            <li>Tirzepatide</li>
+            <li>Custom membership</li>
           </ul>
           <p style={{ margin: "10px 0 0", fontSize: 12, color: C.muted, lineHeight: 1.6 }}>
-            Every program includes baseline labs: CBC, CMP, and A1C. Ignite&#8482;
-            adds a lipid panel and TSH. Ask our team in Gurnee for current program
-            details and pricing.
+            Every program includes baseline labs: CBC, CMP, and A1C. Ask our team
+            in Gurnee for current program details and pricing.
           </p>
         </div>
       </div>
