@@ -45,10 +45,11 @@ export const DEFAULT_SERVICES = [
   { name: 'TRT - Weekly Take Home', category: 'Hormones', cost: 14, price: 499, priceInsurance: 399, priceBcbs: 399 },
   { name: 'HCG Vial - At Home Injections', category: 'Hormones', cost: 100, price: 825, priceInsurance: null, priceBcbs: null },
   { name: 'Clomid - Oral Medication', category: 'Hormones', cost: 47, price: 249, priceInsurance: 199, priceBcbs: 199 },
-  // Sermorelin
-  { name: 'Sermorelin - Up to 15mg', category: 'Hormones', cost: 115, price: 436, priceInsurance: null, priceBcbs: null },
-  { name: 'Sermorelin - 21mg', category: 'Hormones', cost: 170, price: 685, priceInsurance: null, priceBcbs: null },
-  { name: 'Sermorelin - 30mg', category: 'Hormones', cost: 229, price: 781, priceInsurance: null, priceBcbs: null },
+  // Peptide Therapy
+  { name: 'Sermorelin - Up to 15mg', category: 'Peptide Therapy', cost: 115, price: 436, priceInsurance: null, priceBcbs: null },
+  { name: 'Sermorelin - 21mg', category: 'Peptide Therapy', cost: 170, price: 685, priceInsurance: null, priceBcbs: null },
+  { name: 'Sermorelin - 30mg', category: 'Peptide Therapy', cost: 229, price: 781, priceInsurance: null, priceBcbs: null },
+  { name: 'NAD+ Injection', category: 'Peptide Therapy', cost: 40, price: 150, priceInsurance: null, priceBcbs: null },
   // Other Medications
   { name: 'Anastrozole', category: 'Hormones', cost: 10, price: 44, priceInsurance: null, priceBcbs: null },
   { name: 'Naltrexone (all doses)', category: 'Medications', cost: 25, price: 181, priceInsurance: null, priceBcbs: null },
@@ -259,6 +260,30 @@ export const DEFAULT_PACKAGES = [
     duration: 'One-time',
     services: ['Full Blood Panel', 'New Patient Consultation', 'Follow-up visit to review results', 'Personalized treatment plan'],
   },
+  {
+    name: 'Strength & Performance 3-Month',
+    category: 'Performance',
+    cost: 597,
+    price: 1999,
+    duration: '3 months',
+    services: ['TRT weekly take-home x 3 months', 'Sermorelin 15mg x 3 months', 'Full Blood Panel', '2x Progress visits', 'Strength & recovery protocol'],
+  },
+  {
+    name: 'Longevity Optimization 6-Month',
+    category: 'Longevity',
+    cost: 1430,
+    price: 4499,
+    duration: '6 months',
+    services: ['2x Full Blood Panels', 'Sermorelin 15mg x 6 months', 'NAD+ Injection monthly x 6', '6x Monthly optimization visits', 'Personalized longevity roadmap'],
+  },
+  {
+    name: 'Sexual Performance Program 3-Month',
+    category: 'Sexual Health',
+    cost: 298,
+    price: 999,
+    duration: '3 months',
+    services: ['New Patient Consultation', 'Tadalafil 20mg Fast Acting x 3 months', 'Arousal Cream M/F', 'Full Blood Panel with hormone testing'],
+  },
 ];
 
 export const DEFAULT_MEMBERSHIPS = [
@@ -336,6 +361,27 @@ export const DEFAULT_MEMBERSHIPS = [
       '1 free package upgrade per year (up to $500 value)',
     ],
   },
+  {
+    name: 'Custom',
+    tier: 'Bespoke',
+    starterFee: 249,
+    totalCost: 90,
+    maxCost: 120,
+    price: 299,
+    credits: 'Custom',
+    referralBonus: '$100 credit per referral',
+    services: [
+      'Fully personalized plan built at consultation',
+      'Mix any services: weight loss, HRT, peptides, sexual health, longevity',
+      'Physician-designed protocol reviewed quarterly',
+      'Priority scheduling',
+      'Pricing set to the services selected (from $299/mo)',
+    ],
+    products: [
+      'Member pricing on all medications & products',
+      'Discounts scale with plan size (15-30%)',
+    ],
+  },
 ];
 
 export const DEFAULT_SALES = {
@@ -343,6 +389,7 @@ export const DEFAULT_SALES = {
     { name: 'Essential', unitsSold: 190, price: 59 },
     { name: 'Vitality', unitsSold: 125, price: 199 },
     { name: 'Concierge', unitsSold: 35, price: 499 },
+    { name: 'Custom', unitsSold: 15, price: 299 },
   ],
   bundles: [
     { name: 'WL Level 3', unitsSold: 90, price: 624 },
@@ -362,5 +409,8 @@ export const DEFAULT_SALES = {
     { name: 'TRT Quarterly (Every 2 Weeks)', unitsSold: 28, price: 1275 },
     { name: 'Semaglutide 3-Month Kickstart', unitsSold: 48, price: 899 },
     { name: 'Comprehensive Wellness Panel', unitsSold: 35, price: 749 },
+    { name: 'Strength & Performance 3-Month', unitsSold: 10, price: 1999 },
+    { name: 'Longevity Optimization 6-Month', unitsSold: 8, price: 4499 },
+    { name: 'Sexual Performance Program 3-Month', unitsSold: 20, price: 999 },
   ],
 };
