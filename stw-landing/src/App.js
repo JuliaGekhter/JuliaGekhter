@@ -109,6 +109,7 @@ export default function App(){
             <a href="#pillars" style={{color:C.muted}}>Pillars</a>
             <a href="#pricing" style={{color:C.muted}}>Pricing</a>
             <a href="#about" style={{color:C.muted}}>About</a>
+            <a href="/JuliaGekhter/hologram-longevity-coach/" style={{color:C.muted}}>Coach</a>
           </div>
         </nav>
 
