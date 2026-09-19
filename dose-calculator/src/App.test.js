@@ -161,3 +161,8 @@ test('renders Mobile tab', () => {
   render(<App />);
   expect(screen.getByText('Mobile')).toBeInTheDocument();
 });
+
+test('renders Vendors tab', () => {
+  render(<App />);
+  expect(screen.getByText('Vendors')).toBeInTheDocument();
+});
