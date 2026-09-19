@@ -36,6 +36,7 @@ import MultiLocationTab from './components/MultiLocationTab';
 import InvestorTab from './components/InvestorTab';
 import BackendTab from './components/BackendTab';
 import MobileTab from './components/MobileTab';
+import VendorsTab from './components/VendorsTab';
 
 function App() {
   const [inputs, setInputs] = useState(DEFAULT_INPUTS);
@@ -87,6 +88,7 @@ function App() {
     { key: 'investor', label: 'Investor' },
     { key: 'backend', label: 'Backend' },
     { key: 'mobile', label: 'Mobile' },
+    { key: 'vendors', label: 'Vendors' },
   ];
 
   return (
@@ -195,6 +197,7 @@ function App() {
       {activeTab === 'investor' && <InvestorTab />}
       {activeTab === 'backend' && <BackendTab />}
       {activeTab === 'mobile' && <MobileTab />}
+      {activeTab === 'vendors' && <VendorsTab />}
     </div>
   );
 }
