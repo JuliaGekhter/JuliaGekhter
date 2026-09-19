@@ -80,13 +80,32 @@ const PLANS=[
   {name:"Enterprise",price:"$499",interval:"/mo",color:C.gold,tag:"Organizations",features:["Unlimited Practitioner seats","Total Transformation Bundle","White-label ReelVerse OS","Admin analytics dashboard","Dedicated account manager","API access & integrations"]},
 ];
 
+const MEDICAL=[
+  {name:"Medical Weight Loss",emoji:"⚖️",color:C.E2,text:"Physician-supervised programs — six levels from maintenance to full protocol with shakes, injections, and phentermine."},
+  {name:"Semaglutide",emoji:"💉",color:C.wave,text:"GLP-1 weight loss programs with dose management, monthly check-ins, and 3- or 6-month commitments."},
+  {name:"Tirzepatide",emoji:"💉",color:C.waveLt,text:"Dual-agonist programs across all dose levels with full escalation management and bloodwork."},
+  {name:"HRT for Men",emoji:"🧔",color:C.L,text:"TRT programs (in-office or take-home), HCG, Clomid, and estrogen management."},
+  {name:"HRT for Women",emoji:"👩",color:C.body,text:"Bioidentical hormone creams — estradiol, progesterone, DHEA, pregnenolone, testosterone."},
+  {name:"Peptide Therapy",emoji:"🧬",color:C.A,text:"Sermorelin growth-hormone peptide programs and NAD+ injections."},
+  {name:"Sexual Performance",emoji:"❤️‍🔥",color:C.R,text:"Sildenafil and tadalafil programs, arousal treatments, and a 3-month performance program with hormone testing."},
+  {name:"Strength & Performance",emoji:"🏋️",color:C.E1,text:"3-month program combining TRT, peptides, bloodwork, and a strength & recovery protocol."},
+  {name:"Longevity Optimization",emoji:"🌊",color:C.gold,text:"6-month flagship: biomarker panels, peptides, monthly NAD+, and a personalized longevity roadmap."},
+];
+
+const CLINIC_TIERS=[
+  {name:"Essential",price:"$59/mo",color:C.dim},
+  {name:"Vitality",price:"$199/mo",color:C.wave},
+  {name:"Concierge",price:"$499/mo",color:C.gold},
+  {name:"Custom",price:"from $299/mo",color:C.A},
+];
+
 const STATS=[
-  {val:"49",label:"Services"},
-  {val:"21",label:"Packages"},
-  {val:"16",label:"Bundles"},
-  {val:"5",label:"Membership Tiers"},
+  {val:"51",label:"Clinical Services"},
+  {val:"12",label:"Programs"},
+  {val:"8",label:"Service Categories"},
+  {val:"4",label:"Clinic Memberships"},
   {val:"6",label:"Care Pillars"},
-  {val:"30",label:"Daily Checkpoints"},
+  {val:"80",label:"CPT Codes"},
 ];
 
 export default function App(){
@@ -106,6 +125,7 @@ export default function App(){
           <div className="sg" style={{fontSize:14,fontWeight:700,color:C.wave,letterSpacing:1}}>STW LONGEVITY</div>
           <div style={{display:"flex",gap:24,fontSize:13,color:C.muted}}>
             <a href="#method" style={{color:C.muted}}>Method</a>
+            <a href="#medical" style={{color:C.muted}}>Services</a>
             <a href="#pillars" style={{color:C.muted}}>Pillars</a>
             <a href="#pricing" style={{color:C.muted}}>Pricing</a>
             <a href="#about" style={{color:C.muted}}>About</a>
@@ -193,6 +213,53 @@ export default function App(){
             </div>
           ))}
         </div>
+      </Section>
+
+      {/* ─── MEDICAL SERVICES ─── */}
+      <Section id="medical">
+        <Tag color={C.gold}>Gurnee, IL Clinic</Tag>
+        <h2 className="sg" style={{fontSize:32,fontWeight:800,color:C.white,marginTop:12,marginBottom:6}}>
+          Medical Longevity Services
+        </h2>
+        <p style={{fontSize:15,color:C.muted,marginBottom:32,maxWidth:600,lineHeight:1.7}}>
+          Physician-supervised clinical programs at Shape The Wave Longevity Centers.
+          Every treatment begins with a consultation, bloodwork, and a personalized plan.
+        </p>
+        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(260px,1fr))",gap:14}}>
+          {MEDICAL.map((m,i)=>(
+            <div key={i} style={{background:C.card,borderRadius:16,padding:"20px",
+              border:`1px solid ${C.border}`,boxShadow:`0 2px 20px rgba(0,0,0,.3)`}}>
+              <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:10}}>
+                <div style={{width:42,height:42,borderRadius:11,
+                  background:m.color+"14",border:`1.5px solid ${m.color}44`,
+                  display:"flex",alignItems:"center",justifyContent:"center",fontSize:22}}>
+                  {m.emoji}
+                </div>
+                <div className="sg" style={{fontSize:16,fontWeight:700,color:C.white}}>{m.name}</div>
+              </div>
+              <div style={{fontSize:13,color:C.muted,lineHeight:1.65}}>{m.text}</div>
+            </div>
+          ))}
+        </div>
+        <div style={{marginTop:24,padding:"18px 20px",background:C.card,borderRadius:14,
+          border:`1px solid ${C.border}`,display:"flex",flexWrap:"wrap",alignItems:"center",gap:16,justifyContent:"space-between"}}>
+          <div>
+            <div className="sg" style={{fontSize:14,fontWeight:700,color:C.white,marginBottom:2}}>Clinic Memberships</div>
+            <div style={{fontSize:12,color:C.dim}}>Visit credits, member pricing, and priority scheduling</div>
+          </div>
+          <div style={{display:"flex",flexWrap:"wrap",gap:10}}>
+            {CLINIC_TIERS.map(t=>(
+              <span key={t.name} style={{fontSize:13,padding:"6px 14px",borderRadius:8,
+                background:t.color+"14",border:`1px solid ${t.color}44`,color:t.color,fontWeight:600}}>
+                {t.name} · {t.price}
+              </span>
+            ))}
+          </div>
+        </div>
+        <p style={{fontSize:11,color:C.dim,fontStyle:"italic",marginTop:14,lineHeight:1.6}}>
+          Prescription treatments require medical evaluation and ongoing supervision by licensed
+          providers. Individual results vary; eligibility is determined at consultation.
+        </p>
       </Section>
 
       {/* ─── PILLARS ─── */}
